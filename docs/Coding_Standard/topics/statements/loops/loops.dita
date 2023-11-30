@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_12136af6-4e53-4525-9cdb-f75f3d9ab40e">
+  <title>Loops</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Loops can be used to run a code block zero, one, or multiple times.</p>
+    <p>The <codeph>for</codeph> loop should be used if the required number of iterations is known
+      beforehand. The endless loop is special variant of the <codeph>for</codeph> loop. The
+        <codeph>while</codeph> loop can be used if the number of iterations is not known beforehand.
+      The <codeph>do ... while</codeph> loop is a special variant of the <codeph>while</codeph> loop
+      that can be used if the loop has to loop at least once.</p>
+    <p>Unbounded loops should be avoided as it can lead to undesired application behavior (e.g.,
+      missed deadlines).</p>
+  </body>
+</topic>

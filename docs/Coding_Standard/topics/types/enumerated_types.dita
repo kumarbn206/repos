@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_5f78eca1-9201-447c-896c-8db102cb5543">
+  <title>Enumerated types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-01"/>
+      <revised modified="2021-02-01"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The enumerated type shall only be used for enumerations — a complete, ordered listing of all
+      the items in a collection. Other constant values (e.g., hardware base addresses and bit
+      fields) shall be implemented using constant values (see <xref href="constant_types.dita"
+      />).</p>
+    <p>Enumerated types shall be always be declared within a typedef declaration and the tag name
+      shall be omitted.</p>
+    <p>The identifier for each enumeration item shall have a prefix that matches the name of the
+      enumerated type and shall use "_e" as suffix (e.g., "hwSpi_mode_test_e" for enumerated type
+      "hwSpi_mode_t").</p>
+    <p>An enumerated type shall only list the functional items and shall not include items that are
+      purely of interest to the implementation. This forbids the inclusion of "last" or "max" items
+      that are used for range checking or looping and such implementation details shall be
+      implemented using constant values (see <xref href="constant_types.dita"/>).</p>
+    <p>Explicit constant values shall only be included when there is a need for these values (e.g.,
+      hardware register) and can be specified for either only the first enumeration item or for all
+      enumeration items. All three possibilities are shown in the example below.  </p>
+    <codeblock scale="70">
+typedef enum 
+{
+    rfeHwSpi_mode_idleLow_first_e,
+    rfeHwSpi_mode_idleHigh_first_e,
+    rfeHwSpi_mode_idleLow_second_e,
+    rfeHwSpi_mode_idleHigh_second_e
+} rfeHwSpi_mode_t;
+
+typedef enum 
+{
+    rfeHwSpi_mode_idleLow_first_e = 0ul,
+    rfeHwSpi_mode_idleHigh_first_e,
+    rfeHwSpi_mode_idleLow_second_e,
+    rfeHwSpi_mode_idleHigh_second_e
+} rfeHwSpi_mode_t;
+
+typedef enum 
+{
+    rfeHwSpi_mode_idleLow_first_e   = 0ul,
+    rfeHwSpi_mode_idleHigh_first_e  = 1ul,
+    rfeHwSpi_mode_idleLow_second_e  = 2ul,
+    rfeHwSpi_mode_idleHigh_second_e = 3ul
+} rfeHwSpi_mode_t;
+    </codeblock>
+    
+  </body>
+</topic>

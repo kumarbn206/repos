@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c050e9ec-118b-46c7-8e45-f9f6a0f75864">
+  <title>Boolean types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2020-12-18"/>
+      <revised modified="2020-12-18"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The <codeph>bool</codeph> type from <codeph>&lt;stdbool.h></codeph> shall be used for boolean
+      types.</p>
+    <p>Only the literals <codeph>true</codeph> and <codeph>false</codeph> from
+        <codeph>&lt;stdbool.h></codeph> shall be used.</p>
+  </body>
+</topic>

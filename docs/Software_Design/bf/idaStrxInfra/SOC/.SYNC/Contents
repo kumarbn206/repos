@@ -1,0 +1,10 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxInfra\SOC\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_soc_init_rfe_debug.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxInfra/SOC/idaSTRX_soc_init_rfe_debug.bf;><1><1.2><1638343117><><F><><><Checksum=6aae111cf0445fe07a52f8118952d15f><Size=3380><mode=33060><vctime=1638342912>
+<idaSTRX_SocInitOfRFE.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxInfra/SOC/idaSTRX_SocInitOfRFE.bf;><1><1.4><1638343117><><F><><><Checksum=88e05955b03b6de18823bf89379ceb22><Size=4706><mode=33056><vctime=1638342912>
+<idaSTRX_soc_init_rfe.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxInfra/SOC/idaSTRX_soc_init_rfe.bf;><1><1.2><1638343117><><F><><><Checksum=90ae7bf583618f2015e1383f30d4fa1b><Size=1263><mode=33060><vctime=1638342912>
+
+

@@ -1,0 +1,10 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxInfra\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<CGU><G><><><><1638342912><><F><><>
+<APB2SPI><G><><><><1638342912><><F><><>
+<SOC><G><><><><1638342912><><F><><>
+
+

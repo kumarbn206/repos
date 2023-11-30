@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c050e9ec-118b-46c7-8e45-f9f6a0f75864">
+  <title>Types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2020-12-18"/>
+      <revised modified="2020-12-18"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>This section describes the rules concerning types.</p>
+  </body>
+</topic>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_1e296171-5827-4275-a8f3-0507f9dae9e3">
+  <title>Introduction</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>This document defines the coding standard for the STRX RFE software. It incorporates the
+      guidelines from the MISRA C 2012 coding standard including amendment 1.</p>
+    <p>Language features and constructs that are not explicitly described in this coding standard
+      are not allowed to be used in the STRX RFE software.</p>
+    <p>All examples in this document are normative and describe the precise placement of spaces and
+      parenthesis.</p>
+    <p>A separate API documentation template exists to specify the required Doxygen tags and
+      structure.</p>
+  </body>
+</topic>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c26803f5-99d6-4895-9eb9-5f0503f7d1f3">
+  <title>For statement</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The <codeph>expression1</codeph> shall only be concerned with declaring and initializing loop
+      variable(s). The <codeph>expression2</codeph> shall only be concerned with checking the loop
+      variable(s). The <codeph>expression3</codeph> shall only be concerned with updating the loop
+      variable(s).</p>
+    <p>Preferably, looping variables should be declared in <codeph>expression1</codeph> such that
+      these variables cannot be accessed outside of the <codeph>for</codeph> loop.</p>
+    <p>The following code block depicts the template for a <codeph>for</codeph>
+      loop:<codeblock scale="70">for ( expression1; expression2; expression3 )
+{
+    // code ...
+}</codeblock></p>
+    <p>Example:<codeblock scale="70">for ( uint8_t c; c &lt; 100ul; c++ )
+{
+    // code ...
+}</codeblock></p>
+  </body>
+</topic>

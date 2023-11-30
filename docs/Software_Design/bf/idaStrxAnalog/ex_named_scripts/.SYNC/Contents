@@ -1,0 +1,11 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_named_scripts\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_chirppll_76G_CW.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_named_scripts/idaSTRX_chirppll_76G_CW.bf;><1><1.5><1637573426><><F><><><Checksum=1c878afd732809986f11f59d23208fc7><Size=328><mode=33060><vctime=1637508889>
+<idaSTRX_rx1.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_named_scripts/idaSTRX_rx1.bf;><1><1.1><1637573427><><F><><><Checksum=88f64dcf7f40aae43eb32b7ea38f9713><Size=119><mode=33060><vctime=1637276595>
+<idaSTRX_rx1234.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_named_scripts/idaSTRX_rx1234.bf;><1><1.1><1637573427><><F><><><Checksum=40f6d2f168ec326cabe85bf37d9b7b1a><Size=456><mode=33060><vctime=1637276596>
+<idaSTRX_chirppll_76G_mode1G.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_named_scripts/idaSTRX_chirppll_76G_mode1G.bf;><1><1.4><1637573427><><F><><><Checksum=d398d4c5d30e3bae261ff008e8372a3><Size=396><mode=33060><vctime=1637508902>
+
+

@@ -1,0 +1,765 @@
+<html>
+    <head>
+        <title>RFE dynamic table blob structure</title>
+        <style>
+            table,th,td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>RFE dynamic table blob structure</h1>
+        <p>The RFE dynamic table blob (binary large object) can be used to define a limited set of configuration values that will be updated during chirp generation by the RFE software.</p>
+        
+        <p>The image below overlays an example RFE dynamic table blob with the corresponding high-level structure:</p>
+        <img src="dynamic_table.png"/>
+        
+        <h2>Global constants section</h2>
+        <p>The global constants section contains the number of metatables present in the RFE dynamic table blob and its total size. This section is structured according to the table below:</p>
+        <table>
+            <tr>
+                <th>Byte index:</th>
+                <th>Parameter:</th>
+                <th>Description:</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>Table count</td>
+                <td>Number of metatables present in the RFE dynamic table blob.</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><i>&lt;reserved value&gt;</i></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td rowspan="2">Total size</td>
+                <td rowspan="2">The total size of the RFE dynamic table blob.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+        </table>
+
+        <h2>Metatable section</h2>
+        <p>The metatable section describes the contents of a single dynamic table. These sections are structured according to the table below:</p>
+        <table>
+            <tr>
+                <th>Byte index:</th>
+                <th>Parameter:</th>
+                <th>Description:</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td rowspan="2">Data table offset</td>
+                <td rowspan="2">The offset to the start of the data table present in the data section.</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>2</td>
+                <td rowspan="2">Data table size</td>
+                <td rowspan="2">The size of the data table present in the data section.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>4</td>
+                <td rowspan="2">Sequence length</td>
+                <td rowspan="2">The length of each sequence present in the data table present in the data section.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>6</td>
+                <td rowspan="2"><i>&lt;reserved value&gt;</i></td>
+                <td rowspan="2"></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>8</td>
+                <td rowspan="2">Chirp profile index sequence offset</td>
+                <td rowspan="2">The offset to the start of the chirp profile index sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>10</td>
+                <td rowspan="2">Phase rotation TX 1 sequence offset</td>
+                <td rowspan="2">The offset to the start of the phase rotation TX 1 sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>12</td>
+                <td rowspan="2">Phase rotation TX 2 sequence offset</td>
+                <td rowspan="2">The offset to the start of the phase rotation TX 2 sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>14</td>
+                <td rowspan="2">Phase rotation TX 3 sequence offset</td>
+                <td rowspan="2">The offset to the start of the phase rotation TX 3 sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>16</td>
+                <td rowspan="2">Phase rotation TX 4 sequence offset</td>
+                <td rowspan="2">The offset to the start of the phase rotation TX 4 sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>18</td>
+                <td rowspan="2">TX transmission enable sequence offset</td>
+                <td rowspan="2">The offset to the start of the TX transmission enable sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>20</td>
+                <td rowspan="2">Dwell time sequence offset</td>
+                <td rowspan="2">The offset to the start of the dwell time sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>22</td>
+                <td rowspan="2">Settle time sequence offset</td>
+                <td rowspan="2">The offset to the start of the settle time sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>24</td>
+                <td rowspan="2">Chirp interval time sequence offset</td>
+                <td rowspan="2">The offset to the start of the chirp interval time sequence present in the data section. The absence of this specific sequence is indicated by an offset value of 0x0000.</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+            <tr>
+                <td>26</td>
+                <td rowspan="2"><i>&lt;reserved value&gt;</i></td>
+                <td rowspan="2"></td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <!-- -->
+                <!-- -->
+            </tr>
+        </table>
+
+        <h2>Data section</h2>
+        <p>The data section contains all sequences defined for this RFE dynamic table blob.</p>
+        <p>The precise memory range occupied by a sequence is defined by three properties:
+            <ul>
+                <li>The offset is determined by the corresponding offset value in the corresponding metatable.</li>
+                <li>The size of an element is dependent on the type of the sequence and is 1, 2, or 4 bytes.</li>
+                <li>The number of elements is determined by the sequence length value in the corresponding metatable.</li>
+            </ul>
+        </p>
+        
+        <h2>Example</h2>
+        <p>The table below provides a full description of the example RFE dynamic table blob structure shown in the earlier image:</p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Byte index:</th>
+                    <th>Byte value:</th>
+                    <th>Section:</th>
+                    <th>Parameter:</th>
+                    <th>Description:</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>0x02</td>
+                    <td rowspan="4">Global constants</td>
+                    <td>Table count</td>
+                    <td>2 metatables present</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0x00</td>
+                    <!-- Global constants -->
+                    <td><i>&lt;reserved value&gt;</i></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>0x4c</td>
+                    <!-- Global constants -->
+                    <td rowspan="2">Total size</td>
+                    <td rowspan="2">The total size of the RFE dynamic table blob is 0x004c / 76 bytes.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>0x00</td>
+                    <!-- Global constants -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>0x3c</td>
+                    <td rowspan="28">Metatable 0</td>
+                    <td rowspan="2">Data table offset</td>
+                    <td rowspan="2">The offset to the start of the data table present in the data section is 0x003c / 60 bytes.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>0x08</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Data table size</td>
+                    <td rowspan="2">The size of the data table present in the data section is 0x0008 / 8 bytes.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>0x04</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Sequence length</td>
+                    <td rowspan="2">The length of each sequence present in the data table present in the data section is 0x0004 / 4.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2"><i>&lt;reserved value&gt;</i></td>
+                    <td rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Chirp profile index sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Phase rotation TX 1 sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Phase rotation TX 2 sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>0x3c</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Phase rotation TX 3 sequence offset</td>
+                    <td rowspan="2">The offset to the start of the phase rotation TX 3 sequence is 0x003c / 60 bytes.</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>0x40</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Phase rotation TX 4 sequence offset</td>
+                    <td rowspan="2">The offset to the start of the phase rotation TX 4 sequence is 0x0040 / 64 bytes.</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">TX transmission enable sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Dwell time sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Settle time sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>28</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2">Chirp interval time sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>29</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <td rowspan="2"><i>&lt;reserved value&gt;</i></td>
+                    <td rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>0x00</td>
+                    <!-- Metatable 0 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>32</td>
+                    <td>0x44</td>
+                    <td rowspan="28">Metatable 1</td>
+                    <td rowspan="2">Data table offset</td>
+                    <td rowspan="2">The offset to the start of the data table present in the data section is 0x0044 / 68 bytes.</td>
+                </tr>
+                <tr>
+                    <td>33</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>34</td>
+                    <td>0x08</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Data table size</td>
+                    <td rowspan="2">The size of the data table present in the data section is 0x0008 / 8 bytes.</td>
+                </tr>
+                <tr>
+                    <td>35</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>36</td>
+                    <td>0x04</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Sequence length</td>
+                    <td rowspan="2">The length of each sequence present in the data table present in the data section is 0x0004 / 4.</td>
+                </tr>
+                <tr>
+                    <td>37</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>38</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2"><i>&lt;reserved value&gt;</i></td>
+                    <td rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td>39</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Chirp profile index sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>41</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>42</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Phase rotation TX 1 sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>43</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>44</td>
+                    <td>0x44</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Phase rotation TX 2 sequence offset</td>
+                    <td rowspan="2">The offset to the start of the phase rotation TX 4 sequence is 0x0044 / 68 bytes.</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>46</td>
+                    <td>0x48</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Phase rotation TX 3 sequence offset</td>
+                    <td rowspan="2">The offset to the start of the phase rotation TX 3 sequence is 0x0048 / 72 bytes.</td>
+                </tr>
+                <tr>
+                    <td>47</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>48</td>
+                    <td>0x40</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Phase rotation TX 4 sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>49</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">TX transmission enable sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>51</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>52</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Dwell time sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>53</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>54</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Settle time sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>55</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>56</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2">Chirp interval time sequence offset</td>
+                    <td rowspan="2">This sequence is not present.</td>
+                </tr>
+                <tr>
+                    <td>57</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+                <tr>
+                    <td>58</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <td rowspan="2"><i>&lt;reserved value&gt;</i></td>
+                    <td rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td>59</td>
+                    <td>0x00</td>
+                    <!-- Metatable 1 -->
+                    <!-- -->
+                    <!-- -->
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td>60</td>
+                    <td>0x60</td>
+                    <td rowspan="16">Data</td>
+                    <td rowspan="4">Metatable 0 - Phase rotation TX 3</td>
+                    <td>0x60 corresponds to 270 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>61</td>
+                    <td>0x40</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x40 corresponds to 180 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>62</td>
+                    <td>0x20</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x20 corresponds to 90 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>63</td>
+                    <td>0x00</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x00 corresponds to 0 degrees phase rotation.</td>
+                </tr>
+
+                <tr>
+                    <td>64</td>
+                    <td>0x00</td>
+                    <!-- Data -->
+                    <td rowspan="4">Metatable 0 - Phase rotation TX 4</td>
+                    <td>0x00 corresponds to 0 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>65</td>
+                    <td>0x40</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x40 corresponds to 180 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>66</td>
+                    <td>0x00</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x00 corresponds to 0 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>67</td>
+                    <td>0x40</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x40 corresponds to 180 degrees phase rotation.</td>
+                </tr>
+
+                <tr>
+                    <td>68</td>
+                    <td>0x60</td>
+                    <!-- Data -->
+                    <td rowspan="4">Metatable 1 - Phase rotation TX 2</td>
+                    <td>0x60 corresponds to 270 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>69</td>
+                    <td>0x40</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x40 corresponds to 180 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>70</td>
+                    <td>0x20</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x20 corresponds to 90 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>71</td>
+                    <td>0x00</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x00 corresponds to 0 degrees phase rotation.</td>
+                </tr>
+
+                <tr>
+                    <td>72</td>
+                    <td>0x00</td>
+                    <!-- Data -->
+                    <td rowspan="4">Metatable 1 - Phase rotation TX 3</td>
+                    <td>0x00 corresponds to 0 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>73</td>
+                    <td>0x40</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x40 corresponds to 180 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>74</td>
+                    <td>0x00</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x00 corresponds to 0 degrees phase rotation.</td>
+                </tr>
+                <tr>
+                    <td>75</td>
+                    <td>0x40</td>
+                    <!-- Data -->
+                    <!-- -->
+                    <td>0x40 corresponds to 180 degrees phase rotation.</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html> 

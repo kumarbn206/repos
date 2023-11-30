@@ -1,0 +1,22 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<ATB><G><><><><1638610439><><F><><>
+<LLDOPDC><G><><><><1638387924><><F><><>
+<RCOSC><G><><><><1638284074><><F><><>
+<ADC><G><><><><1638284074><><F><><>
+<TX><G><><><><1638284074><><F><><>
+<RX><G><><><><1638342859><><F><><>
+<TSENSE><G><><><><1638549922><><F><><>
+<MCGEN><G><><><><1638387923><><F><><>
+<GBIAS><G><><><><1638284075><><F><><>
+<GLDO><G><><><><1638284074><><F><><>
+<RXADC><G><><><><1638765957><><F><><>
+<LOIF><G><><><><1638387923><><F><><>
+<CHIRPPLL><G><><><><1638549804><><F><><>
+<RXBIST><G><><><><1638284074><><F><><>
+<LLDODIG><G><><><><1638613049><><F><><>
+
+

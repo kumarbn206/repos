@@ -1,0 +1,8 @@
+//
+// Script to switch off RFBIST clock when ADPLL is on
+//
+// Disables Clock gating of 320MHz RF-BIST clock inside MCGEN Buffers
+MCGEN.BUFFER_CTL.CLKGATE_320M=1;
+// Disable 320MHz Buffer inside ADPLL
+ADPLL.CLKOUT_CONFIG.ENA_DIV24_OUT=0;
+

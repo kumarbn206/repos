@@ -1,0 +1,17 @@
+groupname,chirpProfiles__chirpProfile0__chirpGenerator__center___frequency___kHz,chirpProfiles__chirpProfile0__txPower__dBm,chirpProfiles__chirpProfile1__txPower__dBm,chirpProfiles__chirpProfile0__txTransmissionEnable__tx___1,chirpProfiles__chirpProfile0__txTransmissionEnable__tx___2,chirpProfiles__chirpProfile0__txTransmissionEnable__tx___3,chirpProfiles__chirpProfile0__txTransmissionEnable__tx___4,chirpSequenceConfigs__chirpSequenceConfig0__txEnable__tx___1,chirpSequenceConfigs__chirpSequenceConfig0__txEnable__tx___2,chirpSequenceConfigs__chirpSequenceConfig0__txEnable__tx___3,chirpSequenceConfigs__chirpSequenceConfig0__txEnable__tx___4
+Default,76500000,0,0,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,3,3,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,5,5,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,7,7,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,10,10,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,13,13,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,13.5,13.5,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,15,15,disabled,enabled,disabled,disabled,disabled,enabled,disabled,disabled
+Default,76500000,0,0,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,3,3,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,5,5,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,7,7,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,10,10,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,13,13,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,13.5,13.5,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled
+Default,76500000,15,15,disabled,disabled,enabled,disabled,disabled,disabled,enabled,disabled

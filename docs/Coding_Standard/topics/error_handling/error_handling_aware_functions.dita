@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_42d81b68-f7e9-41c2-a8bf-7412ed6495f5">
+  <title>Defining error handling aware functions</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-11"/>
+      <revised modified="2021-02-11"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Each error handling aware function requires an additional parameter as defined by the
+        <codeph>RFE_ERROR_FUNCTION_PARAMETER</codeph> preprocessor macro. This parameter should be
+      the last parameter in order to ensure a common look and feel. Code parts inside an error
+      handling aware function that should only be executed if the current error value does not
+      contain an error should be encapsulated in the <codeph>RFE_ERROR_GUARD( block )</codeph>
+      macro. The <codeph>RFE_ERROR_SET( err )</codeph> macro should be used when a new error
+      condition has been detected. </p>
+    <p>The following code block shows an example of an error handling aware function that
+      incorporates all these
+      macros::<codeblock scale="80">uint32_t rfeHwExample_squareValue(
+    uint32_t        value,
+    RFE_ERROR_FUNCTION_PARAMETER
+)
+{
+    // result value to return, initialized with default value.
+    uint32_t result = 0;
+ 
+    // only execute the code block if no prior error exists   
+    RFE_ERROR_GUARD(
+        if ( value &lt;= 0x0000FFFFUL )
+        {
+            result = value * value;
+        }
+        else
+        {
+            result = 0;
+            RFE_ERROR_SET( rfeError_error_range_e );
+        }
+    );
+    
+    // return result
+    return result;
+}</codeblock>Example
+      function <codeph>rfeHwExample_squareValue</codeph> takes one <codeph>uint32_t</codeph> value
+      and returns a <codeph>uint32_t</codeph> value. The preprocessor macro
+        <codeph>RFE_ERROR_FUNCTION_PARAMETER</codeph> is added to the end of the parameter list to
+      make this function aware of the current error variable. The code within the
+        <codeph>RFE_ERROR_GUARD( block )</codeph> will only execute if the current error value does
+      not contain an error when this function is called. The code inside this guarded block will
+      check the input value and  sets variable <codeph>result</codeph> to the squared value of the
+      input if the input value is valid. Otherwise, it calls the <codeph>RFE_ERROR_SET( err
+        )</codeph> function like preprocessor macro with <codeph>rfeError_error_range_e</codeph> as
+      an argument (it is assumed that <codeph>rfeError_error_range_e</codeph> is part of the
+        <codeph>rfeError_error_t</codeph> enumerated type).</p>
+    <p>The following code block shows the same example, but in this case it returns a structure type
+      consisting of the input value and the squared
+      value:<codeblock scale="80">typedef struct
+{
+    uint32_t    value;
+    uint32_t    squared;
+} rfeHwExample_squaredValue_t;
+
+
+rfeHwExample_squaredValue_t rfeHwExample_squareValue2(
+    uint32_t        value,
+    RFE_ERROR_FUNCTION_PARAMETER
+)
+{
+    // result value to return, initialized with default values.
+    rfeHwExample_squaredValue_t result = { .value = 0, .squared = 0 };
+    
+    // only execute the code block if no prior error exists   
+    RFE_ERROR_GUARD(
+        if ( value &lt;= 0x0000FFFFUL )
+        {
+            result.value   = value;
+            result.squared = value * value;
+        }
+        else
+        {
+            result.value   = 0;
+            result.squared = 0;
+            RFE_ERROR_SET( rfeError_error_1_e );
+        }
+    );
+    
+    // return result
+    return result;
+}</codeblock></p>
+  </body>
+</topic>

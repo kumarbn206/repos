@@ -1,0 +1,19 @@
+Proxy_loc
+elfFileLoc
+elfFileName
+
+basepath
+result_path
+filenamefiller
+
+
+_____ FROM rx power test _____
+
+ChirpCF
+Freq_BW
+Tchirp
+chirpdirection
+Data_bit_length
+sampleFreq
+numRX
+

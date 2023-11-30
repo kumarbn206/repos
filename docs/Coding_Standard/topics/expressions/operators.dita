@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_49d0dba7-bfc4-4f8b-b8ff-c311823ad84c">
+  <title>Operators</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-19"/>
+      <revised modified="2021-02-19"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Operators shall be preceded and followed by spaces for readability.</p>
+    <p>The following code block depicts examples or expressions with operators:
+      <codeblock scale="70">uint32_t a = 1ul + 3ul;
+42 &lt;= 42 ? 1 : 0;</codeblock></p>
+  </body>
+</topic>

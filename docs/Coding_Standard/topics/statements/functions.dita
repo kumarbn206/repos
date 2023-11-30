@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_539e09d9-71f5-4e53-9ce7-650cdde1afee">
+  <title>Functions</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>A function shall always have a proper function prototype defined in a header file.</p>
+    <p>Recursive functions shall not be used.</p>
+    <p>Variable arguments shall not be used.</p>
+    <p>A function that returns a value shall declare and intialize a variable of this type at the
+      beginning of the function block and the last statement shall return this value. No other exit
+      points are allowed. The caller of such a function must use this returned value or explicitly
+      cast this to void.</p>
+    <p>A function that takes no parameters shall explicetly indicate this by using the
+        <codeph>void</codeph> keyword in the parameter list. A function that takes multiple
+      parameters shall list these on new lines and shall align the parameter names on a proper
+      column.</p>
+    <p>The following code block depicts the template for a function that takes no
+      parameters:<codeblock scale="70">void rfeHwExample_reset( void )
+{
+    // code ...
+}</codeblock></p>
+    <p>The following code block depicts the template for a function that takes one or more
+      parameters:<codeblock scale="70">uint32_t rfeHwExample_max(
+    uint32_t        a,
+    uint32_t        b
+)
+{
+    uint32_t result = 0ul;
+
+    // code ...
+
+    return result;
+}</codeblock></p>
+    <p>The function shall not modify its parameters. The code in the body of function
+        <codeph>rfeHwExample_max</codeph> could assign new values to parameters <codeph>a</codeph>
+      and <codeph>b</codeph> that will be visible only to the remainder of this body. This style
+      might give the false impression that these new values remain visible to the caller after this
+      function exits. See rule MISRA C:2012 rule 17.8.</p>
+    <p>Functions that should return multiple values can return a structure type or use pointers.
+      Returning a structure type is prefered due to the better readability of this solution.</p>
+  </body>
+</topic>

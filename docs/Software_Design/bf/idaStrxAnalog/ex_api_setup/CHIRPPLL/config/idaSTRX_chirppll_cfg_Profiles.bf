@@ -1,0 +1,11 @@
+/* idaSTRX_chirppll_cfg_Profiles.bf */
+
+CHIRPPLL.P0_ANA_UNLOCK_DET.DELTA		= 11;
+CHIRPPLL.P0_ANA_UNLOCK_DET.OFFSET		= 11;
+CHIRPPLL.P0_ANA_UNLOCK_DET.POLARITY		= 0;
+	
+CHIRPPLL.P0_ANA_VCO_CTL1.VCO_SEL		= 1; // Selectt VCO default: 1 --> 1G, 0 --> 4G
+CHIRPPLL.ANA_RMSDET_CTL.RMS_SEL			= 1; // Selects RMS DET default: 1 --> 1G, 2 --> 4G
+
+
+

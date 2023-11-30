@@ -1,0 +1,12 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxExamples\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaStrxSx_76G_CW_to_RFATB.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxExamples/idaStrxSx_76G_CW_to_RFATB.bf;><1><1.2><1637573429><><F><><><Checksum=344b7d1d70c9aecbd7a954e94a3bc300><Size=74><mode=33060><vctime=1637276646>
+<idaStrxRadar_1TX_1RX_mode1G_76G.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxExamples/idaStrxRadar_1TX_1RX_mode1G_76G.bf;><1><1.2><1637573429><><F><><><Checksum=2fc4df3c488ec4eda93e29834639f5c4><Size=139><mode=33060><vctime=1637276646>
+<idaStrxRadar_4TX_4RX_mode1G_76G.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxExamples/idaStrxRadar_4TX_4RX_mode1G_76G.bf;><1><1.2><1637573429><><F><><><Checksum=b98f1284b7d4b0df5abb9384e36fbb9f><Size=142><mode=33060><vctime=1637276646>
+<idaStrxRx_76G_CW.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxExamples/idaStrxRx_76G_CW.bf;><1><1.2><1637573429><><F><><><Checksum=5e0371001b0a771ffb803cb5b712278><Size=135><mode=33060><vctime=1637276646>
+<idaStrxTx_76G_CW.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxExamples/idaStrxTx_76G_CW.bf;><1><1.4><1637573429><><F><><><Checksum=cd40fc1b8afc501cb484a7a63c3d668a><Size=83><mode=33060><vctime=1637276646>
+
+

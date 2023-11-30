@@ -1,0 +1,2 @@
+// set 0 to unmask APDLL LossofLock  
+SPIM.ADPLL_LOSS_OF_LOCK_MASK_REG.ADPLL_LOSS_OF_LOCK_MASK=0;

@@ -1,0 +1,9 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\scripts\flatten_script\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_bf2sv.py><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/scripts/flatten_script/idaSTRX_bf2sv.py;><1><1.4><1638774356><><F><><><Checksum=fadc551429fcb330e09c0838ae82f77><Size=7763><mode=33060><vctime=1638550229>
+<_run_idaSTRX_bf2sv.bat><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/scripts/flatten_script/_run_idaSTRX_bf2sv.bat;><1><1.3><1638466659><><F><><><Checksum=824b910efadca256f1270b9299d768ba><Size=1884><mode=33133><vctime=1638387925>
+
+

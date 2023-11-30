@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_7d4241eb-9194-491e-a366-ad252207f9e8">
+  <title>Naming convention</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-02"/>
+      <revised modified="2021-02-02"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>This section describes the naming convention.</p>
+    <p>Variables defined and used inside a single function are explicetly not covered by this naming
+      convention and it is allowed to use shorter names (e.g., <codeph>counter</codeph> or
+        <codeph>c</codeph>). The same exception applies to the names of function parameters.</p>
+    
+  </body>
+</topic>

@@ -1,0 +1,10 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\ADC\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_adc_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ADC/idaSTRX_adc_off2stdby.bf;><1><1.1><1637573428><><F><><><Checksum=296897134d1f3d66d988ecfdbfca9fc6><Size=23><mode=33060><vctime=1637321977>
+<idaSTRX_adc_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ADC/idaSTRX_adc_initRegisters.bf;><1><1.1><1637573428><><F><><><Checksum=a2e03560dd4da5d199932f6771bbf3><Size=17><mode=33060><vctime=1637321977>
+<idaSTRX_adc_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ADC/idaSTRX_adc_OTPchange.bf;><1><1.1><1637573428><><F><><><Checksum=61209c9059c882d16f7916023866d2c><Size=21><mode=33060><vctime=1637321977>
+
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_a3a8f5fc-07cb-4840-b890-5d22e9d0b948">
+  <title>Pointer types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-05-21"/>
+      <revised modified="2021-05-21"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The C programming language defines the following four pointer qualifiers:
+      <codeblock scale="70">      uint32_t* pA         //          pointer to an         uint32_t
+const uint32_t* pB         //          pointer to a constant uint32_t
+      uint32_t* pC const   // constant pointer to an         uint32_t
+const uint32_t* pD const   // constant pointer to a constant uint32_t  </codeblock></p>
+    <p>Pointer <codeph>pA</codeph> is the least restrictive pointer while pointer <codeph>pD</codeph> is the most restrictive
+      pointer.</p>
+    <p>The most restrictive pointer qualifier — suitable for the situation — should be used.</p>
+    <p>Declarations should contain no more than two levels of pointer nesting.</p>
+  </body>
+</topic>

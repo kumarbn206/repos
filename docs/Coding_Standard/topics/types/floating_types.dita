@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c050e9ec-118b-46c7-8e45-f9f6a0f75864">
+  <title>Floating-point types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2020-12-18"/>
+      <revised modified="2020-12-18"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The <codeph>float</codeph> and <codeph>double</codeph> types can be used for floating-point
+      types.</p>
+    <p>Using floating-point types is discouraged and therefore their usage should be minimized.
+      Otherwise, the type that matches the hardware accelerator is preferred.</p>
+    <p>Take care when using floating-point types in operations. For instance, do not use
+      floating-point types for looping variables, consider the possibility of <codeph>NaN</codeph>
+      inputs and results, consider the epsilon when comparing two floating-point values, et
+      cetera.</p>
+  </body>
+</topic>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_44769783-eb13-475d-b519-0c3a2523a1cf">
+  <title>Hardware register definitions</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-08"/>
+      <revised modified="2021-02-08"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Dedicated naming conventions are described in this section for defining hardware registers.
+      These naming conventions are compliant with the preprocessor naming convention described in <xref href="preprocessor_naming.dita"/>
+      .</p>
+    <p>Preprocessor macros used for peripheral base addresses use
+        <codeph>RFE_HW_&lt;module>_BASE</codeph> where <codeph>&lt;module></codeph> is the module
+      identifier.</p>
+    <p>Preprocessor macros used for register offsets use
+        <codeph>RFE_HW_&lt;module>_&lt;register>_REG</codeph> where <codeph>&lt;module></codeph> is
+      the module identifier and <codeph>&lt;register></codeph> is the register identifier.</p>
+    <p>Preprocessor macros used for register content definitions use
+        <codeph>RFE_HW_&lt;module>_&lt;type>_&lt;register>_&lt;item-name></codeph> where
+        <codeph>&lt;module></codeph> is the module identifier, <codeph>&lt;register></codeph> is the
+      register identifier, <codeph>&lt;item-name></codeph> is the name of the item in the specified
+      register, and <codeph>&lt;type></codeph> denotes the type. The following
+        <codeph>&lt;type></codeph> literals are defined: <ul>
+        <li><codeph>BIT</codeph> for individual bits</li>
+        <li><codeph>MSK</codeph> for masks</li>
+        <li><codeph>SHF</codeph> for shifts</li>
+        <li><codeph>VAL</codeph> for constant values</li>
+      </ul></p>
+    <p>Examples:
+      <codeblock scale="70">// base address
+#define RFE_HW_GPIO_BASE                ( ( rfeHwAbh_base_t ) ( 0x80040000ul ) )
+
+// register offsets
+#define RFE_HW_GPIO_CONTROL_REG         ( ( rfeHwAhb_offset_t ) ( 0x0000ul ) )
+#define RFE_HW_GPIO_DIRECTION_REG       ( ( rfeHwAhb_offset_t ) ( 0x0004ul ) )
+
+// register definition
+#define RFE_HW_GPIO_CONTROL_ENABLE_BIT  ( ( uint8_t )  ( 0ul ) )
+#define RFE_HW_GPIO_CONTROL_MODE_MSK    ( ( uint32_t ) ( 1ul&lt;&lt;3 | 1ul&lt;&lt;2 ) )
+#define RFE_HW_GPIO_CONTROL_MODE_SHF    ( ( uint8_t )  ( 2ul ) )
+#define RFE_HW_GPIO_CONTROL_DEFAULT_VAL ( ( uint32_t ) ( 0x00000008ul ) )</codeblock></p>
+  </body>
+</topic>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_85b9ba31-43e6-4c20-9fcb-57fa0f9d7dee">
+  <title>Constant values</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-01"/>
+      <revised modified="2021-02-01"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Constant values shall be specified as preprocessor macro definitions. These macro definitions
+      will use the ALL_CAPS notation for the name of the macro. The replacement text of the macro
+      shall contain an explicit cast to the desired type.
+    </p>
+    <codeblock scale="70">
+#define RFE_HW_EXAMPLE_MAGIC_NUMBER     ( (uint32_t) 42ul )
+#define RFE_HW_EXAMPLE_MAGIC_BOOLEAN    ( (bool) true )
+    </codeblock>
+    <p>This notation shall also be used for bit fields.</p>
+    <codeblock scale="70">
+typedef uint32_t                rfeHwSpi_int_t;
+#define RFE_HW_SPI_INT_OVER     ( (rfeHwSpi_int_t) ( 1ul&lt;&lt;2 ) )
+#define RFE_HW_SPI_INT_UNDER    ( (rfeHwSpi_int_t) ( 1ul&lt;&lt;1 ) )
+#define RFE_HW_SPI_INT_DONE     ( (rfeHwSpi_int_t) ( 1ul&lt;&lt;0 ) )
+    </codeblock>
+  </body>
+</topic>

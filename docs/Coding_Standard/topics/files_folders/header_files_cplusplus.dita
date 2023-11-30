@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_8d85fbcd-d67b-49c1-8770-e7a4b0cdaa48">
+  <title>C++ compatibility</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-05-21"/>
+      <revised modified="2021-05-21"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>If a header file is going to be used in an C++ environment, it is required to wrap the
+      declarations in a <codeph>extern "C"</codeph> block as shown in the followin code
+      example:<codeblock scale="70">#ifdef __cplusplus
+extern "C" {
+#endif
+
+// declarations
+
+#ifdef __cplusplus
+}
+#endif</codeblock></p>
+  </body>
+</topic>

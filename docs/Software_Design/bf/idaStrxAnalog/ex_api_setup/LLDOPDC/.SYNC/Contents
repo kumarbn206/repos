@@ -1,0 +1,13 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\LLDOPDC\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_lldopdc_stdby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDOPDC/idaSTRX_lldopdc_stdby2on.bf;><1><1.2><1638466658><><F><><><Checksum=ad809e111133bda9c0f091a102080e8e><Size=491><mode=33056><vctime=1638387923>
+<idaSTRX_lldopdc_stdby2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDOPDC/idaSTRX_lldopdc_stdby2off.bf;><1><1.1><1638362173><><F><><><Checksum=2290d0539f09a7c6b3edcab0b64ace3d><Size=316><mode=33056><vctime=1638353266>
+<idaSTRX_lldopdc_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDOPDC/idaSTRX_lldopdc_initRegisters.bf;><1><1.1><1637573428><><F><><><Checksum=a2e03560dd4da5d199932f6771bbf3><Size=17><mode=33060><vctime=1637321978>
+<idaSTRX_lldopdc_on2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDOPDC/idaSTRX_lldopdc_on2stdby.bf;><1><1.1><1638362173><><F><><><Checksum=e7f3e998d78234b69efb98523d869910><Size=102><mode=33056><vctime=1638353266>
+<idaSTRX_lldopdc_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDOPDC/idaSTRX_lldopdc_OTPchange.bf;><1><1.2><1637930707><><F><><><Checksum=d5bc940413c68f3bd02450b782685268><Size=146><mode=33056><vctime=1637920747>
+<idaSTRX_lldopdc_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDOPDC/idaSTRX_lldopdc_off2stdby.bf;><1><1.3><1638466658><><F><><><Checksum=90333ced57de434c5a9e6853b7fafe8a><Size=840><mode=33056><vctime=1638387923>
+
+

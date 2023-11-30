@@ -1,0 +1,513 @@
+<?xml version="1.0"?>
+<rfeConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rfeConfig_0.8.20.xsd">
+    <generalConfig>
+        <power mode="active" />
+        <ioSignals radar-cycle-start-in="none" radar-cycle-start-out="rfe io 2" chirp-sequence-active-out="rfe io 1" />
+        <clkInOut in="disabled" out="disabled" reduce-driver-level="true" />
+        <pdc decimation-filter="steep narrow" bitwidth="12 bit" />
+        <dataOut packet-processor="true" csi2="false" wdma="false" interleaving="true" header="false" footer="false" >
+            <metadata packet="disabled" software-content="chirp sequence timestamp" hardware-field="disabled" virtual-channel="0" />
+        </dataOut>
+        <jumpbackTiming time-ticks="2" />
+    </generalConfig>
+
+    <monitorAndSafetyConfig>
+        <rxSaturation>
+            <rxSaturationCounter reset-every-sequence="true" />
+            <rxSaturationThresholds>
+                <rxSaturationThresholdRx1 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+                <rxSaturationThresholdRx2 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+                <rxSaturationThresholdRx3 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+                <rxSaturationThresholdRx4 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+            </rxSaturationThresholds>
+        </rxSaturation>
+        <adcClippingCounter reset-every-sequence="true" limit-adc1="4194303" limit-adc2="4194303" limit-adc3="4194303" limit-adc4="4194303" />
+        <temperatureThresholds>
+            <temperatureThresholdTx12 under-error-celsius="-30" high-warning-celsius="120" over-error-celsius="140" />
+            <temperatureThresholdTx34 under-error-celsius="-30" high-warning-celsius="120" over-error-celsius="140" />
+            <temperatureThresholdRx under-error-celsius="-30" high-warning-celsius="120" over-error-celsius="140" />
+            <temperatureThresholdXo under-error-celsius="-30" high-warning-celsius="120" over-error-celsius="140" />
+        </temperatureThresholds>
+        <r1FaultPromotion threshold-value="1" />
+        <txBist>
+            <txPhaseDiff zero-hr-ref-tx12="20" zero-hr-ref-tx23="20" zero-hr-ref-tx34="20" phase-diff-threshold-tolerance="70" phase-step-threshold-tolerance="70"/>
+            <txPowerLevelForBist dBm="7"/>
+            <txSelect tx1="enabled" tx2="enabled" tx3="enabled" tx4="enabled" />
+        </txBist>
+        <frequencyForBist frequency-in-kHz="76500000"/>
+        <rxBist>
+            <rxPhaseDiff zero-hr-ref-rx12="10" zero-hr-ref-rx13="10" zero-hr-ref-rx14="10" phase-diff-threshold-tolerance="100"/>
+            <rxGainDiff zero-hr-ref-rx12="10" zero-hr-ref-rx13="10" zero-hr-ref-rx14="10" gain-diff-threshold-tolerance="40"/>
+            <injectTestTone before-lna="true"/>
+        </rxBist>
+        <txPpdThreshold profile0-dBm="12" profile1-dBm="12" profile2-dBm="0" profile3-dBm="0"/>
+        <fuSaFaultMask0  r1-sm7-paout-rtm-tx1="0"                      r1-sm3-bb-tx1="0"                               r1-sm60-sd-chirp="0"                          r1-sm59-li-chirp="0"                          r1-sm58-cg-chirp="0"                           r1-sm57-vco-freq-chirp="0"                      r1-sm55-unlock-chirp="0"                     r1-sm62-lockstep-te="0"/>
+        <fuSaFaultMask1  r1-sm54-level-high-chirp="0"                  r1-sm54-level-low-chirp="0"                     r1-sm10-paout-rtm-tx4="0"                     r1-sm6-bb-tx4="0"                             r1-sm9-paout-rtm-tx3="0"                       r1-sm5-bb-tx3="0"                               r1-sm8-paout-rtm-tx2="0"                     r1-sm4-bb-tx2="0"/>
+        <fuSaFaultMask2  r1-sm21-rf-i-low-rx3="0"                      r1-sm17-bb-rx3="0"                              r1-sm20-rf-q-low-rx2="0"                      r1-sm20-rf-i-low-rx2="0"                      r1-sm16-bb-rx2="0"                             r1-sm19-rf-q-low-rx1="0"                        r1-sm19-rf-i-low-rx1="0"                     r1-sm15-bb-rx1="0"/>
+        <fuSaFaultMask3  r1-sm31-ov-hld1v8-gldo="0"                    r1-sm29-uv-gld1v4-gldo="0"                      r1-sm29-ov-gld1v4-gldo="0"                    r1-sm86-m7-fpu="0"                            r1-sm22-rf-q-low-rx4="0"                       r1-sm22-rf-i-low-rx4="0"                        r1-sm18-bb-rx4="0"                           r1-sm21-rf-q-low-rx3="0"/>
+        <fuSaFaultMask4  r1-sm64-sup-ldo3-ov-pfdcp-1v8-chirp-sw="0"    r1-sm64-sup-ldo2-ov-vco-0v9-chirp-sw="0"        r1-sm64-sup-ldo1-ov-vco-1v8-chirp-sw="0"      r1-sm50-adpll-dco-level-min-mcgen="0"         r1-sm50-adpll-dco-level-max-mcgen="0"          r1-sm46-xo-pllclk-det-mcgen="0"                 r1-sm28-ov-gld1v3-gldo="0"                   r1-sm31-uv-hld1v8-gldo="0"/>
+        <fuSaFaultMask5  r1-sm64-sup-ldo1-ov-xo-core-mcgen-sw="0"      r1-sm64-sup-ldo5-uv-pdiv-0v9-chirp-sw="0"       r1-sm64-sup-ldo4-uv-pfdcp-0v9-chirp-sw="0"    r1-sm64-sup-ldo3-uv-pfdcp-1v8-chirp-sw="0"    r1-sm64-sup-ldo2-uv-vco-0v9-chirp-sw="0"       r1-sm64-sup-ldo1-uv-vco-1v8-chirp-sw="0"        r1-sm64-sup-ldo5-ov-pdiv-0v9-chirp-sw="0"    r1-sm64-sup-ldo4-ov-pfdcp-0v9-chirp-sw="0"/>
+        <fuSaFaultMask6  r1-sm64-sup-ldo1-uv-xo-core-mcgen-sw="0"      r1-sm64-sup-ldo8-ov-digital-mcgen-sw="0"        r1-sm64-sup-ldo7-ov-sampler-mcgen-sw="0"      r1-sm64-sup-ldo6-ov-div3-mcgen-sw="0"         r1-sm64-sup-ldo5-ov-dco-buffer-mcgen-sw="0"    r1-sm64-sup-ldo4-ov-dco-capbank-mcgen-sw="0"    r1-sm64-sup-ldo3-ov-mcgen-sw="0"             r1-sm64-sup-ldo2-ov-xo-out-mcgen-sw="0"/>
+        <fuSaFaultMask7  r1-sm23-bist-rx1-rx2-gainDiff-sw="0"          r1-sm64-sup-ldo8-uv-digital-mcgen-sw="0"        r1-sm64-sup-ldo7-uv-sampler-mcgen-sw="0"      r1-sm64-sup-ldo6-uv-div3-mcgen-sw="0"         r1-sm64-sup-ldo5-uv-dco-buffer-mcgen-sw="0"    r1-sm64-sup-ldo4-uv-dco-capbank-mcgen-sw="0"    r1-sm64-sup-ldo3-uv-mcgen-sw="0"             r1-sm64-sup-ldo2-uv-xo-out-mcgen-sw="0"/>
+        <fuSaFaultMask8  r1-sm13-bist-tx3-tx4-phaseDiff-sw="0"         r1-sm12-bist-tx2-tx3-phaseDiff-sw="0"           r1-sm11-bist-tx1-tx2-phaseDiff-sw="0"         r1-sm23-bist-rx1-rx4-phaseDiff-sw="0"         r1-sm23-bist-rx1-rx3-phaseDiff-sw="0"          r1-sm23-bist-rx1-rx2-phaseDiff-sw="0"           r1-sm23-bist-rx1-rx4-gainDiff-sw="0"         r1-sm23-bist-rx1-rx3-gainDiff-sw="0"/>
+        <fuSaFaultMask9  r2-sm87-m7-rfe-lockup="0"                     r2-sm83-rfe-test-mode-active="0"                r2-sm70-mosi-miso-crc="0"                     r1-sm94-m7-message-e2e-crc-sw="0"             r1-sm13-bist-tx4-phaseStep-sw="0"              r1-sm13-bist-tx3-phaseStep-sw="0"               r1-sm12-bist-tx2-phaseStep-sw="0"            r1-sm11-bist-tx1-phaseStep-sw="0"/>
+        <fuSaFaultMask10 r2-sm68-sm69-reg-crc="0"                      r2-sm435-generic-sw="0"                         r2-sm204-dm-rfe-m7-core-sw-redundancy="0"     r2-sm99-spi-write-check-fail-sw="0"           r2-sm98-m7-spi-access-ana="0"                  r2-sm93-xbic-integrity-check="0"                r2-sm92-sw-wdt="0"                           r2-sm88-sm89-m7-tcm-sram="0"/>
+        <fuSaFaultMask11 r2-sm63-te-swt-radar-pipeline="0"/>
+        <errorRecovery mode="non auto"/>
+    </monitorAndSafetyConfig>
+
+    <radarCycleConfig>
+        <radarCycleDuration ticks="2000000" />
+        <chirpSequences chirp-sequence-config-index="0 1" start-time-offset="- 1072640" />
+        <recalibration>
+            <recalibrationProfileIndependent chirp-sequences="0" />
+            <recalibrationProfileDependent chirp-sequence="0" chirp-profiles="0 1" />
+        </recalibration>
+        <bistInterval interval="every radar cycle" />
+    </radarCycleConfig>
+
+    <chirpSequenceConfigs>
+        <!-- Sequence configuration for RSR FCM1 mode -->
+        <chirpSequenceConfig>
+            <chirpCount count="256" />
+            <!-- Chirp profile: FCM1 power high -->
+
+            <chirpProfileSequence sequence="0" />
+            <dynamicUpdate dynamic-updates="enabled" dynamic-table-index="0" />
+            <chirpFrequency frequency-drift-steps="0" />
+            <fastReset fast-reset="enabled" />
+            <txEnable tx-1="enabled" tx-2="enabled" tx-3="enabled" tx-4="disabled" />
+            <rxEnable rx-1="enabled" rx-2="enabled" rx-3="enabled" rx-4="enabled" />
+            <pdc notch-filter-enable="true" notch-filter-coefficient="100" />
+        </chirpSequenceConfig>
+
+        <!-- Sequence configuration for RSR FCM2 mode -->
+        <chirpSequenceConfig>
+            <chirpCount count="58" />
+            <!-- Chirp profile: FCM2 power high -->
+
+            <chirpProfileSequence sequence="1" />
+            <dynamicUpdate dynamic-updates="enabled" dynamic-table-index="1" />
+            <chirpFrequency frequency-drift-steps="0" />
+            <fastReset fast-reset="enabled" />
+            <txEnable tx-1="disabled" tx-2="enabled" tx-3="enabled" tx-4="enabled" />
+            <rxEnable rx-1="enabled" rx-2="enabled" rx-3="enabled" rx-4="enabled" />
+            <pdc notch-filter-enable="true" notch-filter-coefficient="300" />
+        </chirpSequenceConfig>
+
+        <!-- Sequence configuration for RSR FCM1 mode -->
+        <chirpSequenceConfig>
+            <chirpCount count="256" />
+            <!-- Chirp profile: FCM1 power low -->
+
+            <chirpProfileSequence sequence="2" />
+            <dynamicUpdate dynamic-updates="enabled" dynamic-table-index="0" />
+            <chirpFrequency frequency-drift-steps="0" />
+            <fastReset fast-reset="enabled" />
+            <txEnable tx-1="enabled" tx-2="enabled" tx-3="enabled" tx-4="disabled" />
+            <rxEnable rx-1="enabled" rx-2="enabled" rx-3="enabled" rx-4="enabled" />
+            <pdc notch-filter-enable="true" notch-filter-coefficient="100" />
+        </chirpSequenceConfig>
+
+        <!-- Sequence configuration for RSR FCM2 mode -->
+        <chirpSequenceConfig>
+            <chirpCount count="58" />
+            <!-- Chirp profile: FCM2 power low -->
+            <chirpProfileSequence sequence="3" />
+            <dynamicUpdate dynamic-updates="enabled" dynamic-table-index="1" />
+            <chirpFrequency frequency-drift-steps="0" />
+            <fastReset fast-reset="enabled" />
+            <txEnable tx-1="disabled" tx-2="enabled" tx-3="enabled" tx-4="enabled" />
+            <rxEnable rx-1="enabled" rx-2="enabled" rx-3="enabled" rx-4="enabled" />
+            <pdc notch-filter-enable="true" notch-filter-coefficient="300" />
+        </chirpSequenceConfig>
+    </chirpSequenceConfigs>
+
+
+    <chirpProfiles>
+        <!-- Chirp profile for FCM1 mode -->
+        <!-- TX power high -->
+        <chirpProfile>
+            <effectiveSamplingFrequency frequency="40 MHz" />
+            <chirpTiming chirp-interval-time-ticks="2368" dwell-time-ticks="38" settle-time-ticks="60" acquisition-time-ticks="2048" reset-time-ticks="20" />
+            <chirpGenerator center-frequency-kHz="76250000" effective-chirp-bandwidth-kHz="385000" vco="1 GHz" slope="falling" pll-loop-filter-bandwidth="300 kHz" />
+            <fastReset delay-ticks="7" duration-ticks="20" />
+            <txTransmissionEnable tx-1="enabled" tx-2="enabled" tx-3="enabled" tx-4="disabled" time-reference="start of dwell time" time-offset-ticks="2" />
+            <txPower dBm="15" />
+            <txPhaseRotation tx-1="0" tx-2="0" tx-3="0" tx-4="0" />
+            <rxGain gain="46 dB" />
+            <rxFilter high-pass-filter="200 kHz" low-pass-filter="20 MHz" />
+            <csi2VirtualChannel channel="0" />
+        </chirpProfile>
+
+        <!-- Chirp profile for FCM2 mode -->
+        <!-- TX power high -->
+        <chirpProfile>
+            <effectiveSamplingFrequency frequency="40 MHz" />
+            <chirpTiming chirp-interval-time-ticks="1527" dwell-time-ticks="4" settle-time-ticks="80" acquisition-time-ticks="1024" reset-time-ticks="240" />
+            <chirpGenerator center-frequency-kHz="76450000" effective-chirp-bandwidth-kHz="810000" vco="1 GHz" slope="falling" pll-loop-filter-bandwidth="400 kHz" />
+            <fastReset delay-ticks="7" duration-ticks="240" />
+            <txTransmissionEnable tx-1="disabled" tx-2="enabled" tx-3="enabled" tx-4="enabled" time-reference="start of dwell time" time-offset-ticks="2" />
+            <txPower dBm="15" />
+            <txPhaseRotation tx-1="0" tx-2="0" tx-3="0" tx-4="0" />
+            <rxGain gain="46 dB" />
+            <rxFilter high-pass-filter="800 kHz" low-pass-filter="20 MHz" />
+            <csi2VirtualChannel channel="1" />
+        </chirpProfile>
+
+        <!-- Chirp profile for FCM1 mode -->
+        <!-- TX power low -->
+        <chirpProfile>
+            <effectiveSamplingFrequency frequency="40 MHz" />
+            <chirpTiming chirp-interval-time-ticks="2368" dwell-time-ticks="38" settle-time-ticks="60" acquisition-time-ticks="2048" reset-time-ticks="20" />
+            <chirpGenerator center-frequency-kHz="76250000" effective-chirp-bandwidth-kHz="385000" vco="1 GHz" slope="falling" pll-loop-filter-bandwidth="300 kHz" />
+            <fastReset delay-ticks="7" duration-ticks="20" />
+            <txTransmissionEnable tx-1="enabled" tx-2="enabled" tx-3="enabled" tx-4="disabled" time-reference="start of dwell time" time-offset-ticks="2" />
+            <txPower dBm="3" />
+            <txPhaseRotation tx-1="0" tx-2="0" tx-3="0" tx-4="0" />
+            <rxGain gain="46 dB" />
+            <rxFilter high-pass-filter="200 kHz" low-pass-filter="20 MHz" />
+            <csi2VirtualChannel channel="0" />
+        </chirpProfile>
+
+        <!-- Chirp profile for FCM2 mode -->
+        <!-- TX power low -->
+        <chirpProfile>
+            <effectiveSamplingFrequency frequency="40 MHz" />
+            <chirpTiming chirp-interval-time-ticks="1527" dwell-time-ticks="4" settle-time-ticks="80" acquisition-time-ticks="1024" reset-time-ticks="240" />
+            <chirpGenerator center-frequency-kHz="76450000" effective-chirp-bandwidth-kHz="810000" vco="1 GHz" slope="falling" pll-loop-filter-bandwidth="400 kHz" />
+            <fastReset delay-ticks="7" duration-ticks="240" />
+            <txTransmissionEnable tx-1="disabled" tx-2="enabled" tx-3="enabled" tx-4="enabled" time-reference="start of dwell time" time-offset-ticks="2" />
+            <txPower dBm="3" />
+            <txPhaseRotation tx-1="0" tx-2="0" tx-3="0" tx-4="0" />
+            <rxGain gain="46 dB" />
+            <rxFilter high-pass-filter="800 kHz" low-pass-filter="20 MHz" />
+            <csi2VirtualChannel channel="1" />
+        </chirpProfile>
+    </chirpProfiles>
+
+    <dynamicTables>
+        <!-- Dynamic table for FCM1 mode, configuration for 256 chirps -->
+        <dynamicTable>
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "188" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "232" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "186" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "167" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "80"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "116" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "223" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "138" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "171" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "119" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "220" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "147" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "94"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "182" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "133" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "168" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "40"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "166" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "42"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "153" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "245" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "89"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "68"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "155" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "58"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "170" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "205" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "184" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "114" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "106" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "165" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "75"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "193" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "207" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "71"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "194" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "117" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "49"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "204" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "248" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "44"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "252" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "195" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "124" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "59"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "21"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "128" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "62"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "135" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "151" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "77"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "52"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "246" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "244" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "67"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "254" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "238" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "129" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "63"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "203" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "29"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "98"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "57"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "97"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "130" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "208" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "212" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "152" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "28"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "3"   />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "231" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "137" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "105" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "210" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "234" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "54"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "247" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "214" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "16"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "10"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "81"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "225" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "160" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "39"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "23"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "51"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "100" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "115" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "120" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "216" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "239" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "41"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "141" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "13"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "173" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "202" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "15"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "180" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "14"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "250" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "65"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "237" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "22"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "154" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "162" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "18"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "217" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "125" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "102" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "176" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "12"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "175" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "229" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "132" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "169" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "149" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "38"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "50"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "178" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "70"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "177" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "60"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "134" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "143" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "218" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "69"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "235" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "35"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "78"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "224" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "113" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "31"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "213" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "84"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "187" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "144" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "108" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "73"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "112" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "227" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "37"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "48"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "33"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "255" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "1"   />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "233" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "126" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "4"   />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "53"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "139" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "249" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "92"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "66"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "185" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "72"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "17"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "196" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "164" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "2"   />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "230" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "99"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "156" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "110" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "90"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "74"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "27"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "11"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "20"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "47"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "228" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "123" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "122" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "158" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "8"   />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "253" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "91"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "148" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "199" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "221" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "61"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "96"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "200" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "34"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "118" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "174" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "142" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "5"   />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "131" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "76"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "172" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "7"   />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "159" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "95"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "36"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "183" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "103" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "79"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "191" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "101" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "24"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "136" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "93"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "32"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "157" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "179" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "146" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "45"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "206" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "251" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "209" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "163" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "87"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "0"   />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "140" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "242" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "83"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "161" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "64"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "88"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "30"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "6"   />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "226" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "121" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "9"   />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "85"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "82"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "46"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "25"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "222" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "107" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "26"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "181" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "190" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "197" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "201" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "56"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "215" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "192" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "55"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "236" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "243" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "240" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "241" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "219" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "150" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "86"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "189" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "145" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "19"  />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "109" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "211" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "43"  />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="270" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "127" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="180" phase-rotation-tx-3="0" chirp-frequency-drift-steps = "198" />
+            <dynamicTableEntry phase-rotation-tx-1="0"   phase-rotation-tx-2="90"  phase-rotation-tx-3="0" chirp-frequency-drift-steps = "104" />
+            <dynamicTableEntry phase-rotation-tx-1="180" phase-rotation-tx-2="0"   phase-rotation-tx-3="0" chirp-frequency-drift-steps = "111" />
+        </dynamicTable>
+
+        <!-- Dynamic table for FCM2 mode, configuration for 58 chirps -->
+        <dynamicTable>
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "2"  />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "38" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "50" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "14" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "27" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "55" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "26" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "5"  />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "30" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "44" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "49" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "18" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "57" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "4"  />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "28" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "6"  />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "19" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "12" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "52" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "53" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "42" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "48" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "47" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "3"  />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "22" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "35" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "7"  />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "8"  />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "0"  />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "16" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "10" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "31" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "45" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "54" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "33" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "9"  />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "17" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "56" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "15" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "51" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "11" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "36" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "34" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "23" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "1"  />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "41" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "39" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "43" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "20" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "37" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "24" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "13" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "29" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "25" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="90"  phase-rotation-tx-4="0" chirp-frequency-drift-steps = "46" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="0"   phase-rotation-tx-4="0" chirp-frequency-drift-steps = "32" />
+            <dynamicTableEntry phase-rotation-tx-2="0"   phase-rotation-tx-3="270" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "21" />
+            <dynamicTableEntry phase-rotation-tx-2="180" phase-rotation-tx-3="180" phase-rotation-tx-4="0" chirp-frequency-drift-steps = "40" />
+        </dynamicTable>
+    </dynamicTables>
+
+</rfeConfig>

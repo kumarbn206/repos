@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_dede9e9c-5ddb-435a-8713-42208fa90223">
+  <title>While statement</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The loop variable(s) shall be declared and initialized before the <codeph>while</codeph> loop
+      is called.</p>
+    <p>The <codeph>condition</codeph> expression shall only be concerned with checking the loop
+      variable(s).</p>
+    <p>Updating the loop variable(s) shall be the last statement(s) of the <codeph>while</codeph>
+      block.</p>
+    <p>The following code block depicts the template for a <codeph>while</codeph> loop:
+      <codeblock scale="70">while ( condition )
+{
+    // code ...
+    // update loop variable
+}</codeblock>
+    </p>
+    <p>Example:<codeblock scale="70">uint32_t value = 0ul;
+
+while ( value &lt; 10ul )
+{
+    value += 2ul;
+}</codeblock></p>
+  </body>
+</topic>

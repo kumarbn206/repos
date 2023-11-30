@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_6602e35a-3ac6-47fd-ab40-ddb32729d065">
+  <title>Variable declarations</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-10"/>
+      <revised modified="2021-02-10"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Only a single variable shall be declared on a single line.</p>
+    <p>It is preferred to immediately define a (default) value for a variable when this is
+      declared.</p>
+    <p>It is preferred to declare a variable at the moment it is used (e.g., a function
+      returned).</p>
+    <p>Variables that represent pointers shall start with the <codeph>p</codeph> prefix (e.g.,
+        <codeph>pValue</codeph>). The <codeph>*</codeph> character in pointers shall associate to
+      the type and not to the identifier (e.g., <codeph>uint32_t* pValue</codeph> instead of
+        <codeph>uint32_t *pValue</codeph>).</p>
+    <p>Variables defined and used inside a single function are explicetly not covered by this naming
+      convention and it is allowed to use shorter names (e.g., <codeph>counter</codeph> or
+        <codeph>c</codeph>). </p>
+  </body>
+</topic>

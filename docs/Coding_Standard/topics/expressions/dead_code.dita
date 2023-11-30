@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_ab834e86-1a8f-4192-9e0c-7e571c64d250">
+  <title>Unused code</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-10"/>
+      <revised modified="2021-02-10"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Unreachable code shall not be present. Unreachable code is code that cannot be executed as it
+      cannot be called from a program. See MISRA C:2012 mandatory Rule 2.1.</p>
+    <p>Dead code shall not be present. Dead code is code that does not affect the behavior of a
+      program when removed. See MISRA C:2012 advisory Rule 2.2.</p>
+    <p>Unused type declaration shall not be present. See MISRA C:2012 advisory Rule 2.3.</p>
+    <p>Unused preprocessor macro declaration shall not be present. See MISRA C:2012 advisory Rule
+      2.5.</p>
+    <p>Unused function parameters shall not be present. See MISRA C:2012 advisory Rule 2.7.</p>
+  </body>
+</topic>

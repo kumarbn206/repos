@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<rfeConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rfeConfig_0.8.20.xsd">
+    <generalConfig>
+        <power mode="active" />
+        <ioSignals radar-cycle-start-in="none" radar-cycle-start-out="rfe io 0" chirp-sequence-active-out="rfe io 1" />
+        <clkInOut in="enabled" out="disabled" reduce-driver-level="false" />
+        <pdc decimation-filter="steep narrow" bitwidth="16 bit" />
+        <dataOut packet-processor="true" csi2="false" wdma="false" interleaving="true" header="false" footer="false" >
+            <metadata packet="disabled" software-content="chirp sequence timestamp" hardware-field="disabled" virtual-channel="0" />
+        </dataOut>
+        <jumpbackTiming time-ticks="2" />
+    </generalConfig>
+
+    <monitorAndSafetyConfig>
+        <rxSaturation>
+            <rxSaturationCounter reset-every-sequence="true" />
+            <rxSaturationThresholds>
+                <rxSaturationThresholdRx1 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+                <rxSaturationThresholdRx2 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+                <rxSaturationThresholdRx3 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+                <rxSaturationThresholdRx4 power-stage-1="0 dB" max-count-stage-1="1000" power-stage-2="0 dB" max-count-stage-2="1000" />
+            </rxSaturationThresholds>
+        </rxSaturation>
+        <adcClippingCounter reset-every-sequence="true" limit-adc1="4194303" limit-adc2="4194303" limit-adc3="4194303" limit-adc4="4194303" />
+        <temperatureThresholds>
+            <temperatureThresholdTx12 under-error-celsius="-30" high-warning-celsius="85" over-error-celsius="125" />
+            <temperatureThresholdTx34 under-error-celsius="-30" high-warning-celsius="85" over-error-celsius="125" />
+            <temperatureThresholdRx under-error-celsius="-30" high-warning-celsius="85" over-error-celsius="125" />
+            <temperatureThresholdXo under-error-celsius="-30" high-warning-celsius="85" over-error-celsius="125" />
+        </temperatureThresholds>
+        <r1FaultPromotion threshold-value="1" />
+        <txBist>
+            <txPhaseDiff zero-hr-ref-tx12="20" zero-hr-ref-tx23="20" zero-hr-ref-tx34="20" phase-diff-threshold-tolerance="70" phase-step-threshold-tolerance="70"/>
+            <txPowerLevelForBist dBm="7"/>
+            <txSelect tx1="enabled" tx2="enabled" tx3="enabled" tx4="enabled" />
+        </txBist>
+        <frequencyForBist frequency-in-kHz="78000000"/>
+        <rxBist>
+            <rxPhaseDiff zero-hr-ref-rx12="10" zero-hr-ref-rx13="10" zero-hr-ref-rx14="10" phase-diff-threshold-tolerance="100"/>
+            <rxGainDiff zero-hr-ref-rx12="10" zero-hr-ref-rx13="10" zero-hr-ref-rx14="10" gain-diff-threshold-tolerance="40"/>
+            <injectTestTone before-lna="true"/>
+        </rxBist>
+        <txPpdThreshold profile0-dBm="10"/>
+        <fuSaFaultMask0  r1-sm7-paout-rtm-tx1="0"                      r1-sm3-bb-tx1="0"                               r1-sm60-sd-chirp="0"                          r1-sm59-li-chirp="0"                          r1-sm58-cg-chirp="0"                           r1-sm57-vco-freq-chirp="0"                      r1-sm55-unlock-chirp="0"                     r1-sm62-lockstep-te="0"/>
+        <fuSaFaultMask1  r1-sm54-level-high-chirp="0"                  r1-sm54-level-low-chirp="0"                     r1-sm10-paout-rtm-tx4="0"                     r1-sm6-bb-tx4="0"                             r1-sm9-paout-rtm-tx3="0"                       r1-sm5-bb-tx3="0"                               r1-sm8-paout-rtm-tx2="0"                     r1-sm4-bb-tx2="0"/>
+        <fuSaFaultMask2  r1-sm21-rf-i-low-rx3="0"                      r1-sm17-bb-rx3="0"                              r1-sm20-rf-q-low-rx2="0"                      r1-sm20-rf-i-low-rx2="0"                      r1-sm16-bb-rx2="0"                             r1-sm19-rf-q-low-rx1="0"                        r1-sm19-rf-i-low-rx1="0"                     r1-sm15-bb-rx1="0"/>
+        <fuSaFaultMask3  r1-sm31-ov-hld1v8-gldo="0"                    r1-sm29-uv-gld1v4-gldo="0"                      r1-sm29-ov-gld1v4-gldo="0"                    r1-sm86-m7-fpu="0"                            r1-sm22-rf-q-low-rx4="0"                       r1-sm22-rf-i-low-rx4="0"                        r1-sm18-bb-rx4="0"                           r1-sm21-rf-q-low-rx3="0"/>
+        <fuSaFaultMask4  r1-sm64-sup-ldo3-ov-pfdcp-1v8-chirp-sw="0"    r1-sm64-sup-ldo2-ov-vco-0v9-chirp-sw="0"        r1-sm64-sup-ldo1-ov-vco-1v8-chirp-sw="0"      r1-sm50-adpll-dco-level-min-mcgen="0"         r1-sm50-adpll-dco-level-max-mcgen="0"          r1-sm46-xo-pllclk-det-mcgen="0"                 r1-sm28-ov-gld1v3-gldo="0"                   r1-sm31-uv-hld1v8-gldo="0"/>
+        <fuSaFaultMask5  r1-sm64-sup-ldo1-ov-xo-core-mcgen-sw="0"      r1-sm64-sup-ldo5-uv-pdiv-0v9-chirp-sw="0"       r1-sm64-sup-ldo4-uv-pfdcp-0v9-chirp-sw="0"    r1-sm64-sup-ldo3-uv-pfdcp-1v8-chirp-sw="0"    r1-sm64-sup-ldo2-uv-vco-0v9-chirp-sw="0"       r1-sm64-sup-ldo1-uv-vco-1v8-chirp-sw="0"        r1-sm64-sup-ldo5-ov-pdiv-0v9-chirp-sw="0"    r1-sm64-sup-ldo4-ov-pfdcp-0v9-chirp-sw="0"/>
+        <fuSaFaultMask6  r1-sm64-sup-ldo1-uv-xo-core-mcgen-sw="0"      r1-sm64-sup-ldo8-ov-digital-mcgen-sw="0"        r1-sm64-sup-ldo7-ov-sampler-mcgen-sw="0"      r1-sm64-sup-ldo6-ov-div3-mcgen-sw="0"         r1-sm64-sup-ldo5-ov-dco-buffer-mcgen-sw="0"    r1-sm64-sup-ldo4-ov-dco-capbank-mcgen-sw="0"    r1-sm64-sup-ldo3-ov-mcgen-sw="0"             r1-sm64-sup-ldo2-ov-xo-out-mcgen-sw="0"/>
+        <fuSaFaultMask7  r1-sm23-bist-rx1-rx2-gainDiff-sw="0"          r1-sm64-sup-ldo8-uv-digital-mcgen-sw="0"        r1-sm64-sup-ldo7-uv-sampler-mcgen-sw="0"      r1-sm64-sup-ldo6-uv-div3-mcgen-sw="0"         r1-sm64-sup-ldo5-uv-dco-buffer-mcgen-sw="0"    r1-sm64-sup-ldo4-uv-dco-capbank-mcgen-sw="0"    r1-sm64-sup-ldo3-uv-mcgen-sw="0"             r1-sm64-sup-ldo2-uv-xo-out-mcgen-sw="0"/>
+        <fuSaFaultMask8  r1-sm13-bist-tx3-tx4-phaseDiff-sw="0"         r1-sm12-bist-tx2-tx3-phaseDiff-sw="0"           r1-sm11-bist-tx1-tx2-phaseDiff-sw="0"         r1-sm23-bist-rx1-rx4-phaseDiff-sw="0"         r1-sm23-bist-rx1-rx3-phaseDiff-sw="0"          r1-sm23-bist-rx1-rx2-phaseDiff-sw="0"           r1-sm23-bist-rx1-rx4-gainDiff-sw="0"         r1-sm23-bist-rx1-rx3-gainDiff-sw="0"/>
+        <fuSaFaultMask9  r2-sm87-m7-rfe-lockup="0"                     r2-sm83-rfe-test-mode-active="0"                r2-sm70-mosi-miso-crc="0"                     r1-sm94-m7-message-e2e-crc-sw="0"             r1-sm13-bist-tx4-phaseStep-sw="0"              r1-sm13-bist-tx3-phaseStep-sw="0"               r1-sm12-bist-tx2-phaseStep-sw="0"            r1-sm11-bist-tx1-phaseStep-sw="0"/>
+        <fuSaFaultMask10 r2-sm68-sm69-reg-crc="0"                      r2-sm435-generic-sw="0"                         r2-sm204-dm-rfe-m7-core-sw-redundancy="0"     r2-sm99-spi-write-check-fail-sw="0"           r2-sm98-m7-spi-access-ana="0"                  r2-sm93-xbic-integrity-check="0"                r2-sm92-sw-wdt="0"                           r2-sm88-sm89-m7-tcm-sram="0"/>
+        <fuSaFaultMask11 r2-sm63-te-swt-radar-pipeline="0"/>
+        <errorRecovery mode="non auto"/>
+    </monitorAndSafetyConfig>
+
+    <radarCycleConfig>
+        <radarCycleDuration ticks="2000000" />
+        <chirpSequences chirp-sequence-config-index="0" start-time-offset="-" />
+        <recalibration>
+            <recalibrationProfileIndependent chirp-sequences="0" />
+            <recalibrationProfileDependent chirp-sequence="0" chirp-profiles="0" />
+        </recalibration>
+        <bistInterval interval="every radar cycle" />
+    </radarCycleConfig>
+
+    <chirpSequenceConfigs>
+        <!-- chirp-sequence-config-index 0 -->
+        <chirpSequenceConfig>
+            <chirpCount count="16" />
+            <chirpProfileSequence sequence="0" />
+            <dynamicUpdate dynamic-updates="disabled" dynamic-table-index="0" />
+            <chirpFrequency frequency-drift-steps="0" />
+            <fastReset fast-reset="enabled" />
+            <txEnable tx-1="disabled" tx-2="disabled" tx-3="enabled" tx-4="disabled" />
+            <rxEnable rx-1="enabled" rx-2="enabled" rx-3="enabled" rx-4="enabled" />
+            <pdc notch-filter-enable="false" notch-filter-coefficient="0" />
+        </chirpSequenceConfig>
+    </chirpSequenceConfigs>
+
+    <chirpProfiles>
+        <!-- chirp-profile 0 -->
+        <chirpProfile>
+            <effectiveSamplingFrequency frequency="40 MHz" />
+            <chirpTiming chirp-interval-time-ticks="4600" dwell-time-ticks="40" settle-time-ticks="160" acquisition-time-ticks="4096" reset-time-ticks="40" />
+            <chirpGenerator center-frequency-kHz="76000000" effective-chirp-bandwidth-kHz="0" vco="1 GHz" slope="falling" pll-loop-filter-bandwidth="400 kHz" />
+            <fastReset delay-ticks="7" duration-ticks="40" />
+            <txTransmissionEnable tx-1="enabled" tx-2="disabled" tx-3="disabled" tx-4="disabled" time-reference="start of settle time" time-offset-ticks="2" />
+            <txPower dBm="13" />
+            <txPhaseRotation tx-1="0" tx-2="0" tx-3="0" tx-4="0" />
+            <rxGain gain="46 dB" />
+            <rxFilter high-pass-filter="200 kHz" low-pass-filter="20 MHz" />
+            <csi2VirtualChannel channel="0" />
+        </chirpProfile>
+    </chirpProfiles>
+</rfeConfig>

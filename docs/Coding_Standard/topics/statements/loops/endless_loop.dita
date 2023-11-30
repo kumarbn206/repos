@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_2ec14ced-9068-439c-9f36-28d6701022b6">
+  <title>Endless loop</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The following code block depicts the template for an endless
+      loop:<codeblock scale="70">for ( ;; )
+{
+    // code ...
+}</codeblock></p>
+    <p>The <codeph>for ( ;; )</codeph> variant is preferred over <codeph>while</codeph> variants as
+      this does not rely on a condition and implicit conversions to a boolean expression.</p>
+  </body>
+</topic>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_b282cdc8-7a58-447b-8d14-4214dac87593">
+  <title>If statement</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The <codeph>if</codeph> and <codeph>else</codeph> branches will both be present and consist
+      of block statements. Each block statement should contain executable code or a comment that
+      explains why there is no executable code in this block statement.</p>
+    <p>The following code block depicts the template for an <codeph>if</codeph> statement:
+      <codeblock scale="70">if ( condition )
+{
+    // code ...
+}
+else
+{
+    // code or comment ...
+}</codeblock></p>
+  </body>
+</topic>

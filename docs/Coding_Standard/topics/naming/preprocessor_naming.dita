@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_64b04b12-93dd-4b0a-a57c-c6b8559fef93">
+  <title>Preprocessor macro naming convention</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-08"/>
+      <revised modified="2021-02-08"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Preprocessor macros use the following naming convention
+      <codeph>RFE_&lt;layer>_&lt;module>_&lt;item-name></codeph> where
+      <codeph>&lt;layer></codeph>, <codeph>&lt;module></codeph>, and <codeph>&lt;item-name></codeph>
+      are similar to the general naming convention described in <xref href="general_naming.dita"/>. All items use the
+      <codeph>ALL_CAPS</codeph> notation.</p>
+    <p>Examples:
+      <codeblock scale="70">RFE_HW_CAN_INTERRUPT_OVERFLOW   // a constant defined in the hardware driver
+                                // for the CAN peripheral
+RFE_ERROR_CREATE                // a preprocessor macro in the general error
+                                // handling module</codeblock>
+    </p>
+  </body>
+</topic>

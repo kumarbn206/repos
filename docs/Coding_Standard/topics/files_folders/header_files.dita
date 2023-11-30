@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_a0523f5a-b1f9-445e-a105-6bd25bab4a20">
+  <title>Header files</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The general naming convention for header files is <codeph>rfe&lt;layer>&lt;module>.h</codeph>
+      where <codeph>&lt;layer></codeph> specifies the layer of the this code and
+        <codeph>module</codeph> specifies the module identifier. The <codeph>&lt;layer></codeph>
+      part can be omitted in cases where the module applies to the user visible top level.</p>
+    <p>The contents of a header file shall be completely encapsulate in an include guard. This
+      include guard shall use an identifier that corresponds to the file name converted to the
+      ALL_CAPS notation. The formatting shall comply to the following example for file
+      "rfeHwReg.h":<codeblock scale="70">#ifndef RFE_HW_REG_H
+#define RFE_HW_REG_H
+
+// header file contents
+
+#endif // !RFE_HW_REG_H
+</codeblock></p>
+    <p>The last line of the header file shall be an empty line.</p>
+    <p>An #include directive shall not contain absolute paths.</p>
+    <p>An #include directive referring to standard library header files shall use angle brackets
+      (e.g., <codeph>#include &lt;stdint.h></codeph>).</p>
+    <p>An #include directive not referring to standard library header files shall use double quotes
+      (e.g., <codeph>#include "rfeHwReg.h"</codeph>).</p>
+    <p>The header file shall not contain executable code except for inline functions. Inline
+      functions are preferred to function like macros due to the added type checking. </p>
+    <p>An example of an inline function
+      is:<codeblock scale="70">inline uint32_t rfeHwExample_max(
+    uint32_t        a,
+    uint32_t        b
+)
+{
+    // implementation
+}</codeblock></p>
+  </body>
+</topic>

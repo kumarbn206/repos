@@ -1,0 +1,284 @@
+"<h1>RFE Abstract API Profiling:</h1><br>
+<h2>This table shows API timing as of A53 processor, hence T1, T5 times and as a result T6 are A53 specific.<br> T2, T3, T4 are RFE FW times independent on processor the RFE Driver runs on.</h2><br>
+<table border=1px>
+	<tr>
+		<th width=0>RFE Abstract API Function / RFE Phase</th>
+		<th width=0>T6(&micro;s)</th>
+		<th width=0>T1(&micro;s)</th>
+		<th width=0>T2(&micro;s)</th>
+		<th width=0>T3(&micro;s)</th>
+		<th width=0>T4(&micro;s)</th>
+		<th width=0>T5(&micro;s)</th>
+		<th width=0>Comment</th>
+	</tr>
+	<tr>
+		<td  align=left>Start-up phase</td>
+		<td  align=right><20,000</td>
+		<td  align=right></td>
+		<td  align=right></td>
+		<td  align=right></td>
+		<td  align=right></td>
+		<td  align=right></td>
+		<td  align=left>RFE autonomous start-up can take up to 100[ms].</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_sync()</td>
+		<td  align=right>6</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, function does not communicate with RFE FW</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getVersion()</td>
+		<td  align=right>30</td>
+		<td  align=right>4</td>
+		<td  align=right>9</td>
+		<td  align=right>1</td>
+		<td  align=right>6</td>
+		<td  align=right>10</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_configure()</td>
+		<td  align=right>575</td>
+		<td  align=right>123</td>
+		<td  align=right>116</td>
+		<td  align=right>331</td>
+		<td  align=right>1</td>
+		<td  align=right>4</td>
+		<td  align=left>Depends on the number of profiles and chirp sequences defined. These timing are for 4 Chirp Sequences and 4 Profiles, BIST enabled</td>
+	</tr>
+	<tr>
+		<td  align=left>ConfigPhase</td>
+		<td  align=right>30921</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, RFE FW state duration,  for 4 Chirp Sequences and 4 Profiles, BIST enabled</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_radarCycleStart()</td>
+		<td  align=right>25</td>
+		<td  align=right>5</td>
+		<td  align=right>13</td>
+		<td  align=right>2</td>
+		<td  align=right>1</td>
+		<td  align=right>4</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_radarCycleStop()</td>
+		<td  align=right>21</td>
+		<td  align=right>3</td>
+		<td  align=right>9</td>
+		<td  align=right>2</td>
+		<td  align=right>2</td>
+		<td  align=right>5</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getState()</td>
+		<td  align=right>1</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, function does not communicate with RFE FW</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getTime()</td>
+		<td  align=right>19</td>
+		<td  align=right>3</td>
+		<td  align=right>8</td>
+		<td  align=right>1</td>
+		<td  align=right>2</td>
+		<td  align=right>5</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getRadarCycleCount()</td>
+		<td  align=right>1</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getNextRadarCycleStartTime()</td>
+		<td  align=right>21</td>
+		<td  align=right>3</td>
+		<td  align=right>9</td>
+		<td  align=right>1</td>
+		<td  align=right>3</td>
+		<td  align=right>5</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_setNextRadarCycleStartTime()</td>
+		<td  align=right>21</td>
+		<td  align=right>4</td>
+		<td  align=right>9</td>
+		<td  align=right>1</td>
+		<td  align=right>2</td>
+		<td  align=right>5</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getFuSaFaultStatistics()</td>
+		<td  align=right>84</td>
+		<td  align=right>3</td>
+		<td  align=right>11</td>
+		<td  align=right>2</td>
+		<td  align=right>37</td>
+		<td  align=right>31</td>
+		<td  align=left>Error parameters and their number are in definition and the execution time is therefore dependent on the number of errors.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getFuSaFaults()</td>
+		<td  align=right>73</td>
+		<td  align=right>3</td>
+		<td  align=right>10</td>
+		<td  align=right>45</td>
+		<td  align=right>7</td>
+		<td  align=right>8</td>
+		<td  align=left>Error parameters and their number are in definition and the execution time is therefore dependent on the number of errors.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_updateBegin()</td>
+		<td  align=right>1</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, function does not communicate with RFE FW</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_updateParam()</td>
+		<td  align=right>1</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, function does not communicate with RFE FW</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_updateDynamicTable()</td>
+		<td  align=right>1</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, function does not communicate with RFE FW</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_updatePush()</td>
+		<td  align=right>145</td>
+		<td  align=right>21</td>
+		<td  align=right>20</td>
+		<td  align=right>97</td>
+		<td  align=right>2</td>
+		<td  align=right>5</td>
+		<td  align=left>For case when there is no active Radar Cycle.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_monitorRead()</td>
+		<td  align=right>134</td>
+		<td  align=right>4</td>
+		<td  align=right>11</td>
+		<td  align=right>106</td>
+		<td  align=right>5</td>
+		<td  align=right>8</td>
+		<td  align=left>Depends on number of monitors to read. This is currently measureing only temperature</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_continuousWaveTransmissionStart()</td>
+		<td  align=right>624</td>
+		<td  align=right>4</td>
+		<td  align=right>11</td>
+		<td  align=right>604</td>
+		<td  align=right>1</td>
+		<td  align=right>4</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_continuousWaveTransmissionStop()</td>
+		<td  align=right>287</td>
+		<td  align=right>3</td>
+		<td  align=right>10</td>
+		<td  align=right>269</td>
+		<td  align=right>1</td>
+		<td  align=right>4</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_testSetParam()</td>
+		<td  align=right>22</td>
+		<td  align=right>5</td>
+		<td  align=right>11</td>
+		<td  align=right>1</td>
+		<td  align=right>1</td>
+		<td  align=right>4</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_getBistZeroHourReferenceData()</td>
+		<td  align=right>2055</td>
+		<td  align=right>3</td>
+		<td  align=right>11</td>
+		<td  align=right>2021</td>
+		<td  align=right>8</td>
+		<td  align=right>12</td>
+		<td  align=left>Refer to description of the function. BIST is enabled</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_testGetInternalError()</td>
+		<td  align=right>20</td>
+		<td  align=right>3</td>
+		<td  align=right>9</td>
+		<td  align=right>1</td>
+		<td  align=right>2</td>
+		<td  align=right>5</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_configureInterrupt()</td>
+		<td  align=right>24</td>
+		<td  align=right>5</td>
+		<td  align=right>13</td>
+		<td  align=right>1</td>
+		<td  align=right>1</td>
+		<td  align=right>4</td>
+		<td  align=left>Refer to description of the function.</td>
+	</tr>
+	<tr>
+		<td  align=left>rfe_clockPllLock()</td>
+		<td  align=right>1</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=right>-</td>
+		<td  align=left>T1-T5 not applicable, function does not communicate with RFE FW</td>
+	</tr>
+</table>
+<br>
+<dt><b>Remarks:</b></dt>
+<dd>
+	<ol type=1>
+		<li>The above mentioned execution time values are calculated on actual silicon, except the Start-up phase.</li>
+		<li>The above mentioned execution time includes the communication exchange time (i.e. writing into command buffer, reading from command buffer, writing into response buffer and reading from response buffer).</li>
+		<li>The above mentioned figures do not have an optimized CRC implementation (via intrinsics) on APP-A53 core.</li>
+	</ol>
+</dd>
+"

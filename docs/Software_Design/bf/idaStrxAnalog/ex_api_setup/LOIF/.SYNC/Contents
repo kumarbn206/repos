@@ -1,0 +1,21 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\LOIF\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_loif_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_off2stdby.bf;><1><1.3><1638262107><><F><><><Checksum=7716533baa6fb76ad2bc1f959473bb20><Size=625><mode=33056><vctime=1638174844>
+<idaSTRX_loif_on2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_on2off.bf;><1><1.1><1638262107><><F><><><Checksum=1cb5d564deeeae5ecfb3cd578fdd2513><Size=585><mode=33056><vctime=1638174844>
+<idaSTRX_loif_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_initRegisters.bf;><1><1.2><1638262107><><F><><><Checksum=a012632006b45f549a1eef2eece09f40><Size=662><mode=33056><vctime=1638174844>
+<onechip.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/onechip.bf;><1><1.2><1638262107><><F><><><Checksum=18ad4faeb7c6eb661f13e283a0b90c6b><Size=771><mode=33056><vctime=1638174991>
+<idaSTRX_loif_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_OTPchange.bf;><1><1.1><1637573427><><F><><><Checksum=61209c9059c882d16f7916023866d2c><Size=21><mode=33060><vctime=1637321971>
+<idaSTRX_loif_stdby2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_stdby2off.bf;><1><1.1><1638262107><><F><><><Checksum=1cb5d564deeeae5ecfb3cd578fdd2513><Size=585><mode=33056><vctime=1638174844>
+<settings><G><><><><1638284074><><F><><>
+<test.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/test.bf;><1><1.2><1638262107><><F><><><Checksum=a27079fa5847103f5924d9d5c4ea8ab1><Size=788><mode=33056><vctime=1638174991>
+<master.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/master.bf;><1><1.2><1638262107><><F><><><Checksum=13ed58780d1d19d595d10a8219a44cc><Size=774><mode=33056><vctime=1638174991>
+<idaSTRX_loif_on2standby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_on2standby.bf;><1><1.1><1638262107><><F><><><Checksum=16ddde04c68b55cce03d6f0107da11d5><Size=600><mode=33056><vctime=1638174845>
+<states><G><><><><1638284074><><F><><>
+<idaSTRX_loif_stdby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/idaSTRX_loif_stdby2on.bf;><1><1.1><1638262107><><F><><><Checksum=ee268d8a52e2872e5eec510a6a9e21d><Size=615><mode=33056><vctime=1638174844>
+<modes><G><><><><1638387923><><F><><>
+<slave.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LOIF/slave.bf;><1><1.2><1638262107><><F><><><Checksum=b336f45793b8770a5a376c119e2124fb><Size=772><mode=33056><vctime=1638174991>
+
+

@@ -1,0 +1,8 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxDigital\ex_api_setup\PDC\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_pdc_init_40MSps.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/PDC/idaSTRX_pdc_init_40MSps.bf;><1><1.4><1638466659><><F><><><Checksum=7691ab2f7333a5e26eabd48b28f4df7e><Size=947><mode=33056><vctime=1638397606>
+
+

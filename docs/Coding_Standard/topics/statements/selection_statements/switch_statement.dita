@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c08c0ec4-a1cb-4b08-b18a-713773b37655">
+  <title>Switch statement</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Each <codeph>switch</codeph> clause shall be terminated by an unconditional
+        <codeph>break</codeph> statement. Fall throughs are only allowed when the clause is empty
+      (see the <codeph>case 2:</codeph> label in the code block below). The <codeph>default</codeph>
+      label is always required and must be the last label in the switch statement.</p>
+      <p>The following code block depicts the template for a <codeph>switch</codeph> statement:
+      <codeblock scale="70">switch ( condition )
+{
+    case 1:
+        // code ...
+        break;
+
+    case 2:
+    case 3:
+        // code ...
+        break;
+
+    case 4:
+    default:
+        //code ...
+        break;
+}</codeblock></p>
+    <p>It is not required to explicitly list all possible enumeration items when an enumerated type
+      is used as the condition for a <codeph>switch</codeph> statement as the final
+        <codeph>default</codeph> clause will apply to all remaining enumeration item</p>
+  </body>
+</topic>

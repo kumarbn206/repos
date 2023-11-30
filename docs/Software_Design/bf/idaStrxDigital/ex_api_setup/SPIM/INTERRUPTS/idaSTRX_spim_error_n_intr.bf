@@ -1,0 +1,2 @@
+// set funct interrupts  
+SPIM.MASTER_ERR_WRN_INT_ENABLE.MASTER_ERROR_N_ERR_INT_EN=1;

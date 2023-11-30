@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c2fe6699-cc95-49cd-9442-141c11ae919a">
+  <title>Folder structure</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The source code files for a module will be stored in a folder that corresponds to the name of
+      the module. The main public header file uses the name of the module, with ".h" extenstion, and
+      is placed in the "inc" subfolder. The main public source code file uses the name of the
+      module, with ".c" extension, and is placed in the "src" subfolder.</p>
+    <p>An optional internal header file uses the name of the module, with "_internal.h" suffix, and
+      is placed in the "src" subfolder. This internal header file can declarations and definitions
+      that are only visible to module itself (e.g., constant definitions, static inline functions,
+      function prototypes, type definitions, et cetera).</p>
+    <p/>
+    <p>The hardware driver for an SPI controller would therefore have the following folder
+      structure (where "rfeHwSpi_internal.h" is optional):
+      <codeblock scale="70">
+rfeHwSpi
+    inc
+        rfeHwSpi.h
+    src
+        rfeHwSpi_internal.h
+        rfeHwSpi.c
+      </codeblock></p>
+  </body>
+</topic>

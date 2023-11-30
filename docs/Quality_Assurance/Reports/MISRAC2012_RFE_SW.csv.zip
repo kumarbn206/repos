@@ -1,0 +1,117 @@
+    <html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+	<title> STRX_RFEFW - develop - MISRA C 2012 Confidence Factor Report </title>
+  </head>
+  <body>
+    <h3 style="color: #29a4cd; text-align: center;">STRX_RFEFW MISRA C 2012 Violation Report</h3>
+    <h6 style="color: #29a4cd; text-align: center;">rfefw_build</h6>
+    <table align="center" style="text-align: left; margin-left: auto; margin-right: auto;  border: solid black 3px; border-collapse: collapse;" border="1">
+      <tbody align="center">
+		<tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Project Repo  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  https://bitbucket.sw.nxp.com/projects/STRX/repos/rfe/browse  </td>
+        </tr>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  CodeBase Branch  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  develop  </td>
+        </tr>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Coverity URL  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  https://coverity4.nxp.com:8443/reports.htm#v13871/p10097  </td>
+        </tr>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Coverity Credentials
+          </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  rfefw / rfefw  </td>
+        </tr>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Coverity Defect Stream
+          </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  strx_rfefw_dev  </td>
+        </tr>
+	<tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Coverity Analyzer Version
+          </td>
+	  <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  Coverity 2021.12 </td>
+	</tr>
+      </tbody>
+    </table>
+    <hr>
+
+
+
+    <h3 style="text-align: center; color: #3333ff;">Summary Report</h3>
+    <table align="center" style="text-align: left; margin-left: auto; margin-right: auto; border: solid black 3px; border-collapse: collapse;" border="1">
+      <tbody>
+          <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;"> Total Number of MISRA C 2012 Mandatory Violations </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">   2   </td>
+        </tr>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Total Number of MISRA C 2012 Required Violations  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  12030  </td>
+        </tr>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Total Number of MISRA C 2012 Advisory Violations  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  44098  </td>
+        </tr>
+      </tbody>
+    </table> <br><table align="center" style="text-align: left; margin-left: auto; margin-right: auto; border: solid black 3px; border-collapse: collapse;" border="1">
+        <tbody>
+          <tr>
+            <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Total Number of MISRA C 2012 Mandatory Violated Groups  </td>
+            <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  1  </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Total Number of MISRA C 2012 Required Violated Groups </td>
+            <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  56  </td>
+          </tr>
+          <tr>
+            <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #a3deff;">  Total Number of MISRA C 2012 Advisory Violated Groups </td>
+            <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #dbffff;">  27  </td>
+          </tr>
+        </tbody>
+      </table> 
+<br><table align="center" style="text-align: left; margin-left: auto; margin-right: auto; border: solid black 3px; border-collapse: collapse;" border="1">
+      <tbody>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: silver"><strong>  Confidence Factor  </strong></td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: silver"><strong>  75.447%  </strong></td>
+        </tr>
+      </tbody>
+    </table><hr>
+<br><br><h3 style="text-align: center; color: #6633ff;">Component wise MISRA C 2012 Violation report</h3>
+    <br>
+    <table align="center" style="text-align: left; margin-left: auto; margin-right: auto; border: solid black 3px; border-collapse: collapse;" border="1">
+      <tbody>
+        <tr>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #fff7d8;">  Component Name  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #fff7d8;">  MISRA C 2012 Category  </td>
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #fff7d8;"> Descrption </td >
+          <td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: #fff7d8;"> Data </td>
+        </tr><tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px; color: #3333ff;">  Other   </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px; color: #990000;">  Mandatory   </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">Violations Count</td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   2   </td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">  Violated Rule groups Count  </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   1   </td></tr>
+<tr><td style="padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">  Violated Rule groups  </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   MISRA C-2012 Rule 9.1  </td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px; color: #cc6600;">  Required   </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">Violations Count</td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   12030   </td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">  Violated Rule groups Count  </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   56   </td></tr>
+<tr><td style="padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">  Violated Rule groups  </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   MISRA C-2012 Rule 15.7,MISRA C-2012 Rule 2.2,MISRA C-2012 Rule 20.8,MISRA C-2012 Rule 14.4,MISRA C-2012 Directive 4.3,MISRA C-2012 Rule 10.8,MISRA C-2012 Rule 21.2,MISRA C-2012 Rule 18.1,MISRA C-2012 Rule 7.1,MISRA C-2012 Rule 16.4,MISRA C-2012 Rule 10.4,MISRA C-2012 Rule 13.5,MISRA C-2012 Rule 15.6,MISRA C-2012 Rule 17.1,MISRA C-2012 Directive 4.7,MISRA C-2012 Rule 14.3,MISRA C-2012 Rule 5.2,MISRA C-2012 Rule 14.1,MISRA C-2012 Rule 10.7,MISRA C-2012 Rule 13.2,MISRA C-2012 Rule 16.3,MISRA C-2012 Rule 10.1,MISRA C-2012 Rule 10.6,MISRA C-2012 Rule 16.1,MISRA C-2012 Rule 10.3,MISRA C-2012 Rule 5.8,MISRA C-2012 Rule 17.7,MISRA C-2012 Rule 8.4,MISRA C-2012 Rule 5.3,MISRA C-2012 Rule 11.9,MISRA C-2012 Rule 5.6,MISRA C-2012 Rule 20.7,MISRA C-2012 Rule 9.2,MISRA C-2012 Rule 8.6,MISRA C-2012 Rule 17.2,MISRA C-2012 Directive 4.11,MISRA C-2012 Rule 5.4,MISRA C-2012 Rule 8.8,MISRA C-2012 Rule 11.8,MISRA C-2012 Rule 14.2,MISRA C-2012 Rule 8.3,MISRA C-2012 Rule 8.2,MISRA C-2012 Rule 5.1,MISRA C-2012 Rule 9.3,MISRA C-2012 Rule 7.2,MISRA C-2012 Rule 12.2,MISRA C-2012 Rule 9.5,MISRA C-2012 Rule 11.3,MISRA C-2012 Rule 11.6,MISRA C-2012 Rule 20.9,MISRA C-2012 Rule 8.5,MISRA C-2012 Directive 4.10,MISRA C-2012 Rule 2.1,MISRA C-2012 Rule 7.3,MISRA C-2012 Rule 21.1,MISRA C-2012 Rule 3.1  </td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px; color: #bd974b;">  Advisory   </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">Violations Count</td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   44098   </td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">  Violated Rule groups Count  </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   27   </td></tr>
+<tr><td style="padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">  Violated Rule groups  </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;">   MISRA C-2012 Rule 13.4,MISRA C-2012 Rule 5.9,MISRA C-2012 Rule 10.5,MISRA C-2012 Rule 2.5,MISRA C-2012 Rule 8.13,MISRA C-2012 Directive 4.6,MISRA C-2012 Directive 4.8,MISRA C-2012 Rule 18.4,MISRA C-2012 Rule 20.5,MISRA C-2012 Rule 20.10,MISRA C-2012 Rule 15.4,MISRA C-2012 Rule 11.5,MISRA C-2012 Rule 12.3,MISRA C-2012 Directive 4.4,MISRA C-2012 Rule 12.1,MISRA C-2012 Directive 4.9,MISRA C-2012 Rule 17.8,MISRA C-2012 Rule 13.3,MISRA C-2012 Rule 11.4,MISRA C-2012 Rule 15.5,MISRA C-2012 Rule 2.7,MISRA C-2012 Rule 19.2,MISRA C-2012 Rule 2.3,MISRA C-2012 Rule 8.9,MISRA C-2012 Rule 1.2,MISRA C-2012 Rule 8.7,MISRA C-2012 Directive 4.5  </td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td></tr>
+<tr><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px;"></td><td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: silver"> Confidence Factor </td><td style="white-space: nowrap; padding: 10px; border: solid black 1px; background-color: silver"> 75.447%  </td></tr>
+ </tbody>
+    </table> <hr><br><p>Note: Ignored components from calculation = [ignore]</p><p>Note: Files from the jenkins build workspace considered for this calculation  = [\\/]rfefw_MISRA_build[\\/]</p>    <p >MISRA C 2012 Full CSV Defects List File (attached): MISRAC2012_STRX_RFEFW_2023_W34_5.csv.zip
+    <br>Note: Attached report is non filtered.</p>
+    <p style="color: #999999;"> Report generation took 41 seconds.
+    <br> Report generated by ./getCoverityMISRAReport.pl 1.3
+      ***Auto generated mail. Do not Reply.</p>
+  </body>
+</html>

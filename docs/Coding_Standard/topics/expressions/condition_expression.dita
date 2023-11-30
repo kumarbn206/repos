@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_0bd65ce5-7977-4eaa-9838-a7494e600753">
+  <title>Conditional expressions</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-10"/>
+      <revised modified="2021-02-10"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Conditional expressions shall be kept as simple as possible.</p>
+    <p>Parenthesis should be used to improve readability by grouping together parts of the
+      expression while not relying too much on the operator precedence rules.</p>
+    <p>Assignments are not allowed in conditional expressions. When dealing with comparisons to
+      constants, it is advisable to use the form <codeph>( constant == variable )</codeph> as
+        <codeph>( constant = variable )</codeph> will result in an error emitted by the
+      compiler.</p>
+    <p>Use of negative logic should be limited as it is hard to understand by human readers.</p>
+    <p>Examples of valid and invalid conditional expressions
+      are:<codeblock scale="70">// assuming that these variables exist
+bool         valid;
+uint32_t     number;
+
+// valid conditional expressions:
+if ( valid ) ...
+if ( true == valid ) ...
+if ( 0 != number ) ...
+if ( ( number >= 1 ) &amp;&amp; ( number &lt; 100 ) ) ... 
+
+// invalid conditional expressions:
+if(true==valid) ...                     // incorrect spacing
+if ( number ) ...                       // implicit cast to boolean
+if ( number >= 1 &amp;&amp; number &lt; 100 ) ...  // relies on operator precedence</codeblock></p>
+  </body>
+</topic>

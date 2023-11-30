@@ -1,0 +1,8 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxInfra\APB2SPI\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_apb2spi_init.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxInfra/APB2SPI/idaSTRX_apb2spi_init.bf;><1><1.2><1638343117><><F><><><Checksum=c24a67f6ff2e2d3612f56af21f9894e7><Size=128><mode=33060><vctime=1638342912>
+
+

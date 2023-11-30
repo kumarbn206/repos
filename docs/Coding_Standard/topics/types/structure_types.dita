@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_8ae73462-e182-4b83-8d62-656f2c4dff0e">
+  <title>Structure types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-02"/>
+      <revised modified="2021-02-02"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Structure types shall be always be declared within a typedef declaration and the tag name
+      shall be
+      omitted.<codeblock scale="70">typedef struct {
+    uint32_t            clockDivider;
+    rfeHwSpi_mode_t     enumMember;
+} rfeHwSpi_config_t;</codeblock></p>
+    <p>The C programming language specification only specifies that the members of a structure are
+      stored in memory in the order of their declaration and that the address of the first member is
+      identical to the address of the structure object. Therefore, the placement of the other
+      members in memory is compiler specific and care should be taken when a specific memory
+      representation is required, especially when multiple compilers or processors are involved.</p>
+    <p>The representation of bit fields in memory is not specified by the C programming language
+      specification and therefore bit fields shall not be used in situations where their memory
+      representation matters (e.g., hardware registers).</p>
+    <p>Using flexible structure members — the final member is an array with flexible length — is
+      discouraged and therefore their use should be minimized.</p>
+    
+  </body>
+</topic>

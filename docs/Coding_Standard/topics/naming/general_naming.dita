@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_36fda0a5-b40f-4e9f-866a-e4131f6d0f7c">
+  <title>General naming convention</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-08"/>
+      <revised modified="2021-02-08"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The general naming convention is <codeph>rfe&lt;layer>&lt;module>_&lt;item-name></codeph>
+      where <codeph>&lt;layer></codeph> specifies the layer of the this code,
+      <codeph>module</codeph> is the module identifier, and <codeph>&lt;item-name></codeph> is the
+      name of the item within the module (e.g., an enumerated type or a function). The
+      <codeph>&lt;layer></codeph> part can be omitted in cases where the module applies to the
+      user visible top level.</p>
+    <p>Camel case notation is used for the <codeph>rfe&lt;layer>&lt;module></codeph> and
+      <codeph>&lt;item-name></codeph> sections. Multi-letter acronyms are written with a single
+      upper case character followed by lower case characters (e.g.,  <codeph>Can</codeph> or
+      <codeph>Ahb</codeph>).</p>
+    <p>In certain cases, an additional suffix is appended. Type aliases, defined by typedef, are
+      appended with the <codeph>_t</codeph> suffix. Enumeration constants are appended with the
+      <codeph>_e</codeph> suffix.</p>
+    <p>Variables that represent pointers shall start with the <codeph>p</codeph> prefix (e.g.,
+        <codeph>pValue</codeph>). The <codeph>*</codeph> character in pointers shall associate to
+      the type and not to the identifier (e.g., <codeph>uint32_t* pValue</codeph> instead of
+        <codeph>uint32_t *pValue</codeph>).</p>
+    <p>Examples:
+      <codeblock scale="70">rfeHwCan_mode_t         // a type alias in the hardware driver
+                        // for the CAN peripheral
+rfeHwCan_init           // a function identifier in the hardware driver
+                        // for the CAN peripheral
+rfeError_error_t        // a type alias in the general error handling module
+rfeError_error_none_e   // an enumeration constant
+rfeApi_startRadarCycle  // a top-level function identifier</codeblock>
+    </p>
+  </body>
+</topic>

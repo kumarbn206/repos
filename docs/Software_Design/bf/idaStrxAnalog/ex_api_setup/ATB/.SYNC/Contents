@@ -1,0 +1,14 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\ATB\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_atb_stdby2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_stdby2off.bf;><1><1.1><1638126540><><F><><><Checksum=51e9d1e194511e82b41fd34eac19fb10><Size=455><mode=33056><vctime=1637931049>
+<idaSTRX_atb_stdby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_stdby2on.bf;><1><1.2><1638774355><><F><><><Checksum=db405e17371f86f2e4f6b7827fd37418><Size=744><mode=33056><vctime=1638610438>
+<idaSTRX_atb_on2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_on2stdby.bf;><1><1.2><1638774355><><F><><><Checksum=135de297e21aff25ee5a9871e4205466><Size=269><mode=33056><vctime=1638610438>
+<idaSTRX_atb_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_off2stdby.bf;><1><1.4><1638466658><><F><><><Checksum=39e177dbe4ed4cc6900d4a75562d5620><Size=640><mode=33056><vctime=1638387923>
+<idaSTRX_atb_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_initRegisters.bf;><1><1.1><1637573428><><F><><><Checksum=a2e03560dd4da5d199932f6771bbf3><Size=17><mode=33060><vctime=1637321980>
+<idaSTRX_atb_stdby2enable.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_stdby2enable.bf;><1><1.1><1638126540><><F><><><Checksum=ee5979442545411d418ce34d3e38a643><Size=780><mode=33056><vctime=1637931049>
+<idaSTRX_atb_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/ATB/idaSTRX_atb_OTPchange.bf;><1><1.2><1638126540><><F><><><Checksum=5b5b3918decf6d8bc486bece763ec59b><Size=795><mode=33056><vctime=1637931050>
+
+

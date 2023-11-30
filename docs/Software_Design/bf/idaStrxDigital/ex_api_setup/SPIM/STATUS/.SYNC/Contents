@@ -1,0 +1,14 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxDigital\ex_api_setup\SPIM\STATUS\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_spim_rfe_raw_status_mcgen_v9ana.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status_mcgen_v9ana.bf;><1><1.1><1637738372><><F><><><Checksum=9b162e1b93d014a8eb43a1958229c1e0><Size=97><mode=33056><vctime=1637737845>
+<idaSTRX_spim_rfe_raw_status_gbias_gbok.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status_gbias_gbok.bf;><1><1.1><1637738372><><F><><><Checksum=c15759e2231eb6456d5537dad72a5df7><Size=94><mode=33056><vctime=1637737845>
+<idaSTRX_spim_rfe_raw_status_porpulse.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status_porpulse.bf;><1><1.1><1637738372><><F><><><Checksum=f68b22032ce5f062eb2107db98160b66><Size=87><mode=33056><vctime=1637737845>
+<idaSTRX_spim_rfe_raw_status.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status.bf;><1><1.2><1638466659><><F><><><Checksum=557e4cddb63671a72f007dd558efee15><Size=406><mode=33056><vctime=1638436696>
+<idaSTRX_spim_rfe_raw_status_porconst.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status_porconst.bf;><1><1.1><1637738372><><F><><><Checksum=6c769a274e478805df8eed7b0af936d0><Size=87><mode=33056><vctime=1637737845>
+<idaSTRX_spim_rfe_raw_status_portap.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status_portap.bf;><1><1.1><1637738372><><F><><><Checksum=bf8f15b43eaa6c7ec172db15ed287da><Size=85><mode=33056><vctime=1637737846>
+<idaSTRX_spim_rfe_raw_status_all.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxDigital/ex_api_setup/SPIM/STATUS/idaSTRX_spim_rfe_raw_status_all.bf;><1><1.1><1637738372><><F><><><Checksum=d1ffc0573fe63d525bfa6541994685ed><Size=75><mode=33056><vctime=1637737845>
+
+

@@ -1,0 +1,33 @@
+CODE,ID,MSG
+1,rfe_error_api_unresponsive_e ,RFE is unresponsive.
+2,rfe_error_api_unsynchronized_e ,Operation is not allowed if the rfeDriver is not synchronized with the RFE.
+3,rfe_error_api_operationNotAllowed_e ,Operation is not allowed in this state.
+4,rfe_error_api_busy_e ,RFE is busy.
+5,rfe_error_api_invalidArgumentValue_e ,API function argument has an invalid value.
+6,rfe_error_api_invalidConfigurationSize_e ,The configuration blob has an invalid size.
+7,rfe_error_api_invalidConfigurationParameterValue_e ,The configuration blob contains a parameter that has an invalid value.
+8,rfe_error_api_invalidDynamicTableSize_e ,The dynamic table blob has an invalid size.
+9,rfe_error_api_invalidDynamicTableValue_e ,The dynamic table contains an entry that has an invalid value.
+10,rfe_error_api_noUpdatesBuffered_e ,No updates were buffered using rfe_updateParam() or rfe_updateDynamicTable().
+11,rfe_error_api_maxUpdateCountExceeded_e ,Update count is exceeding RFE_UPDATE_COUNT_MAX.
+12,rfe_error_api_updateAlreadyPending_e ,An update is already pending. Only 1 update per radar cycle is supported.
+13,rfe_error_api_invalidParameterForUpdate_e ,Invalid parameter provided for update.
+14,rfe_error_api_dynamicTablesNotConfigured_e ,Dynamic tables have not been configured.
+15,rfe_error_api_cfgSectionMismatch_e ,Given rfeCfg_section_t section is not matching with the given parameter.
+16,rfe_error_api_cfgInvalidParameterSize_e ,Given rfeCfg_param_t is containing an invalid parameter size.
+17,rfe_error_api_invalidRadarCycleTimeSchedule_e ,The configured radar cycle time schedule is invalid.
+19,rfe_error_api_configParamCrossCheck_dwellSettleTimeTooShort_e ,Configuration parameter cross-check failed: The sum of dwellTimeTicks and settleTimeTicks of all chirp profiles used in chirpProfileSequence should be larger than 120 ticks (i.e. 3 microseconds) if dynamicUpdatesEnabled is true.
+20,rfe_error_api_configParamCrossCheck_acqJumpbackResetTimeTooShort_e ,"Configuration parameter cross-check failed: The sum of acquisitionTimeTicks, jumpbackTimeTicks and resetTimeTicks of all chirp profiles used in chirpProfileSequence should be larger than 200 ticks (i.e. 5 microseconds) if dynamicUpdatesEnabled is true."
+21,rfe_error_api_configParamCrossCheck_chirpIntervalTimeTooShort_e ,"Configuration parameter cross-check failed: chirpIntervalTimeTicks should be larger than the sum of dwellTimeTicks, settleTimeTicks, acquisitionTimeTicks, jumpbackTimeTicks, and resetTimeTicks."
+22,rfe_error_api_configParamCrossCheck_unconfiguredChirpSequence_e ,Configuration parameter cross-check failed: chirpSequences contains a chirp sequence that has not been configured.
+23,rfe_error_api_configParamCrossCheck_unconfiguredChirpProfile_e ,Configuration parameter cross-check failed: chirpProfileSequence contains a chirp profile that has not been configured.
+24,rfe_error_api_configParamCrossCheck_unconfiguredDynamicTable_e ,Configuration parameter cross-check failed: dynamicTableIndex refers to a dynamic table that has not been configured.
+25,rfe_error_api_invalidConfigurationVersion_e ,The configuration blob version is incompatible with the RFE FW
+100,rfe_error_cmdInterface_invalidCmd_e ,Invalid command id.
+101,rfe_error_cmdInterface_invalidCmdLength_e ,Invalid command length.
+102,rfe_error_cmdInterface_invalidRspLength_e ,Invalid command response Length.
+103,rfe_error_cmdInterface_invalidCrc_e ,Command response has an invalid CRC.
+104,rfe_error_cmdInterface_invalidResponse_e ,Response is not matching command.
+105,rfe_error_cmdInterface_invalidConfigCmdSequencing_e ,Invalid sequencing of configuration commands.
+200,rfe_error_sharedData_invalidIndex_e ,Invalid shared data index.
+201,rfe_error_sharedData_redundancyCheckFailed_e ,Shared data redundacy check failed.

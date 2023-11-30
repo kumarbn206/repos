@@ -1,0 +1,5 @@
+//
+// Script to switch on XO Output Buffer
+//
+MCGEN.XO_CTL.XO_CLKOUTP_PWD=0;
+MCGEN.XO_CTL.XO_CLKOUTN_PWD=0;

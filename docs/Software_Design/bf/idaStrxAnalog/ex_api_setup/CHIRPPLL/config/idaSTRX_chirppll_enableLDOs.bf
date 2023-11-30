@@ -1,0 +1,47 @@
+/*  idaSTRX_chirppll_enableLDOs.bf */
+
+CHIRPPLL.SPARE_CTL.ANA_SPARE1=1; 					// Enable pgmt Levelshifters (spare register b0, to be changed)
+
+// enab BG
+CHIRPPLL.PON_CTL.BG_BYPASS_RC=1;    
+CHIRPPLL.PON_CTL.EN_BG=1;							// Bandgap enable
+sleep_bv(CHIRPPLL.ANA_STATUS.BG_OK_FLAG,1);  		// Poll BG_OK
+
+// enab Iref and V2I
+CHIRPPLL.ANA_BIAS_CTL.RES_V2I=0x10;					// set RES_V2I value (default=0)
+CHIRPPLL.PON_CTL.EN_BG_IREF=1;						// Bandgap Iref enable
+
+// enab HVLDO_VCO Vout   
+CHIRPPLL.HVLDO_VCO.SEL_VOUT=2;						// set HVLDO_VCO Vout (reg default=0)
+CHIRPPLL.PON_CTL.EN_HVLDO_VCO=1;					// HVLDO_VCO enable
+sleep_bv(CHIRPPLL.ANA_STATUS.HVLDO_VCO_OK_FLAG,1);	// Poll HVLDO_VCO_OK_FLAG
+
+// enab HVLDO_CP Vout
+CHIRPPLL.HVLDO_CP.SEL_VOUT=3;						// set HVLDO_CP Vout (reg default=0)
+CHIRPPLL.PON_CTL.EN_HVLDO_CP=1;						// HVLDO_CP enable
+sleep_bv(CHIRPPLL.ANA_STATUS.HVLDO_CP_OK_FLAG,1);	//  Poll HVLDO_CP_OK_FLAG
+
+// enab PDIV_LDO
+CHIRPPLL.LDO_PDIV.BYPASS_ACTRC=1;
+CHIRPPLL.LDO_PDIV.I_OUTSTAGE=31;
+CHIRPPLL.PON_CTL.EN_LDO_PDIV=1;
+sleep_bv(CHIRPPLL.ANA_STATUS.LDO_PDIV_OK_FLAG,1);	// Poll LDO_PDIV_OK_FLAG
+
+// enab VCO LVLDO (reg default = 0)
+CHIRPPLL.LVLDO_VCO.SEL_VOUT=3;			
+CHIRPPLL.LVLDO_VCO.RCFILT=1;
+CHIRPPLL.PON_CTL.EN_LVLDO_VCO=1;
+sleep_bv(CHIRPPLL.ANA_STATUS.LVLDO_VCO_OK_FLAG,1);	// Poll LVLDO_VCO_OK_FLAG
+
+// enab PFD LVLDO (reg default = 0)	
+CHIRPPLL.LVLDO_PFD.SEL_VOUT=3;			
+CHIRPPLL.LVLDO_PFD.RCFILT=1;
+CHIRPPLL.PON_CTL.EN_LVLDO_PFD=1;			
+sleep_bv(CHIRPPLL.ANA_STATUS.LVLDO_PFD_OK_FLAG,1);	// Poll LVLDO_PFD_OK_FLAG
+
+// deactivate ByBass filters
+CHIRPPLL.LDO_PDIV.BYPASS_ACTRC=0;
+CHIRPPLL.LVLDO_PFD.RCFILT=0;						// disable LVLDO rc filtering bypas
+CHIRPPLL.LVLDO_VCO.RCFILT=0;
+CHIRPPLL.PON_CTL.BG_BYPASS_RC=0;					// disable BG filtering bypass
+

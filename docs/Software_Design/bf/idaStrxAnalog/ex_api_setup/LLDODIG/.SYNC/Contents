@@ -1,0 +1,10 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\LLDODIG\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_lldodig_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDODIG/idaSTRX_lldodig_OTPchange.bf;><1><1.3><1638262108><><F><><><Checksum=1a153746c7e00aaa125c1a58308f9b99><Size=547><mode=33056><vctime=1638197194>
+<idaSTRX_lldodig_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDODIG/idaSTRX_lldodig_initRegisters.bf;><1><1.1><1637573428><><F><><><Checksum=a2e03560dd4da5d199932f6771bbf3><Size=17><mode=33060><vctime=1637321974>
+<idaSTRX_lldodig_stdby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/LLDODIG/idaSTRX_lldodig_stdby2on.bf;><1><1.3><1638774355><><F><><><Checksum=f90138eda4d3f298d1dd229119d495d8><Size=1260><mode=33056><vctime=1638613049>
+
+

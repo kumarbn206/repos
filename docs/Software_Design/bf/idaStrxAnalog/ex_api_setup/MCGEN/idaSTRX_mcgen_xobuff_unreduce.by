@@ -1,0 +1,5 @@
+//
+// Script to use the full driving capability XO Output Buffer
+//
+MCGEN.XO_CTL.XO_CLKOUTDRVLVL_RED=0;
+

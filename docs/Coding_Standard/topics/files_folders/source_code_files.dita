@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_cdd885fd-4478-4919-9e91-856aea8ab5cd">
+  <title>Source code files</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The general naming convention for source code files is
+        <codeph>rfe&lt;layer>&lt;module>.c</codeph> where <codeph>&lt;layer></codeph> specifies the
+      layer of the this code and <codeph>module</codeph> specifies the module identifier. The
+        <codeph>&lt;layer></codeph> part can be omitted in cases where the module applies to the
+      user visible top level.</p>
+    <p>Source code files shall be structured such that these contain #include directives, type
+      definitions, variables, and functions in this order.</p>
+    <p>Internal function prototypes shall be placed in the optional internal header file when needed
+      (see <xref href="folder_structure.dita"/>).</p>
+    <p>The last line of the source code file shall be an empty line.</p>
+  </body>
+</topic>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c9cf720e-6f79-47f1-a220-9cc8d8fc3d8b">
+  <title>Conditional operator</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The two expressions of the conditional operator should have the same type and this should
+      match with the type expected by the code calling the conditional operator.</p>
+    <p>The following code block depicts the template for a conditional operator
+      statement.<codeblock scale="70">condition ? trueExpression : falseExpression;</codeblock>
+    </p>
+  </body>
+</topic>

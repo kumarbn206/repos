@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_6ddac992-7e2c-4bd1-acd6-fdd323655a01">
+  <title>Selection statements</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Selection statements are used to run specific code blocks based on certain conditions.</p>
+    <p>An <codeph>if</codeph> statement should be used when a binary decision needs to be made. A
+        <codeph>switch</codeph> statement should be used when the decision is not binary. The
+      conditional operator (<codeph>? :</codeph>) can be used in situations where a specific value
+      is required, based on a binary decision. </p>
+    <p>See <xref href="../../expressions/condition_expression.dita"/> for more information on the
+      condition expression.</p>
+  </body>
+</topic>

@@ -1,0 +1,1705 @@
+<html>
+    <head>
+        <title>RFE configuration blob structure</title>
+	</head>
+	<body>
+
+		<style>
+			table {
+				border: none;
+				border-collapse: collapse;
+				font-family: "Lucida Console", "Courier New", monospace;
+			}
+
+			td.section_metadata:hover, td.section_general:hover, td.section_monitorAndSafety:hover, td.section_radarCycle:hover, td.section_chirpSequence:hover, td.section_chirpProfile:hover
+			{
+				background-color: gold;
+			}
+
+			td.section_metadata {
+				background-color: darksalmon;
+			}
+
+			td.section_general {
+				background-color: aquamarine;
+			}
+
+			td.section_monitorAndSafety {
+				background-color: darkorange;
+			}
+
+			td.section_radarCycle {
+				background-color: deepskyblue;
+			}
+
+			td.section_chirpSequence {
+				background-color: yellow;
+			}
+
+			td.section_chirpProfile {
+				background-color: lawngreen;
+			}
+		</style>
+
+        <div>
+            <h1>RFE configuration blob structure</h1>
+            <p>The RFE configuration blob (binary large object) contains a large number of values that are used to define the static configuration for the RFE software. It is structured as a fixed length byte array made up of 20 sections that each contain a number of configuration values.</p>
+
+            <p>An example RFE configuration blob with an overlay indicating the various sections:</p>
+
+			<table>
+				<tr>
+					<td colspan="11">uint8_t rfeConfig[RFE_CFG_SIZE_TOTAL] = {</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_metadata" title="chirpSequenceConfigCount">0x01,&nbsp;</td>
+					<td class="section_metadata" title="chirpProfileCount">0x01,&nbsp;</td>
+					<td class="section_metadata" title="majorVersion">0x00,&nbsp;</td>
+					<td class="section_metadata" title="minorVersion">0x08,&nbsp;</td>
+					<td class="section_metadata" title="patchVersion">0x00,&nbsp;</td>
+					<td class="section_metadata" title="metadata_reserved_0">0x00,&nbsp;</td>
+					<td class="section_metadata" title="metadata_reserved_0">0x00,&nbsp;</td>
+					<td class="section_metadata" title="metadata_reserved_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_metadata">Metadata</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_general" title="powerMode">0x01,&nbsp;</td>
+					<td class="section_general" title="radarCycleStartOut">0x08,&nbsp;</td>
+					<td class="section_general" title="chirpSequenceActiveOut">0x08,&nbsp;</td>
+					<td class="section_general" title="clkIoConfig">0x00,&nbsp;</td>					
+					<td class="section_general" title="pdcDecimationFilter">0x00,&nbsp;</td>
+					<td class="section_general" title="pdcBitwidth">0x02,&nbsp;</td>
+					<td class="section_general" title="dataOutDest">0x01,&nbsp;</td>
+					<td class="section_general" title="dataOutConfig">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_general">General</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_general" title="metadataPacketSwContent">0x04,&nbsp;</td>
+					<td class="section_general" title="metadataPacketVirtualChannel">0x00,&nbsp;</td>
+					<td class="section_general" title="jumpbackTimeTicks">0x08,&nbsp;</td>
+					<td class="section_general" title="radarCycleStartIn">0x00,&nbsp;</td>
+					<td class="section_general" title="cascadingTriggerIo">0x00,&nbsp;</td>
+					<td class="section_general" title="loifOutputPower">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferAddress">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferAddress">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_general" title="wdmaOutputBufferAddress">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferAddress">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferSizePerRx">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferSizePerRx">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferSizePerRx">0x00,&nbsp;</td>
+					<td class="section_general" title="wdmaOutputBufferSizePerRx">0x00,&nbsp;</td>
+					<td class="section_general" title="csi2TxMode">0x00,&nbsp;</td>
+					<td class="section_general" title="csi2PolaritySwap">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_general" title="general_reserved_0">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_1">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_2">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_3">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_4">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_5">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_6">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_7">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_general" title="general_reserved_8">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_9">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_10">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_11">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_12">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_13">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_14">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_15">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_general" title="general_reserved_16">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_17">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_18">0x00,&nbsp;</td>
+					<td class="section_general" title="general_reserved_19">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSatCountResetEveryChirpSequence">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage1_rx1">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage1_rx2">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage1_rx3">0x0f,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety">Monitor and Safety</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td><td class="section_monitorAndSafety" title="rxSaturationThresholdStage1_rx4">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage2_rx1">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage2_rx2">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage2_rx3">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationThresholdStage2_rx4">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx1">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx1">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx1">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td><td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx1">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx2">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx2">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx2">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx2">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx3">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx3">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx3">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx3">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx4">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx4">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx4">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage1_rx4">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx1">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx1">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx1">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx1">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx2">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx2">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx2">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx2">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx3">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx3">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx3">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx3">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx4">0xe8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx4">0x03,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx4">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxSaturationCountLimitStage2_rx4">0x00,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountResetEveryChirpSequence">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc1">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc1">0x01,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc1">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc1">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc2">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc2">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc2">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc2">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc3">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc3">0x01,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc3">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc3">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc4">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc4">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc4">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="adcClippingCountLimit_adc4">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_tx12">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_tx12">0x15,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>										
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_tx34">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_tx34">0x15,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_xo">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_xo">0x15,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_rx">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdHigh_rx">0x15,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_tx12">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_tx12">0x1f,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_tx34">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_tx34">0x1f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_xo">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_xo">0x1f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_rx">0x40,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdOver_rx">0x1f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_tx12">0x80,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_tx12">0xf8,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_tx34">0x80,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_tx34">0xf8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_xo">0x80,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_xo">0xf8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_rx">0x80,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="temperatureSensorThresholdUnder_rx">0xf8,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="thresholdValueToPromoteR1Faults">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForTxPhaseDiff_tx1_tx2">0x0f,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForTxPhaseDiff_tx1_tx2">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForTxPhaseDiff_tx2_tx3">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForTxPhaseDiff_tx2_tx3">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForTxPhaseDiff_tx3_tx4">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForTxPhaseDiff_tx3_tx4">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txPhaseDiffThresholdTolerance">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txPhaseDiffThresholdTolerance">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txPhaseStepThresholdTolerance">0x0f,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txPhaseStepThresholdTolerance">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txPowerLevelForBist">0x7f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txPowerLevelForBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="frequencyForBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="frequencyForBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="frequencyForBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="frequencyForBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txSelectForTxBist">0xff,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+					
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_monitorAndSafety" title="txSelectForTxBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txSelectForTxBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="txSelectForTxBist">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxPhaseDiff_rx1_rx2">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxPhaseDiff_rx1_rx2">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxPhaseDiff_rx1_rx3">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxPhaseDiff_rx1_rx3">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxPhaseDiff_rx1_rx4">0xff,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+					
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxPhaseDiff_rx1_rx4">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxPhaseDiffThresholdTolerance">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxPhaseDiffThresholdTolerance">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxGainDiff_rx1_rx2">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxGainDiff_rx1_rx2">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxGainDiff_rx1_rx3">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxGainDiff_rx1_rx3">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxGainDiff_rx1_rx4">0x0f,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+					
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_monitorAndSafety" title="zeroHrRefForRxGainDiff_rx1_rx4">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxGainDiffThresholdTolerance">0x0f,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="rxGainDiffThresholdTolerance">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="injectTestToneBeforeLna">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile0">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile0">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile1">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile1">0x01,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+					
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile2">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile2">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile3">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile3">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile4">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile4">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile5">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile5">0x01,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+					
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile6">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile6">0x01,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile7">0x01,&nbsp;</td>	
+					<td class="section_monitorAndSafety" title="ppdThreshold_profile7">0x01,&nbsp;</td>	
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_0">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_1">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_2">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_3">0xff,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_4">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_5">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_6">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_7">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_8">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_9">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_10">0xff,&nbsp;</td>
+					<td class="section_monitorAndSafety" title="fuSaFaultMask_11">0xff,&nbsp;</td>		
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="autoErrorRecoveryMode">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_0">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_1">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_2">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_3">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_4">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_5">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_6">0x00,&nbsp;</td>			
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+                </tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_7">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_8">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_9">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_10">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_11">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_12">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_13">0x00,&nbsp;</td>			
+					<td class="section_monitorAndSafety" title="monitorAndSafety_reserved_14">0x00,&nbsp;</td>			
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+                </tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="section_radarCycle" title="radarCycleDuration">0x80,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycleDuration">0x84,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycleDuration">0x1e,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycleDuration">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceCount">0x01,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_0">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle">Radar Cycle</td>
+				</tr>
+					
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_4">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_6">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequences_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_0">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_0">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_0">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_2">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_2">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_2">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_4">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_4">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_4">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_4">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_6">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_6">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_6">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_6">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="chirpSequenceStartTimeOffset_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_0">0x01,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_4">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="bistInterval">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_6">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileDependent_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="recalibrateProfileIndependent">0x01,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_1">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_2">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_3">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_4">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_5">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_6">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_7">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_8">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_9">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_10">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_11">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_12">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_13">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_14">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_15">0x00,&nbsp;</td>
+					<td class="section_radarCycle" title="radarCycle_reserved_16">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x80,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 0</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x01,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x01,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x0f,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x02,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x80,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x0c,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 0</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x90,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x01,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x90,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x01,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x08,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x50,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x20,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x4c,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x8f,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x04,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x20,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0xa1,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x07,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x01,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x01,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x01,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x78,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x01,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x02,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x07,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x02,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>	
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>	
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 1</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>		
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>	>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="spacer"></td>				
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 1</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 2</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>		
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>			
+					<td class="section_chirpProfile">Chirp Profile 2</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 3</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>		
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>		
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>	
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 3</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>					
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 4</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 4</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="spacer"></td>					
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 5</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>					
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 5</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 6</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 6</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>	
+					<td class="spacer"></td>					
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpCount">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_1">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence">Chirp Sequence 7</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_4">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequence_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpProfileSequenceLength">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicUpdatesEnabled">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>					
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="dynamicTableIndex">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpFrequencyDrift">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="fastResetEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="txEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="rxEnable">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterEnable">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="pdcNotchFilterCoefficient">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_4">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_6">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpSequence" title="chirpSequence_reserved_12">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveSamplingFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpIntervalTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="dwellTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile">Chirp Profile 7</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="settleTimeTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="resetTimeTicks" >0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="centerFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="effectiveChirpBandwidth">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllVcoSelect">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpSlopeDirection">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpPllLoopFilterBandwidth">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDelayTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="fastResetDurationTicks">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionEnable">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPower">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_2">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="spacer"></td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txPhaseRotation_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionReferenceTime">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="txTransmissionTimeOffset">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxGain">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxHpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="rxLpfCutOffFrequency">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="virtualChannel">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_0">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_1">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_2">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_3">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_4">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_5">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_6">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_7">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_8">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_9">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_10">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_11">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_12">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_13">0x00,&nbsp;</td>
+					<td class="section_chirpProfile" title="chirpProfile_reserved_14">0x00,&nbsp;</td>
+					<td class="spacer">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="11">};</td>
+				</tr>
+			</table>
+
+            <p>For the description of the fields in configuration blob, refer to rfeCfg.h</p>
+        </div>
+    </body>
+</html>

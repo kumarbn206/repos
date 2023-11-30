@@ -1,0 +1,11 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\GLDO\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_gldo_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/GLDO/idaSTRX_gldo_off2stdby.bf;><1><1.1><1637573428><><F><><><Checksum=296897134d1f3d66d988ecfdbfca9fc6><Size=23><mode=33060><vctime=1637321975>
+<idaSTRX_gldo_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/GLDO/idaSTRX_gldo_OTPchange.bf;><1><1.2><1638126540><><F><><><Checksum=9758038f2a5affa918ac7008595510f2><Size=536><mode=33056><vctime=1637930785>
+<idaSTRX_gldo_stdby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/GLDO/idaSTRX_gldo_stdby2on.bf;><1><1.2><1638262108><><F><><><Checksum=d392714a7830c571e2276930dcef36ed><Size=1864><mode=33056><vctime=1638176748>
+<idaSTRX_gldo_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/GLDO/idaSTRX_gldo_initRegisters.bf;><1><1.1><1637573428><><F><><><Checksum=a2e03560dd4da5d199932f6771bbf3><Size=17><mode=33060><vctime=1637321975>
+
+

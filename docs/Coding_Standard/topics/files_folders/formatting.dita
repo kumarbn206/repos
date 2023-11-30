@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_70777882-1bbf-41c9-a2dc-ebfa84193150">
+  <title>Formatting</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Tabs shall not be used. One or more sequences of four spaces shall be used for
+      indentations.</p>
+    <p>Comments shall be added as either block (<codeph>/* .. */</codeph>) or line (<codeph>//
+        ..</codeph>) comments. Block comments shall not be nested.</p>
+    <p>Code shall not be commented out. This include block comments (<codeph>/* .. */</codeph>),
+      line (<codeph>// ..</codeph>) comments, and preprocessor constructs (e.g., <codeph>#if 0 ..
+        #endif</codeph>).</p>
+    <p>Lines shall not exceed 120 columns.</p>
+    <p>Only the Unix style line ending (line feed, <codeph>LF</codeph>, <codeph>\n</codeph>, or
+        <codeph>0x0A</codeph>) shall be used.</p>
+    <p>The last line of each file shall be an empty line.</p>
+    <p>Digraphs (<codeph>&lt;:</codeph>, <codeph>:></codeph>, <codeph>&lt;%</codeph>,
+        <codeph>%></codeph>, <codeph>%:</codeph>, and <codeph>%:%:</codeph>) shall not be used.
+      Digraph literals can be used in string literals, but are discouraged.</p>
+    <p>Trigraphs (<codeph>??(</codeph>, <codeph>??)</codeph>, <codeph>??&lt;</codeph>,
+        <codeph>??></codeph>, <codeph>??=</codeph>, <codeph>??/</codeph>, <codeph>??!</codeph>,
+        <codeph>??'</codeph>, and <codeph>??-</codeph>) shall not be used. Trigraph literals are not
+      allowed in string literals.</p>
+    <p>Refer to the sections on types (<xref href="../types/types.dita"/>), expressions (<xref
+        href="../expressions/expressions.dita"/>), and statements (<xref
+        href="../statements/statements.dita"/>) for formatting rules specific to these items.
+      Spacing and alignment in the examples in these sections are normative.</p>
+    <p>The API shall be documented using Doxygen as defined by the header file templates available
+      in the STRX RFE SW repository.</p>
+  </body>
+</topic>

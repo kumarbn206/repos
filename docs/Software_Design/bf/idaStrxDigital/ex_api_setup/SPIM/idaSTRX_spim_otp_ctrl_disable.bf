@@ -1,0 +1,2 @@
+// set 1 to lock SPIM registers  
+SPIM.SPIM_WRITE_LOCK_CNTRL.SPIM_WRITE_LOCK=1;

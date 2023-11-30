@@ -1,0 +1,8 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxInfra\CGU\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_cgm_init.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxInfra/CGU/idaSTRX_cgm_init.bf;><1><1.2><1638343116><><F><><><Checksum=32831e964b2d327813edf1b8ab69e274><Size=1318><mode=33060><vctime=1638342912>
+
+

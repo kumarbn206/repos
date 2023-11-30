@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_4478db39-2edc-4856-9694-908974ebacfe">
+  <title>Unions</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-11"/>
+      <revised modified="2021-02-11"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Unions are discouraged and shall not be used.</p>
+    <p>It can never be assured which specific type the value has when an union is used for
+      polymorphic types. Using an union to access a single value in several ways (e.g.,
+        <codeph>uint32_t</codeph> and <codeph>uint8_t[4]</codeph>) is compiler dependent and
+      therefore should also not be relied upon.</p>
+  </body>
+</topic>

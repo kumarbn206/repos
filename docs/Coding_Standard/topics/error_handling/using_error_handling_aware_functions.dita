@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c82178f1-069e-4075-82fa-1da813fb67a3">
+  <title>Using error handling aware functions</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-11"/>
+      <revised modified="2021-02-11"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The following code block depicts an example main function that uses the example error
+      handling aware functions defined in the previous
+      section.<codeblock scale="70">void main( void )
+{
+    RFE_ERROR_CREATE;
+
+    uint32_t valueA = rfeHwExample_squareValue(  2ul, RFE_ERROR_FUNCTION_ARGUMENT );
+    uint32_t valueB = rfeHwExample_squareValue( 40ul, RFE_ERROR_FUNCTION_ARGUMENT );
+    uint32_t valueC = rfeHwExample_squareValue( 42ul, RFE_ERROR_FUNCTION_ARGUMENT );
+
+    uint32_t valueD;
+    if ( RFE_ERROR_IS_NO_ERROR )
+    {
+        valueD = valueA + valueB + valueC;
+    }
+    else
+    {
+        rfeError_t error = RFE_ERROR_GET;
+        valueD = 0ul;
+    }
+
+    RFE_ERROR_CLEAR;
+
+    rfeHwExample_squaredValue_t valueE
+            = rfeHwExample_squareValue2(     2ul, RFE_ERROR_FUNCTION_ARGUMENT );
+    rfeHwExample_squaredValue_t valueF
+            = rfeHwExample_squareValue2( 75000ul, RFE_ERROR_FUNCTION_ARGUMENT );
+    rfeHwExample_squaredValue_t valueG
+            = rfeHwExample_squareValue2(    42ul, RFE_ERROR_FUNCTION_ARGUMENT );
+
+    uint32_t valueH;
+    if ( RFE_ERROR_IS_NO_ERROR )
+    {
+        valueH = valueE.squared + valueF.squared + valueG.squared;
+    }
+    else
+    {
+        rfeError_t error = RFE_ERROR_GET;
+        valueH = 0ul;
+    }
+}</codeblock></p>
+    <p>The <codeph>RFE_ERROR_CREATE</codeph> preprocessor macro will create the error variable
+      required before calling any other error handling macro or error handling aware function.</p>
+    <p>The three calls of the <codeph>rfeHwExample_squareValue</codeph> function will all succeed
+            and therefore the values for <codeph>valueA</codeph>, <codeph>valueB</codeph>, and
+                <codeph>valueC</codeph> will be <codeph>4</codeph>, <codeph>1600</codeph>, and
+                <codeph>1764</codeph> respectively.</p>
+    <p>The first call to the <codeph>RFE_ERROR_IS_NO_ERROR</codeph> macro will return
+        <codeph>true</codeph> and therefore <codeph>valueD</codeph> will be set to
+        <codeph>3368</codeph>.</p>
+    <p>Macro <codeph>RFE_ERROR_CLEAR</codeph> will clear the current error value to
+        <codeph>hwError_error_none_e</codeph>.</p>
+    <p>The first call of the <codeph>rfeHwExample_squareValue2</codeph> function will succeed and
+        .<codeph>valueE.value</codeph> will be set to <codeph>2</codeph> and
+        <codeph>valueE.squared</codeph> to <codeph>4</codeph>. The input value to the second call is
+      out of range and this will cause the current error value to be set to
+        <codeph>hwError_error_range_e</codeph>, <codeph>valueF.value</codeph> to <codeph>0</codeph>,
+      and <codeph>valueE.squared</codeph> to <codeph>0</codeph>. The third call fails as a previous
+      error condition has been encountered and this will set <codeph>valueG.value</codeph> to
+        <codeph>0</codeph> and <codeph>valueG.squared</codeph> to <codeph>0</codeph>.</p>
+    <p>The second call to the <codeph>RFE_ERROR_IS_NO_ERROR</codeph> macro will return
+        <codeph>false</codeph>. Therefore, <codeph>error</codeph> will be set to
+        <codeph>rfeError_error_range_e</codeph> and <codeph>valueH</codeph> to
+      <codeph>0</codeph>.</p>
+  </body>
+</topic>

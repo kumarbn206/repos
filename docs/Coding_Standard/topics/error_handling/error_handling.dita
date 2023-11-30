@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c71ecb5c-7fe8-4287-84d5-7575c2c5deaf">
+  <title>Error handling</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-09"/>
+      <revised modified="2021-02-09"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>This section describes the generalized error handling mechanism.</p>
+    <p>The main concept behind this error handling system is that functions will only perform their
+      code parts if no prior error exists and will skip these code parts if a prior error
+      exists.</p>
+    <p>A single enumerated type named <codeph>rfeError_error_t</codeph> is defined in file
+        <codeph>rfeError.h</codeph> that lists all possible error conditions in the system. The
+      first item in this list must be <codeph>rfeError_error_none_e</codeph>.</p>
+    <p>This file also defines several preprocessor macros that implement the error handling
+      mechanism. These preprocessor macros should be treated as opaque items.<table
+        id="table_s5f_qp5_p4b" pgwide="0">
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry><codeph>RFE_ERROR_CREATE</codeph></entry>
+              <entry>Creates the error variable. Should always be the first error handling macro
+                used in a error handling context. </entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_CLEAR</codeph></entry>
+              <entry>Clears the current error value by setting this to
+                  <codeph>rfeError_error_none_e</codeph>.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_SET( err )</codeph></entry>
+              <entry>Sets the current error varlue to the specified error value.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_GET</codeph></entry>
+              <entry>Returns the current error value.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_IS_NO_ERROR</codeph></entry>
+              <entry>Returns <codeph>true</codeph> if the current error value does not contain an
+                error. Otherwise, it returns <codeph>false</codeph>.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_IS_ERROR</codeph></entry>
+              <entry>Returns <codeph>true</codeph> if the current error value contains an error.
+                Otherwise, it returns <codeph>false</codeph>.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_GUARD( block )</codeph></entry>
+              <entry>The code in the <codeph>block</codeph> argument is only executed if the current
+                error value does not contain an error.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_FUNCTION_PARAMETER</codeph></entry>
+              <entry>Use as the last parameter in function definitions to pass through the error
+                information.</entry>
+            </row>
+            <row>
+              <entry><codeph>RFE_ERROR_FUNCTION_ARGUMENT</codeph></entry>
+              <entry>Use as the last argument when calling error handling aware functions.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table></p>
+  </body>
+</topic>

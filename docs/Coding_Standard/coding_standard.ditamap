@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE datasheet PUBLIC "-//NXP//DTD Datasheet//EN" "datasheet.dtd">
+<datasheet title="STRX RFE coding standard" id="map_09978e68-210f-461f-b57b-1c859d826087" rev="0.8">
+	<topicmeta>
+		<subtitle/>
+		<author>${nxp-useremail}</author>
+		<publisher>NXP B.V.</publisher>
+		<critdates>
+			<created date="2021-06-11"/>
+			<revised modified="2021-11-10"/>
+		</critdates>
+		<permissions view="public"/>
+		<metadata>
+			<category>Information Product</category>
+			<nxp-type content="user_manual"/>
+			<releasestate content="draft"/>
+			<doc-identifier content="STRX_RFE_CODING_STANDARD"/>
+			<data name="doc-info-keywords">STRX, RFE, coding standard</data>
+			<data name="doc-info-abstract">This document describes the STRX RFE coding
+				standard.</data>
+			<data name="legal-information" value="no">
+				<data name="legal-disclaimers"><data name="disclaimer" value="t001dis100"/><data
+						name="disclaimer" value="t001dis101"/><data name="disclaimer"
+						value="t001dis102"/><data name="disclaimer" value="t001dis103"/><data
+						name="disclaimer" value="t001dis113"/><data name="disclaimer"
+						value="t001dis115"/><data name="disclaimer" value="t001dis122"/><data
+						name="disclaimer" value="t001dis128"/></data>
+				<data name="legal-trademarks"><data name="trademark" value="t001tma246"/></data>
+			</data>
+		</metadata>
+		<!-- This map is based on the template "NXP-Main-Map.ditamap". The template was published with the NXP DITA Framework version 3.3 (July 22nd, 2016)  -->
+	</topicmeta>
+	<topicref href="topics/introduction/introduction.dita"/>
+	<topicref href="topics/naming/naming.dita">
+		<topicref href="topics/naming/general_naming.dita"/>
+		<topicref href="topics/naming/preprocessor_naming.dita"/>
+		<topicref href="topics/naming/hardware_register_naming.dita"/>
+	</topicref>
+	<topicref href="topics/files_folders/files_folders.dita">
+		<topicref href="topics/files_folders/header_files.dita">
+			<topicref href="topics/files_folders/header_files_cplusplus.dita"/>
+		</topicref>
+		<topicref href="topics/files_folders/source_code_files.dita"/>
+		<topicref href="topics/files_folders/formatting.dita"/>
+		<topicref href="topics/files_folders/folder_structure.dita"/>
+	</topicref>
+	<topicref href="topics/types/types.dita">
+		<topicref href="topics/types/boolean_types.dita"/>
+		<topicref href="topics/types/integer_types.dita"/>
+		<topicref href="topics/types/floating_types.dita"/>
+		<topicref href="topics/types/constant_types.dita"/>
+		<topicref href="topics/types/enumerated_types.dita"/>
+		<topicref href="topics/types/structure_types.dita"/>
+		<topicref href="topics/types/pointer_types.dita"/>
+	</topicref>
+	<topicref href="topics/expressions/expressions.dita">
+		<topicref href="topics/expressions/dead_code.dita"/>
+		<topicref href="topics/expressions/variable_declarations.dita"/>
+		<topicref href="topics/expressions/operators.dita"/>
+		<topicref href="topics/expressions/casts.dita"/>
+		<topicref href="topics/expressions/condition_expression.dita"/>
+	</topicref>
+	<topicref href="topics/statements/statements.dita">
+		<topicref href="topics/statements/selection_statements/selection_statements.dita">
+			<topicref href="topics/statements/selection_statements/if_statement.dita"/>
+			<topicref href="topics/statements/selection_statements/switch_statement.dita"/>
+			<topicref href="topics/statements/selection_statements/conditional_operator.dita"/>
+		</topicref>
+		<topicref href="topics/statements/loops/loops.dita">
+			<topicref href="topics/statements/loops/for_statement.dita"/>
+			<topicref href="topics/statements/loops/endless_loop.dita"/>
+			<topicref href="topics/statements/loops/while_statement.dita"/>
+			<topicref href="topics/statements/loops/do_while_statement.dita"/>
+		</topicref>
+		<topicref href="topics/statements/functions.dita"/>
+		<topicref href="topics/statements/unions.dita"/>
+	</topicref>
+	<topicref href="topics/error_handling/error_handling.dita">
+		<topicref href="topics/error_handling/defining_error_handling_aware_functions.dita"/>
+		<topicref href="topics/error_handling/using_error_handling_aware_functions.dita"/>
+	</topicref>
+</datasheet>

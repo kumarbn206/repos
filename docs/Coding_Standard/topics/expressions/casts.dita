@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_78626357-81d8-48bd-94e1-d8673833abda">
+  <title>Casts</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2021-02-10"/>
+      <revised modified="2021-02-10"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>Only explicit casts shall be used. Implicit casts shall not be used.</p>
+    <p>Casts that narrow values shall have an explicit masking operation.</p>
+    <p>The use of casts shall be minimized as they are usually indications of problems with the type
+      system. A comment must accompany each cast to explain its existence.</p>
+    <p>The entire <codeph>cast</codeph> expression must be enclosed in parenthesis in those cases
+      where this expression is part of a larger expression and when used as the body of a
+        <codeph>#define</codeph> preprocessor macro.</p>
+    <p>The following code block depicts the two templates for <codeph>cast</codeph> expressions:
+      <codeblock scale="70">( ( newType ) value )   // for use in complicated expressions
+( newType ) value       // for use in simple statements</codeblock></p>
+    <p>The following code block depicts an example where a cast is used to convert an
+        <codeph>uint8_t</codeph> value to an <codeph>uint32_t</codeph> value:
+      <codeblock scale="70">uint8_t  value = 0ul;
+uint32_t newValue = ( uint32_t ) value ;     // reason ...</codeblock></p>
+    <p>The following code block depicts an example where a narrowing cast is used to convert an
+        <codeph>uint32_t</codeph> value to an <codeph>uint8_t</codeph> value:
+      <codeblock scale="70">uint32_t value = 0ul;
+uint8_t  newValue = ( uint8_t ) ( value &amp; 0x000000fful );       // reason ...</codeblock></p>
+    <p>The following code block depicts an example where a narrowing cast is used to convert an
+        <codeph>uint32_t</codeph> value to an <codeph>uint8_t</codeph> value as part of a larger
+      expression and therefore is enclosed in parenthesis:
+      <codeblock scale="70">uint32_t value = 0ul;
+uint8_t  newValue = ( ( uint8_t ) ( value &amp; 0x000000fful ) ) + 0x00001234ul;    // reason ...</codeblock></p>
+    <p>The following code block depicts an example where a cast is used in a
+        <codeph>#define</codeph> preprocessor macro:
+      <codeblock scale="70">#define RFE_HW_GPIO_BASE                ( ( rfeHwAbh_base_t ) ( 0x80040000ul ) )</codeblock></p>
+  </body>
+</topic>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="topic_c050e9ec-118b-46c7-8e45-f9f6a0f75864">
+  <title>Integer types</title>
+  <prolog>
+    <author>${nxp-useremail}</author>
+    <publisher>NXP B.V.</publisher>
+    <critdates>
+      <created date="2020-12-18"/>
+      <revised modified="2020-12-18"/>
+    </critdates>
+    <permissions view=""/>
+    <metadata/>
+  </prolog>
+  <body>
+    <p>The following integer types from <codeph>&lt;stdint.h></codeph> are allowed:
+        <codeph>uint8_t</codeph>, <codeph>uint16_t</codeph>, <codeph>uint32_t</codeph>,
+        <codeph>uint64_t</codeph>, <codeph>int8_t</codeph>, <codeph>int16_t</codeph>,
+        <codeph>int32_t</codeph>, and <codeph>int64_t</codeph>.</p>
+    <p>The unsigned versions should be used, unless negative numbers are explicitly required.</p>
+    <p>The standard integer types (<codeph>char</codeph>, <codeph>short</codeph>,
+        <codeph>int</codeph>, and <codeph>long</codeph>) shall not be used as these are inherently
+      ambigiuous (size and signedness) making interoperability more difficult. </p>
+  </body>
+</topic>

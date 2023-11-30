@@ -1,0 +1,14 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxTopLevel\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_stby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxTopLevel/idaSTRX_stby2on.bf;><1><1.4><1638774356><><F><><><Checksum=abeb9be38dbd2740f3c0040cdb3ca7d5><Size=1769><mode=33060><vctime=1638772555>
+<idaSTRX_stby2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxTopLevel/idaSTRX_stby2off.bf;><1><1.1><1638365264><><F><><><Checksum=e272fc723ffb12a09db31e5f44a783f3><Size=1979><vctime=1638365265>
+<idaSTRX_on2stby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxTopLevel/idaSTRX_on2stby.bf;><1><1.1><1638365264><><F><><><Checksum=8e167c0fe7c693e8b1dd4b1933c5439b><Size=1460><vctime=1638365265>
+<idaSTRX_off2stby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxTopLevel/idaSTRX_off2stby.bf;><1><1.2><1638516878><><F><><><Checksum=a445a1baeff074b5ff7a51419d2c56c8><Size=2397><mode=33060><vctime=1638516822>
+<idaSTRX_program_trim_values.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxTopLevel/idaSTRX_program_trim_values.bf;><1><1.1><1638127805><><F><><><Checksum=81f6df5b91db08d530077d7bc4d31fc5><Size=326><vctime=1638127806>
+<sv_library><G><><><><0><><F><><>
+<idaSTRX_Init.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxTopLevel/idaSTRX_Init.bf;><1><1.14><1638782005><><F><><><Checksum=3a14cdc7f6eed506bea3a971c02a9a1><Size=8722><mode=33056><vctime=1638776345>
+
+

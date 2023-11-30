@@ -1,0 +1,13 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\RCOSC\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_rcosc_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/RCOSC/idaSTRX_rcosc_OTPchange.bf;><1><1.1><1637573428><><F><><><Checksum=61209c9059c882d16f7916023866d2c><Size=21><mode=33060><vctime=1637321977>
+<idaSTRX_rcosc_on2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/RCOSC/idaSTRX_rcosc_on2stdby.bf;><1><1.1><1637737548><><F><><><Checksum=7dbc26575b346ffe3cddf657d03f6f13><Size=181><mode=33056><vctime=1637733146>
+<idaSTRX_rcosc_stdby2on.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/RCOSC/idaSTRX_rcosc_stdby2on.bf;><1><1.1><1637737548><><F><><><Checksum=8ea477a17fd5d413c6f0c9202e955231><Size=968><mode=33056><vctime=1637733146>
+<idaSTRX_rcosc_stdby2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/RCOSC/idaSTRX_rcosc_stdby2off.bf;><1><1.1><1637737548><><F><><><Checksum=d2502f3839530d0f6c99783e1de4cecd><Size=65><mode=33056><vctime=1637733146>
+<idaSTRX_rcosc_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/RCOSC/idaSTRX_rcosc_off2stdby.bf;><1><1.2><1637737548><><F><><><Checksum=ecdb2e87748f0db1acc6e855764f41de><Size=91><mode=33056><vctime=1637733146>
+<idaSTRX_rcosc_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/RCOSC/idaSTRX_rcosc_initRegisters.bf;><1><1.1><1637573428><><F><><><Checksum=a2e03560dd4da5d199932f6771bbf3><Size=17><mode=33060><vctime=1637321977>
+
+

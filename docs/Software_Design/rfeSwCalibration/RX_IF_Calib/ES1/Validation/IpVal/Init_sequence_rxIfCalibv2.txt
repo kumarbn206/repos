@@ -1,0 +1,230 @@
+// == Inits == 
+//rfeSwInit_initialize
+rfeHwCsi2_init 0, 2, 1
+
+//== UNCLOCKING ==
+// unlock all RX
+rfeHwRx_unlockOrLockProtectedReg 0, 0
+rfeHwRx_unlockOrLockProtectedReg 1, 0
+rfeHwRx_unlockOrLockProtectedReg 2, 0
+rfeHwRx_unlockOrLockProtectedReg 3, 0
+// unlock McGen
+rfeHwMcgen_unlockOrLockProtectedRegisters 0
+
+// == StandbyToOn ==
+// Atb
+rfeHwAtb_standbyToOn
+// Rxs's
+rfeHwRx_standbyToOn 0
+rfeHwRx_standbyToOn 1
+rfeHwRx_standbyToOn 2
+rfeHwRx_standbyToOn 3
+// ADCs
+rfeHwRxAdc_offToOn 0
+// LOIF
+rfeHwLoif_standbyToOn
+
+// == Inits == 
+// Calibration done  in labView test case for RX IF Calib v2
+rfeHwLoif_setMode 1
+
+// == Tsense == 
+writeSpi "TEMPSENSOR_MC.TDC_CTL.OPR_MODE", 0  //ADDED From Lucas
+rfeHwTsense_setConversionMode 3, 1
+rfeHwTsense_setConversionMode 0, 1
+rfeHwTsense_setConversionMode 1, 1
+rfeHwTsense_setConversionMode 2, 1
+rfeHwTSense_startTemperatureConversion 0, 1
+rfeHwTSense_startTemperatureConversion 1, 1
+rfeHwTSense_startTemperatureConversion 2, 1
+rfeHwTSense_startTemperatureConversion 3, 1
+rfeHwTSense_startTemperatureConversion 0, 0
+rfeHwTSense_startTemperatureConversion 1, 0
+rfeHwTSense_startTemperatureConversion 2, 0
+rfeHwTSense_startTemperatureConversion 3, 0
+rfeHwTsense_getTemperature 0
+rfeHwTsense_getTemperature 1
+rfeHwTsense_getTemperature 2
+rfeHwTsense_getTemperature 3
+
+ // == ATB == 
+// rfeSwCalibration_atbAdcCalibrate
+// rfeHwAtb_funcRxIfToExternal 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 // acInputSignal=0 for RX1_I; 2 for RX2_I; 4 for RX3_I; 6 for RX4_I
+// writeSpi "ATB.ATB1_AC_SWITCHES_1.ENA_AC1_BUF", 1
+
+// == CHIRP_PLL SETTINGS ==
+// Nothing to do here because this is done in labView test for RX IF Calib v2
+// offset for settleTimeTicks 4th, number of samples 5th variable + settleTimeTicks,
+// rfeHwChirppll_configSweepControl 0, 76000000, 0, 10, 128, 40, 2, 0
+// rfeHwChirppll_configureLoopfilterBandwidth 4, 1, 0,0
+// rfeHwChirppll_calibrateVco 76000000, 0, 0, 1
+// rfeHwChirppll_calibratedToPllLockedCwMode
+rfeHwChirppll_configSafetyMonitor 0,0
+
+// == // TE SETTINGS ==
+// number of samples 5th variable, check with value of for rx enable?
+rfeHwTe_setChirpProfile 0, 200, 10, 10, 128, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0
+rfeHwTe_setChirpDeactivationTime 6
+// rfeHwTe_setChirpSequence 100, 0, 0, 0 // pre RfeProxy 0.5.11
+rfeHwTe_setChirpSequence 0, 0, 0, 0, 0
+// use for GPIO control
+rfeHwTe_setChirpActiveSignalConfig 1
+rfeHwTe_ipPowerControl 0, 0
+rfeHwTe_ipPowerControl 1, 1
+rfeHwTe_ipPowerControl 2, 1
+rfeHwTe_ipPowerControl 3, 1
+rfeHwTe_ipPowerControl 4, 1
+rfeHwTe_ipPowerControl 5, 1
+rfeHwTe_ipPowerControl 6, 1
+rfeHwTe_ipPowerControl 7, 1
+rfeHwTe_ipPowerControl 8, 1
+rfeHwTe_ipPowerControl 9, 1
+rfeHwTe_ipPowerControl 10, 1
+rfeHwTe_ipPowerControl 11, 1
+rfeHwTe_ipPowerControl 12, 0
+rfeHwTe_ipPowerControl 13, 0
+rfeHwTe_ipPowerControl 14, 0
+rfeHwTe_ipPowerControl 15, 0
+rfeHwTe_ipPowerControl 16, 1
+rfeHwTe_ipPowerControl 17, 1
+rfeHwTe_ipPowerControl 18, 1
+rfeHwTe_ipPowerControl 19, 1
+rfeHwTe_ipPowerControl 20, 1
+rfeHwTe_loadProfile 0
+
+// == BIST SETTINGS ==
+// Not done here because it is done specifically on labView for RX IF Calib v2
+// rfeHwRxbist_standbyToOnBbMode
+// writeSpi "ADPLL.CLKOUT_CONFIG.ENA_DIV24_OUT", 1
+// writeSpi "MCGEN.BUFFER_CTL.CLKGATE_320M" 0
+// rfeHwTe_init
+// rfeHwTe_chirpSequenceStart
+// rfeHwRx_configRfbist 1, 1, 0, 0, 0, 0, 0
+// rfeHwRx_configIfbist 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5, 0
+// rfeSwCalibration_rxIfCalibrate_validate 0, 7, 3, 5, 3528, 1846, 1, 3200
+// rfeHwRxbist_configureSignalTones 12288, 0, 15359, 0, 0, 0
+// rfeHwRxbist_configureRfLox2Gain 15
+// rfeHwRxbist_configureRfSsbGain 63, 63, 31
+// rfeHwRxbist_triggerSignalStart
+
+// == LOI SETTINGS == 
+// Calibration done  in labView test case for RX IF Calib v2
+
+//== RX SETTINGS ==
+// RX1 - ADC path only
+rfeHwRx_configIfbist 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0    //RX1 CW
+rfeHwRx_configIfbist 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0    //RX2 CW
+rfeHwRx_configIfbist 2, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0    //RX3 CW
+rfeHwRx_configIfbist 3, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0    //RX4 CW
+// rfeHwRx_configIfbist 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 5, 0    //RX1 HB OFF
+// rfeHwRx_configIfbist 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 5, 0        //RX1
+// rfeHwRx_configRfbist 1, 1, 0, 0, 0, 0, 0
+// rfeHwRx_configIfbist 2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5, 0
+// rfeHwRx_configIfbist 3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5, 0
+//                    profile gain hpf lpf rc rc corner temp    
+
+writeSpi "RX_MC.TEST_RESET_ERROR", 0   //ADDED From Lucas
+//rfeSwCalibration_rxLox2Calibrate 0, 0.410, 0.410, -40//    < 0
+//rfeSwCalibration_rxLox2Calibrate 0, 0.390, 0.390, 50 // 0 to 100
+//rfeSwCalibration_rxLox2Calibrate 0, 0.360, 0.360, 130 //    > 100
+
+//Enable RX in CW mode
+readSpi "01.138.31:0"
+writeSpi "01.138.31:0",0x2
+readSpi "01.138.31:0"
+
+//== ADC SETTINGS ==
+// can be done in multicast mode
+rfeHwRxAdc_selectInputI 0, 0
+rfeHwRxAdc_selectInputQ 0, 0
+
+
+//===================================================================================
+// PDC SETTINGS - profile 0 only
+rfeHwPdc_samplingRateSetter 0, 0, 0
+rfeHwPdc_samplingRateSetter 1, 0, 0
+rfeHwPdc_samplingRateSetter 2, 0, 0
+rfeHwPdc_samplingRateSetter 3, 0, 0
+rfeHwPdc_equalizerCoeffsSetter 0, 0, 11335, -5086, -3695
+rfeHwPdc_equalizerCoeffsSetter 1, 0, 11335, -5086, -3695
+rfeHwPdc_equalizerCoeffsSetter 2, 0, 11335, -5086, -3695
+rfeHwPdc_equalizerCoeffsSetter 3, 0, 11335, -5086, -3695
+
+//===================================================================================
+// idaSTRX_pdc_wHilbert_40MSps_MBr.bf
+// rfeHwPdc_bypassFilters?
+// enable DECI1 HOLD by default:
+writeSpi "PDC_MC.PDC_PDC_OL_CNT.DECI1_HLD_DIS",0
+//Enable the clock160 always and not controlled by TE power management
+writeSpi "TIMING_ENGINE.DYNAMIC_POWER_CONTROL_ENABLE.PDC_DY_PWR_CTRL",0x0
+// enable validation filter 12
+writeSpi "PDC_MC.PDC_CTL4.FILT12_EN",0
+// In PDC1: optionally, if PDC1 output should not be suppressed outside data_active window (delayed data_active)
+writeSpi "PDC_MC.PDC_CTL2.INP_EN_WA_ADC",0
+// Bypass cordic’s frequency shift
+writeSpi "PDC_MC.PDC_BYPASSES.BYPASS_CORDIC",0
+// Bypass fsOut/20 shift after deci10/11, BYPASS_FSHIFT1 is already 1 after reset
+writeSpi "PDC_MC.PDC_BYPASSES.BYPASS_FSHIFT2",0
+// Bypass fsOut/4 shift at the output
+writeSpi "PDC_MC.PDC_BYPASSES.BYPASS_FSHIFT3",0
+// disable the equalizer
+writeSpi "PDC_MC.PDC_CTL4.EQ_EN",0
+// rfeHwPdc_phaseCorrectionSetter (PDC_PHASE_COR_I,PDC_PHASE_COR_Q,PDC_LEVEL_ADJ?)
+writeSpi "PDC_MC.P0_PDC_PHAMP_COR.PDC_PHASE_COR_I",1816 // PDC phase correction for 40MS, Steep narrow band mode 1816
+writeSpi "PDC_MC.P0_PDC_PHAMP_COR.PDC_PHASE_COR_Q",3149 // PDC phase correction for 40MS, Steep narrow band mode 4096-947= 3149 unsigned
+// rfeHwPdc_iqcCorrectionSetter(PDC_IQC_AMP,PDC_IQC_PHASE)
+writeSpi "PDC_MC.P0_PDC_IQC.PDC_IQC_AMP",2497                 // PDC phase correction for 80MS / 40MS, clould be also 0
+writeSpi "PDC_MC.P0_PDC_IQC.PDC_IQC_PHASE",55562            // PDC phase correction for 80MS / 40MS, clould be also 0
+// RX1, rfeHwPdc_outputSelector ? use first this function with I channel for all RX
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX1", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX2", 1
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX3", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX4", 0
+// RX2, rfeHwPdc_outputSelector ? use first this function with I channel for RX2
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX1", 1
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX2", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX3", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX4", 0
+// RX3, rfeHwPdc_outputSelector ? use first this function with I channel for RX3
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX1", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX2", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX3", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX4", 1
+// RX4, rfeHwPdc_outputSelector ? use first this function with I channel for all RX
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX1", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX2", 0
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX3", 1
+// writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX4", 0
+// RX1234 , rfeHwPdc_outputSelector ? use first this function with I channel for all RX
+writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX1", 0
+writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX2", 0
+writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX3", 0
+writeSpi "PDC_MC.PDC_VAL_MUX1.VAL_MUX4", 0
+
+// In PDCx: Enables rfeHwPdc_qComponentEnabledViaSpi
+writeSpi "PDC_MC.PDC_CTL4.IMAG_OUT_EN", 1
+
+//== PACKER & PPOE SETTINGS ==
+// number of samples 2nd variable
+// not needed when using CSI2
+// rfeHwPpoe_configPPOE 1, 128, 100, 1
+// destination: 1 - csi2 only; 2 - packetProcessor_csi2
+rfeHwPacker_configDataOutDestination 1
+rfeHwPacker_configVirtualChannel 1, 1, 1, 1, 1
+rfeHwPacker_configDataOutFormat 1, 0, 0, 0, 0, 0
+rfeHwPacker_configDataOutFormat 1, 0, 0, 0, 0, 1
+rfeHwPacker_configDataOutFormat 1, 0, 0, 0, 0, 2
+rfeHwPacker_configDataOutFormat 1, 0, 0, 0, 0, 3
+
+// == ?? == 
+// readSpi "GBIAS.V2I_CONV.TR_V2I_PT_SPARE"
+// writeSpi "GBIAS.V2I_CONV.TR_V2I_PT_SPARE", 38
+
+// Workaround
+writeSpi("PDC_MC.PDC_CTL2.INP_EN_WA_ADC",0)
+writeSpi("PDC_MC.PDC_CTL5.USE_SWAP_IN_REG",1)
+// Temperature workaround
+// writeSpi("MCGEN.ADPLL_CTL.ADPLL_SET_IREF",23) Need to be done when at hot temperature ~130°C
+// writeSpi("CHIRPPLL.LDO_PDIV.PGM_VOUT",14)
+
+//rfeHwTe_chirpSequenceStart

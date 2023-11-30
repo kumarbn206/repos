@@ -1,0 +1,25 @@
+--------------------------------------------
+NXP Software Content Register
+NXP Product : SAF85xx
+Package:                   PACKAGE_NAME
+Version:                   RFE_SW_VERSION
+Outgoing License:          LA_OPT_NXP_Software_License - No distribution permitted, license in Section 2.2 applies
+License File:              LA_OPT_NXP_Software_License.txt
+Package Category:          Software
+Type of content:           Source code and documentation
+Description and comments:  SAF85XX RFE API SW and document
+Release Location:          Flexera
+Origin:                    NXP (proprietary)
+			               CMSIS         [Apache License 2.0] 	https://github.com/ARM-software/CMSIS_5/releases
+			   			   
+-----------------------------------------------
+Package:                   rfeConfigGenerator
+Version:                   RFE_SW_VERSION
+Outgoing License:          LA_OPT_NXP_Software_License - No distribution permitted, license in Section 2.2 applies
+License File:              LA_OPT_NXP_Software_License.txt
+Package Category:          Tool
+Type of content:           Executable
+Description and comments:  SAF85XX RFE SW Config generator
+Release Location:          Flexera
+Origin:                    NXP (proprietary)
+			               JLINK GPL2 with Classpath exception [GNU General Public License v2.0 w/Classpath exception]  https://jdk.java.net/archive/

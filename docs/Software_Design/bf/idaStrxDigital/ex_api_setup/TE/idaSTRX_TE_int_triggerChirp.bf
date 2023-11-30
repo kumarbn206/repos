@@ -1,0 +1,2 @@
+TIMING_ENGINE.CHIRP_GLOBAL_CTL.CHIRP_START=1; # APB/SPI trigger for the chirp_start
+

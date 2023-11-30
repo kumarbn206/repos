@@ -1,0 +1,979 @@
+/**
+ * \mainpage SmartTrx RFE SW Reference Manual
+ *
+ *
+ *
+ *
+ * \section DocumentInformation Document Information
+ * \subsection Release Release Version
+ * Release Version | Description
+ * ----------------|------------------------------------------------
+ * 0.8.20          | SAF85xx RFE SW (EAR)
+ * 0.8.19          | SAF85xx RFE SW (EAR)
+ * 0.8.18          | SAF85xx RFE SW (EAR)
+ * 0.8.17          | SAF85xx RFE SW (Code Drop)
+ * 0.8.16          | SAF85xx RFE SW (Code Drop)
+ * 0.8.15          | SAF85xx RFE SW (Code Drop)
+ * 0.8.14          | SAF85xx RFE SW (EAR)
+ * 0.8.13          | SAF85xx RFE SW (Code Drop)
+ * 0.8.12          | SAF85xx RFE SW (Code Drop)
+ * 0.8.11          | SAF85xx RFE SW (Code Drop)
+ * 0.8.10          | SAF85xx RFE SW (Code Drop)
+ * 0.8.9           | SAF85xx RFE SW (Code Drop)
+ * 0.8.8           | SAF85xx RFE SW (EAR)
+ * 0.8.7           | SAF85xx RFE SW (Code Drop)
+ * 0.8.6           | SAF85xx RFE SW (Code Drop)
+ * 0.8.4           | SAF85xx RFE SW (Code Drop)
+ * 0.8.3           | SAF85xx RFE SW (Code Drop)
+ * 0.8.1           | SAF85xx RFE SW (Code Drop)
+ * 0.8.0           | SAF85xx RFE SW (Code Drop)
+ * 0.4.2           | SAF85xx RFE SW (Documentation Update)
+ * 0.4.1           | SAF85xx RFE SW (RFE Config Tool Documentation update)
+ * 0.4.0           | SAF85xx RFE SW (Code Drop)
+ * 0.3.0           | SAF85xx RFE SW (Code Drop)
+ * 0.2.0           | SAF85xx RFE SW (Code Drop)
+ *
+ * \subsection CopyRight Copyright Information
+ * All rights reserved with Copyright 2023 NXP.
+ * Reproduction in whole or in part is prohibited without the prior written consent of the
+ * copyright owner.The information presented in this document does not form part of any quotation or contract,
+ * is believed to be accurate and reliable and maybe changed without notice. No liability will be accepted by
+ * the publisher for any consequence of its use. Publication thereof does not convey nor imply any license under
+ * patent- or other industrial or intellectual property rights.
+ *
+ * \subsection Disclaimer
+ * - General - Information in this document is believed to be accurate and reliable. However, NXP does not give
+ *  any representations or warranties, expressed or implied, as to the accuracy or completeness of such
+ *  information and shall have no liability for the consequences of use of such information.
+ * - Right to make changes - NXP reserves the right to make changes to information published in this document,
+ *  including without limitation software, specifications and product descriptions, at any time and without
+ *  notice. This document supersedes and replaces all information supplied prior to the publication hereof.
+ * - Suitability for use - NXP products, including software are not designed, authorized or warranted to be
+ *   suitable for use in medical, military, aircraft, space or life support equipment, nor in applications
+ *   where failure or malfunction of a NXP product including software can reasonably be expected to result
+ *   in personal injury, death or severe property or environmental damage. NXP accepts no liability for
+ *   inclusion and/or use of NXP products including software in such equipment or applications and therefore
+ *   such inclusion and/or use is for the customer's own risk.
+ * - Applications - Applications that are described herein for any of these products are for illustrative
+ *   purposes only. NXP makes no representation or warranty that such applications will be suitable for the
+ *   specified use without further testing or modification.
+ *
+ *
+ *
+ *
+ * \section number-notation Number Notations
+ * \subsection fixed-point-notation-used Fixed point notation used:N-bit (S)Q(X)
+ * \verbatim
+ Sign           [1-bit]                 = (if S present) MSBit
+ Integer        [N-X-1(if Signed)-bits] = SQX/2^X two’s complement, sign extended (if S present)
+ Fractional     [X-bits]                = SQX modulo 2^X
+ \endverbatim
+ *
+ * \subsection other-notation Other notations
+ * \verbatim
+ ul: 32bit decimal number
+ 0x: hexadecimal number
+ b: binary number
+ \endverbatim
+ *
+ *
+ *
+ *
+ * \section Introduction Introduction
+ * \subsection Context Context
+ * The NXP SmartTrx Radar RFE Firmware is to run on a microprocessor (ARM Cortex-M7) that is embedded in the
+ * Radar Front End (RFE) of the SAF85xx, SAF86xx or TEF83xx.
+ * This document applies to SAF85xx and SAF86xx. Where elements don’t apply to each variant, this is indicated.
+ * The firmware exposes RFE Abstract API accessible via SmartTrx RFE Driver running on
+ * Control Core (ARM Cortex-A53 or Application ARM Cortex-M7) together with radar application.
+ * This radar application uses the RFE Abstract API to configure and to execute radar cycles on RFE Frontend.
+ * The configuration is defined at software design time. The ARM Cortex-M7 in the RFE subsystem, executes
+ * the radar cycle without intervention of the radar application, however RFE parameters can be updated
+ * at run-time between radar cycles. The figures below show the Context of RFE SW for SAF85xx and SAF86xx.
+ * \image html  Context_SAF85xx.png "Figure 1a: RFE SW Context for SAF85xx" width=75%
+ * \image latex  Context_SAF85xx.png "Figure 1a: RFE SW Context for SAF85xx" width=75%
+ *
+ * <br>
+ *
+ * \image html  Context_SAF86xx.png "Figure 1b: RFE SW Context for SAF86xx" width=75%
+ * \image latex  Context_SAF86xx.png "Figure 1b: RFE SW Context for SAF86xx" width=75%
+ *
+ * The NXP SmartTrx Radar RFE Software supports cascading of RFE devices.
+ * A cascaded radar system consists of one leader RFE device and one or multiple follower RFE devices.
+ * These cascaded RFE devices transmit and receive radar signal coherently to achieve higher angular resolution than a single standalone RFE device.
+ * Figure 2 shows the RFE HW context for RFE SW in a cascaded system.
+ *
+ * \image html  Context_cascading.png "Figure 2: RFE SW Context for Cascading" width=75%
+ * \image latex  Context_cascading.png "Figure 2: RFE SW Context for Cascading" width=75%
+ *
+ * \subsection RFE-SW-ARC Architecture
+ * The RFE SW architecture can be classified into two main parts:
+ * -# RFE Driver - It provides the following functionalities:
+ *  - Provides RFE Abstract API
+ *  - RFE Command Stub translates a function call into RFE message
+ *  - RFE Command Client puts the message into Shared Memory Command Buffer
+ *  - RFE Config provides access to RFE Configuration
+ * -# RFE FW - It provides the following functionalities:
+ *  - Reads the messages from Shared Memory Command Buffer
+ *  - Executes function call
+ * \image html RFE_SW_Architecture.svg "Figure 3: RFE SW Architecture"
+ * \image latex RFE_SW_Architecture.svg "Figure 3: RFE SW Architecture"
+ *
+ * The NXP SmartTrx Radar RFE Firmware is delivered as a binary firmware image for each product variant (SAF85xx, SAF86xx or TEF83xx).
+ * The SmartTrx RFE Driver is delivered as source code files, to be integrated in the customer application.
+ * RFE Driver supports compilation with GCC, GHS (Green Hills Compiler) and DIAB (Wind River Diab compiler).
+ * Standalone, leader and follower (cascading) RFE roles are supported by a single RFE firmware.
+ *
+ * \subsubsection RFE-Driver RFE Driver Components
+ * The RFE Driver consists of:
+ * -# rfeAbstractApi.h
+ *    Specifies the version of the RFE SW and includes files which implements the following
+ *  - Definitions of RFE Abstract API functions (included from rfe.h)
+ *  - Data types (included from rfe_types.h)
+ *  - Error types (included from rfe_error.h)
+ *
+ * -# rfeCmdClientStub.c
+ *  - Implements RFE Abstract API functions as translation to messages
+ * -# rfeCmdClient.c
+ *  - Implements functions to communicate with RFE FW via Shared Memory Command Buffer
+ *
+ * -# rfeCfg.h
+ *  - Defines static parameters definitions
+ *  - Defines functions to access RFE Configuration
+ *
+ * -# rfeDynTbl.h
+ *  - Dynamic parameters definitions
+ *  - Definitions and implementations of write and read functions to update RFE Dynamic Table, at run-time
+ *
+ *
+ * \subsubsection RFE_Abstract_API RFE Abstract API
+ * RFE Abstract API is an API for radar application development. The characteristics of this API are:
+ *  - Provides mechanisms to communicate with RFE FW (RFE-M7).
+ *  - Does not have OS dependency as it uses no OS services for accessing a message buffer (SRAM).
+ *  - Developed and validated together with RFE firmware to ensure compatibility with the RFE front end (HW).
+ *  - Reduces complexity of application software development by taking care of all functional configurability of HW for the customer to realize radar module.
+ *  - Minimum set of abstract APIs for full RFE control by application.
+ *  - Supports complex use cases, for example two frames in one radar cycle, reconfiguration of chirp profile, phase coding, timing adjustment of frame start.
+ *  - Supports standalone, leader and follower (cascading) RFE Roles. (see Figure 5)
+ *
+ * \image html  RFE_Abstract.png "Figure 4: RFE Abstract API - Standalone" width=15%
+ * \image latex  RFE_Abstract.png "Figure 4: RFE Abstract API - Standalone" width=15%
+ *
+ * <br>
+ *
+ * \image html  RFE_Abstract_cascading.png "Figure 5: RFE Abstract API - Cascading" width=40%
+ * \image latex  RFE_Abstract_cascading.png "Figure 5: RFE Abstract API - Cascading" width=40%
+ *
+ * The RFE Abstract API consists of the following APIs
+ * -# rfe_sync()
+ * -# rfe_clockPllLock()
+ * -# rfe_configure()
+ * -# rfe_radarCycleStart()
+ * -# rfe_radarCycleStop()
+ * -# rfe_getState()
+ * -# rfe_getRadarCycleCount()
+ * -# rfe_getFuSaFaults()
+ * -# rfe_getFuSaFaultStatistics()
+ * -# rfe_getBistZeroHourReferenceData()
+ * -# rfe_getTime()
+ * -# rfe_getVersion()
+ * -# rfe_monitorRead()
+ * -# rfe_getNextRadarCycleStartTime()
+ * -# rfe_setNextRadarCycleStartTime()
+ * -# rfe_updateBegin()
+ * -# rfe_updateParam()
+ * -# rfe_updateDynamicTable()
+ * -# rfe_updatePush()
+ * -# rfe_continuousWaveTransmissionStart()
+ * -# rfe_continuousWaveTransmissionStop()
+ * -# rfe_testSetParam()
+ * -# rfe_testGetInternalError()
+ * -# rfe_configureInterrupt()
+ *
+ * \subsection Deployment
+ * The figure below shows deployment of SmartTrx RFE SW.
+ * The Control Core can be ARM Cortex-A53 or ARM Cortex-M7.
+ * The RFE Generator is a tool that can be used stand alone or is integrated with NXP Radar Xplorer GUI.
+ * \image html  RFE_SW_Deployment.png "Figure 6: Deployment of RFE SW"  width=40%
+ * \image latex  RFE_SW_Deployment.png "Figure 6: Deployment of RFE SW"  width=40%
+ *
+ * In cascaded context, the RFE Generator generates the RFE configuration for each cascaded device
+ * and cross-checks compatibility of configuration parameters of the cascaded devices as depicted in Figure 7.
+
+ * \image html  RFE_Config_Tool_cascading.png "Figure 7: RFE Configuration Generation in Cascaded Context"  width=60%
+ * \image latex  RFE_Config_Tool_cascading.png "Figure 7: RFE Configuration Generation in Cascaded Context"  width=60%
+ *
+ * \section Design Design
+ *
+ * \subsection Radar_Cycle Radar Cycle
+ * A radar cycle consists of
+ * - One or more calibrations
+ * - One or more chirp sequences
+ * - One or none BIST
+ * - RFE idle / reconfiguration time
+ *
+ * The figure below shows the concept and definition of a radar cycle for SmartTrx RFE SW
+ * \image html RadarCycle_Example.svg "Figure 8: Radar Cycle Example"
+ * \image latex RadarCycle_Example.svg "Figure 8: Radar Cycle Example"
+ *
+ * In cascaded context, radar cycles run synchronously on leader and follower RFE devices.
+ *
+ * \subsubsection Autonomous Autonomous Radar Cycle
+ * - Radar cycles are executed at a frame rate defined by \ref radarCycleDuration(e.g., 20 radar updates per second).
+ * - RFE FW executes radar cycles autonomously.
+ * - Multiple chirp (defined by \ref chirpProfile) and chirp sequence (defined by \ref chirpSequenceConfig) configurations can be provided to the RFE at configuration time.
+ * - RFE parameters updates for next radar cycle can be set during current radar cycle.
+ * - Calibration and BIST execution phases are configurable.
+ *
+ * Autonomous Radar Cycle Example
+ * \image html AutonomousRadarCycle.svg "Figure 9: Autonomous Radar Cycle"
+ * \image latex AutonomousRadarCycle.svg "Figure 9: Autonomous Radar Cycle"
+ * Autonomous Radar Cycle Example with runtime updates
+ * \image html AutonomousRadarCycle-RunTimeUpdates.svg "Figure 10: Autonomous Radar Cycle with runtime updates"
+ * \image latex AutonomousRadarCycle-RunTimeUpdates.svg "Figure 10: Autonomous Radar Cycle with runtime updates"
+ *
+ *
+ * \subsection RFE_Control RFE Control
+ * The RFE control by RFE SW can be done in two phases - Configuration and Execution.
+ * \subsubsection Config_Phase Configuration Phase
+ * During the configuration phase user can program both static and dynamic settings to RFE:
+ *  - Static Settings: General, Radar Cycle, Chirp Sequence, Chirp Profiles which are applied before radar cycle starts.
+ *  - Dynamic Settings: Chirp configuration (e.g., MIMO), which are applied to each chirp during radar cycle execution.
+ *
+ * The steps involved in Configuration phase are:
+ * - Specification of the RFE configuration is done at design time.
+ * - Call rfe_configure() to send RFE Configuration to RFE FW
+ *   - RFE FW applies RFE Configuration at run-time
+ *     - Writes parameters values into HW registers.
+ *     - Programs HW registers in a timed sequence as required by RFE HW.
+ *     - Performs Calibration to set RFE HW in the optimal operating point for the programmed user configuration.
+ *
+ * \image html RFE-API-Deployment.png "Figure 11: RFE Abstract API Deployment"  width=75%
+ * \image latex RFE-API-Deployment.png "Figure 11: RFE Abstract API Deployment"  width=75%
+ * \remark The Radar Cycle FSM shown in figure is a simplified one for representation purpose.
+ *
+ * In cascaded context, followers need to be (re-)configured before the leader is (re-)configured.
+ *
+ * \subsubsection Execution_Phase Execution Phase
+ * After the \ref Config_Phase, execution phase is started with a call rfe_radarCycleStart() to RFE FW.
+ * The RFE FW performs the following:
+ * - Timely execution of Radar Cycle
+ *  - Re-Calibration, Acquisition, Self-Test
+ * - Repeats Radar Cycles
+ * - Controls RFE HW
+ *  - Power Management, Settings, Error Monitoring
+ * - Programs HW registers in a timed sequence as required by RFE HW.
+ * During the execution phase, it is possible to update the Radar Cycle specific parameters for selected Radar Cycle
+ * e.g., Chirp Bandwidth (\ref effectiveChirpBandwidth), Center Frequency (\ref centerFrequency), Tchirp(\ref dwellTimeTicks),
+ * this can be achieved by calling rfe_updateParam(), it is also possible to update Dynamic Table (rfe_updateDynamicTable()).
+ * These updates can be applied via rfe_updatePush().
+ *
+ * When the \ref radarCycleStartIn rfeConfig parameter is set, the radar cycle can also be started by the positive
+ * edge of an IO pulse on the selected RFE IO or GMAC PTP PPS Input. The radar cycle will start immediately and the moment of the positive edge is
+ * considered as the radar cycle start time. Chirp sequences are started after a configured amount of time
+ * (\ref chirpSequenceStartTimeOffset) with respect to this edge with up to 25 ns additional delay due to the IO pulse edge being
+ * asynchronous to the RFE clock. A single radar cycle will be started upon the radar cycle start IO pulse.
+ *
+ * In cascaded context, the follower device cannot start a radar cycle via the rfe_radarCycleStart() API. The radar cycle
+ * on the follower RFE device is started by the leader RFE device via the \ref cascadingTriggerIo for each radar cycle started on the leader RFE device.
+ *
+ * <BR>
+ * \subsection RFE_FW_FSM RFE Firmware FSM
+ * The main schedule and states of the RFE SW are shown in the figure below. The colors are used to indicate the RFE State as returned by rfe_getState(): green corresponds with #rfe_state_radarCycleIdle_e and red corresponds to #rfe_state_busy_e.
+ * \image html  RFE_FW_Main_Schedule_And_States.png "Figure 12: RFE FW Main Schedule and States"  width=80%
+ * \image latex RFE_FW_Main_Schedule_And_States.png "Figure 12: RFE FW Main Schedule and States"  width=80%
+ *
+ * The RFE FW Main FSM controls this behavior and is shown in the figures below.
+ * \anchor main_fsm
+ * \image html  RFE_FW_Main_FSM.png "Figure 13: RFE FW Main FSM - Standalone / Leader RFE Role" width=90%
+ * \image latex RFE_FW_Main_FSM.png "Figure 13: RFE FW Main FSM - Standalone / Leader RFE Role" width=90%
+ *
+ * <BR>
+ *
+ * \image html  RFE_FW_Main_FSM_follower.png "Figure 14: RFE FW Main FSM - Follower RFE Role" width=90%
+ * \image latex RFE_FW_Main_FSM_follower.png "Figure 14: RFE FW Main FSM - Follower RFE Role" width=90%
+ *
+ *
+ * <br>
+ *
+ * The schedule and states for the single and dual chirp sequence examples are shown in the two figures below. The colors are used to indicate the RFE State as returned by rfe_getState(): green corresponds with #rfe_state_radarCycleIdle_e and red corresponds to #rfe_state_busy_e.
+ *
+ * Abbreviations:
+ * RC Begin: Radar Cycle Begin,
+ * CS Init: Chirp Sequence init,
+ * CSS: Chirp Sequence Start,
+ * CSE: Chirp Sequence End,
+ * M&M: Monitor read & Metadata packet.
+ *
+ * \image html  RFE_FW_Radar_Cycle_Schedule_And_States_Single.svg "Figure 15: RFE FW Single Chirp Sequence Schedule and States Example" width=90%
+ * \image latex RFE_FW_Radar_Cycle_Schedule_And_States_Single.svg "Figure 15: RFE FW Single Chirp Sequence Schedule and States Example" width=90%
+ *
+ *
+ * \image html  RFE_FW_Radar_Cycle_Schedule_And_States_Dual.svg "Figure 16: RFE FW Dual Chirp Sequence Schedule and States Example" width=90%
+ * \image latex RFE_FW_Radar_Cycle_Schedule_And_States_Dual.svg "Figure 16: RFE FW Dual Chirp Sequence Schedule and States Example" width=90%
+ *
+ *
+ * The RFE FW Radar Cycle FSM controls this behavior and is shown in the figure below. For the last radar cycle, the Idle state, Cmd ExecutionBuffer and ConfigUpdate state aren’t executed and the radar cycle returns directly to MainFsm Configured State.
+ * \image html  RFE_FW_Radar_Cycle_FSM.svg "Figure 17: RFE FW Radar Cycle FSM" width=90%
+ * \image latex RFE_FW_Radar_Cycle_FSM.svg "Figure 17: RFE FW Radar Cycle FSM" width=90%
+ *
+ *
+ *
+ *
+ *
+ * <BR>
+ * \subsection RFE_States RFE Abstract API Function Acceptance per RFE State
+ * RFE Abstract API Function \ RFE State       |busy  |initialized |configured|radarCycleIdle|continuousWaveTransmission|fusaFaultRecovery|fusaFault
+ *---------------------------------------------|------|------------|----------|--------------|--------------------------|-----------------|---------
+ * rfe_sync()                                  |-     |-           |-         |-             |-                         |-                |-
+ * rfe_clockPllLock()                          |yes   |yes         |yes       |yes           |yes                       |yes              |yes
+ * rfe_configure()                             |-     |yes         |yes       |-             |-                         |-                |-
+ * rfe_radarCycleStart()                       |-     |-           |yes*      |-             |-                         |-                |-
+ * rfe_radarCycleStop()                        |-     |-           |-         |yes*          |-                         |-                |-
+ * rfe_getState()                              |yes   |yes         |yes       |yes           |yes                       |yes              |yes
+ * rfe_getRadarCycleCount()                    |yes   |yes         |yes       |yes           |yes                       |yes              |yes
+ * rfe_getFuSaFaults()                         |-     |yes         |yes       |yes           |-                         |-                |yes
+ * rfe_getFuSaFaultStatistics()                |-     |yes         |yes       |yes           |-                         |-                |yes
+ * rfe_getBistZeroHourReferenceData()          |-     |-           |yes       |-             |-                         |-                |-
+ * rfe_getTime()                               |-     |yes         |yes       |yes           |yes                       |-                |-
+ * rfe_getVersion()                            |-     |yes         |yes       |-             |-                         |yes              |yes
+ * rfe_monitorRead()                           |-     |yes         |yes       |yes           |yes                       |-                |-
+ * rfe_getNextRadarCycleStartTime()            |-     |-           |-         |yes*          |-                         |-                |-
+ * rfe_setNextRadarCycleStartTime()            |-     |-           |-         |yes*          |-                         |-                |-
+ * rfe_updateBegin()                           |yes   |yes         |yes       |yes           |yes                       |yes              |yes
+ * rfe_updateParam()                           |yes   |yes         |yes       |yes           |yes                       |yes              |yes
+ * rfe_updateDynamicTable()                    |yes   |yes         |yes       |yes           |yes                       |yes              |yes
+ * rfe_updatePush()                            |-     |-           |yes       |yes           |-                         |-                |-
+ * rfe_continuousWaveTransmissionStart()       |-     |-           |yes       |-             |-                         |-                |-
+ * rfe_continuousWaveTransmissionStop()        |-     |-           |-         |-             |yes                       |-                |-
+ * rfe_testSetParam()                          |-     |yes         |yes       |-             |-                         |-                |-
+ * rfe_testGetInternalError()                  |-     |yes         |yes       |yes           |-                         |-                |yes
+ * rfe_configureInterrupt()                    |-     |yes         |yes       |yes           |-                         |-                |-
+ *
+ * \remark rfe_sync() is the first function to be called. RFE State cannot be read before rfe_sync() is called.
+ * After rfe_sync() returns with no error, the RFE state changes to initialized and rfe_sync() should not and does not need to be called anymore.
+ * \remark rfe_clockPllLock() can be called anytime after rfe_sync().
+ * \remark rfe_radarCycleStart() and rfe_radarCycleStop() API calls are not accepted for the follower RFE Role.
+ *
+ * \subsection RFE_API_Communication RFE Abstract API Interaction with RFE FW
+ * The table below lists the APIs and indicates whether an API interacts with RFE FW or not.
+ *
+ * RFE Abstract API Function                    | Interacts with RFE FW (yes or no "-")
+ *--------------------------------------------- | -------------------------------------
+ * rfe_sync()                                   | -
+ * rfe_clockPllLock()                           | -
+ * rfe_configure()                              | yes
+ * rfe_radarCycleStart()                        | yes
+ * rfe_radarCycleStop()                         | yes
+ * rfe_getState()                               | -
+ * rfe_getRadarCycleCount()                     | -
+ * rfe_getFuSaFaults()                          | yes
+ * rfe_getFuSaFaultStatistics()                 | yes
+ * rfe_getBistZeroHourReferenceData()           | yes
+ * rfe_getTime()                                | yes
+ * rfe_getVersion()                             | yes
+ * rfe_monitorRead()                            | yes
+ * rfe_getNextRadarCycleStartTime()             | yes
+ * rfe_setNextRadarCycleStartTime()             | yes
+ * rfe_updateBegin()                            | -
+ * rfe_updateParam()                            | -
+ * rfe_updateDynamicTable()                     | -
+ * rfe_updatePush()                             | yes
+ * rfe_continuousWaveTransmissionStart()        | yes
+ * rfe_continuousWaveTransmissionStop()         | yes
+ * rfe_testSetParam()                           | yes
+ * rfe_testGetInternalError()                   | yes
+ * rfe_configureInterrupt()                     | yes
+ *
+ * \subsection boot RFE Firmware Boot
+ * RFE FW is booted by HSE or by application bootloader by loading RFE FW image to RFE-M7 ITCM and DTCM. This process is described in SmartTrx Software User Manual.
+ * After power-up, the RFE-M7 is kept in reset to allow for external (to RFE CPU) booting.
+ * After booting, to start RFE FW, the application must release RFE-M7 from reset by writing 0 to CPUWAIT in RFE_M7_CTL register in RFE Subsystem:
+ *
+ * __RFE_M7_CTL__: address 0x44448010
+ *
+ * __CPUWAIT__: BIT[0]
+ *
+ * Access to the register must be done in read - modify bit[0] – write fashion and no other bits should be modified as this can influence RFE FW execution.
+ *
+ * In a cascading system the RFE Role of each RFE device needs to be set in the \ref rfeServerClientCommArea before releasing the RFE-M7 from reset:
+ *
+ * __RFE_SYNC_AREA.RFE_ROLE__: address 0x33FFFFF0
+ *
+ * Here the RFE Roles are defined as #rfe_role_t.
+ * Since this region has to be kept zero-initialized, setting this field is not necessary for a standalone RFE device.
+ * Setting of the RFE Role can be done via a DCD.
+ *
+ * The release package contains encrypted RFE Firmware images, which can be used for booting securely by using _SmartTrx HSE H/M Firmware_. For further details about booting with secure RFE Firmware images please refer to __HSE_H/M Firmware Reference Manual__.
+ *
+ * \subsection Init RFE Initialization
+ * Power-up and initialization of RFE is done autonomously without RFE abstract API control. During this stage RFE is self-starting the RFE FW which will power-up and initialize RFE. RFE trimming values will be read from OTP and applied to RFE. The master clock generator (CLk PLL) will be started.
+ * Upon CLK PLL lock, 0xC0DE0001 is written to CLK_PLL_STATUS_ADDRESS in the \ref rfeSyncArea. In case of error, 0xC0DE< \ref rfe_clk_error_t > is written instead.
+ * When CLK PLL lock is reported, stable RFE PLL clock is available and can be used to derive radar processing and application subsystem clocks.
+ *
+ *
+ *
+ * \subsection Config RFE Configuration
+ * The SmartTrx RFE SW is configured through the two data structure shown in the figure below:
+ * \image html RFE-Config.png "Figure 18: RFE Configuration structure" width=75%
+ * \image latex RFE-Config.png "Figure 18: RFE Configuration structure" width=75%
+ * The \ref blob contains a number of item values that are grouped together in sub-tables and this defines the static configuration for the SmartTrx RFE SW. For example, a chirpProfile sub-table contains an item called effectiveSamplingFrequency that specifies that the effective sampling frequency should be either 10, 20, or 40 MHz.
+ * The \ref dynamicTables is an additional data structure that can be used to instruct the SmartTrx RFE SW to update a limited set of parameters in between chirps. For instance, it is possible to use this mechanism to change the phase rotation for a TX channel for each chirp that make up a radar cycle.
+ * These data structures can be created with the provided rfeConfigGenerator software tool.
+ *
+ *
+ *
+ * \subsection RFE_PM RFE Power Management Control
+ * \image html RFE_PM.png "Figure 19: RFE Power Management " width=75%
+ * \image latex RFE_PM.png "Figure 19: RFE Power Management " width=75%
+ * Power Management can also be done based on use case implemented. This Power Management is done based on timing of the configured use case. Power On -Off between chirp sequences is executed only if there is sufficient Idle Time to fit Power Off and Power On Cycle in.
+ * If the Idle time between chirp sequences is too short, PDC Power Management is switched off (See Figure 20). If however, Idle time between chirp sequences is even shorter Analog power management is switched off (See Figure 21).
+ * \image html RFE_FW_Radar_Cycle_Schedule_Without_PDC_Power_States.svg "Figure 20: Dynamic Power Management without PDC Power States " width=90%
+ * \image latex RFE_FW_Radar_Cycle_Schedule_Without_PDC_Power_States.svg "Figure 20: Dynamic Power Management without PDC Power States " width=90%
+ *
+ * \image html RFE_FW_Radar_Cycle_Schedule_Without_Power_States.svg "Figure 21: Dynamic Power Management without Analog and PDC Power States " width=90%
+ * \image latex RFE_FW_Radar_Cycle_Schedule_Without_Power_States.svg "Figure 21: Dynamic Power Management without Analog and PDC Power States " width=90%
+ *
+ * \subsection calibration Calibration
+ *
+ * \subsubsection DynamicView Dynamic View of Radar System Cycle
+ * \image html  Calibration_timing.png "Figure 22: Calibration timing" width=90%
+ * \image latex Calibration_timing.png "Figure 22: Calibration timing" width=90%
+ *
+ * Note: The calibration timing numbers are preliminary.
+ *
+ * \subsubsection Calibration_Configuration Calibration Configuration / API
+ * \image html Calibration_Configuration.jpg  "Figure 23: Calibration Configuration / API"
+ * \image latex Calibration_Configuration.jpg "Figure 23: Calibration Configuration / API"
+ *
+ * \image html Calibration_Configuration_Examples.jpg  "Figure 24: Calibration Configuration Examples"
+ * \image latex Calibration_Configuration_Examples.jpg "Figure 24: Calibration Configuration Examples"
+ *
+ * \subsubsection CalibrationCenterFreq Calibrations and Center Frequencies
+ * \image html Definition_of_Calibration_Steps.png  "Figure 25: Definition of Calibration Steps"
+ * \image latex Definition_of_Calibration_Steps.png "Figure 25: Definition of Calibration Steps"
+ *
+ * \image html Center_Frequency_of_Calibrations.png  "Figure 26: Effective Frequency and Power of Calibrations"
+ * \image latex Center_Frequency_of_Calibrations.png "Figure 26: Effective Frequency and Power of Calibrations"
+ *
+ * <br>
+ *
+ * \subsection swBist RFE BIST
+ *
+ * \subsubsection swBist_generalInformation General Information
+ * Built in Self-Test is a sequence of operations performed within the Radar Front-End. during every \ref Radar_Cycle for ensuring that all analog components of the hardware are functionally OK.
+ * BIST is performed for three set of hardware modules – the receiver, the transmitter and the LLDOs . Thus there are three types of BIST supported within every \ref Radar_Cycle (RX-BIST, TX-BIST and LLDO-BIST)
+ * In case of TX or RX BIST, a signal with known phase, frequency and amplitude is fed into the Tx, Rx paths the response is compared with zero-hour Data (stored at IC production time under known physical conditions). Figure 27 shows the flowchart of zero-hour data measurement and using that data in regular \ref Radar_Cycle.
+ * In case of LLDO BIST, voltage levels are measured for all the LLDOs and checked whether they are within pre-defined thresholds, failing which over-voltage / under-voltage faults are generated
+ *
+ * \subsection swBist_getCorrectZeroHourData Steps to get correct zero hour reference data for BIST
+ *
+ * step-1. Do below two modifcations to the /rfe blob:
+ * - Un-mask all FuSa faults for BIST
+ * - Set bist-interval to "every radar cycle"
+ *
+ * step-2. Perform rfe_configure()
+ *
+ * step-3. Once rfe_configure() is successful, call the API rfe_getBistZeroHourReferenceData()
+ *
+ * step-4. The data obtained in step 3 shall be used to set Zero hour refrence data.
+ *
+ * In case step-1 is not followed completely, rfe_getBistZeroHourReferenceData() will be executed with uncalibrated BIST profile(profile 8) and this will lead to wrong zero hour data as well as unexpected FuSa faults.
+ *
+ * Note: It is mandatory to call rfe_configure() after calling rfe_getBistZeroHourReferenceData().
+ * Moreover, un-masking FuSa faults for any of the BIST functionality shall not be done using rfe_updateParam(rfeCfg_section_monitorAndSafety_e, . . . ). Though, this API can be used only to mask BIST FuSa faults. Figure 23 shows the flowchart of zero-hour data measurement and using that data in regular \ref Radar_Cycle.
+ * \image html ZeroHourAndNormalRadarCycle.jpg "Figure 27: Flowchart showing zero-hour data measurement and normal radar-cycle"
+ * \image latex ZeroHourAndNormalRadarCycle.jpg "Figure 27: Flowchart showing zero-hour data measurement and normal radar-cycle"
+ *
+ * \subsubsection swBist_rxBist How to use RX BIST feature from application
+ * RX BIST is used for validation of the analog components involved in the receiver circuit. A RF signal (two tones: 10MHz and 13 MHz ) is fed to the receiver to perform various RX measurements including amplitude and phase variation between all different combinations of receiver channels. Figure 24 shows a block diagram of RX-BIST. Below parameters are extracted and checked if their deviation from zero-hour Data is within pre-defined thresholds -
+ * - Phase difference between RX1 to RX2/3/4
+ * - Gain difference between RX1 to RX 2/3/4
+ *
+ * Note: If receiver channel 1 (RX1) is disabled, the RX BIST will not be performed even if the faults are un-masked or other receiver channels are enabled.
+ *
+ * \image html rx_bist_block_diagram.png "Figure 28: Block-diagram showing RX BIST"
+ * \image latex rx_bist_block_diagram.png "Figure 28: Block-diagram showing RX BIST"
+ *  Using RX BIST feature from application:
+ *
+ * Step 1: Set the (\ref txPowerLevelForBist , \ref frequencyForBist & \ref injectTestToneBeforeLna) parameters in the \ref blob, monitorAndSafety field using the Abstract API rfe_configure()
+ *
+ * Step 2: Only for the first time run in lifetime of the IC. Application shall fetch the zero-hour Data using the Abstract API rfe_getBistZeroHourReferenceData() and store the values of following parameters for future use –
+ * - \ref zeroHourReferenceForRxGainDiff
+ * - \ref zeroHourReferenceForRxPhaseDiff
+ *
+ * Note: For getting correct values of Zero-hour-data, please refer to section \ref swBist_getCorrectZeroHourData. Also, please make sure that the API rfe_updateParam() is only used to mask BIST related FuSa faults and never used for un-masking them.
+ *
+ * Step 3: The data received in step-2 must be stored by the Application and be used as zero-hour reference data in the \ref blob for next \ref Radar_Cycle.
+ *
+ * Step 4 : ENABLE / DISABLE RX BIST
+ * There are six types of faults which can be triggered by RX BIST. Below mentioned list shows all the six faults and their corresponding enumeration names. Masking of below Faults can be done in the \ref blob. RX BIST will be enabled if any of below faults are un-masked and at-least RX1 must be enabled.
+ *
+ * S. No. |  Fault detail               | Fault name
+ * :----: |  :------------------------: | :-----------------------------------------------:
+ * 1      |RX1-RX2 phase diff error     | \ref rfe_fuSaFault_R1_sm23_bist_rx1_rx2_gainDiff_sw_e
+ * 2      |RX1-RX3 phase diff error     | \ref rfe_fuSaFault_R1_sm23_bist_rx1_rx3_gainDiff_sw_e
+ * 3      |RX1-RX4 phase diff error     | \ref rfe_fuSaFault_R1_sm23_bist_rx1_rx4_gainDiff_sw_e
+ * 4      |RX1-RX2 gain  diff error     | \ref rfe_fuSaFault_R1_sm23_bist_rx1_rx2_phaseDiff_sw_e
+ * 5      |RX1-RX3 gain diff error      | \ref rfe_fuSaFault_R1_sm23_bist_rx1_rx3_phaseDiff_sw_e
+ * 6      |RX1-RX4 gain diff error      | \ref rfe_fuSaFault_R1_sm23_bist_rx1_rx4_phaseDiff_sw_e
+ *
+ * \subsubsection swBist_txBist How to use TX BIST feature from application
+ *
+ * TX BIST is used to detect faults in analog components of the signal transmitter circuit. The test is divided into two parts -
+ * - Phase difference between adjacent TX
+ * - Phase step for a TX channel
+ *
+ * As shown in Figure 29, The Phase-diff TX BIST can be executed only for the 2 consecutive enabled channels with fixed combinations, as one of the TX channels are used for the reference –
+ * - TX1-TX2,
+ * - TX2-TX3,
+ * - TX3-TX4
+ *
+ * \image html tx_bist_flowchart.svg "Figure 29: Flowchart showing TX BIST"
+ * \image latex tx_bist_flowchart.svg "Figure 29: Flowchart showing TX BIST"
+ *
+ * This means phase-diff TX BIST will be skipped in below cases –
+ * - Only TX2 and TX4 or TX1 and TX4 or TX1 and TX3 channels are enabled.
+ * - Only one TX channel is enabled
+ *
+ * Using TX BIST feature from application:
+ *
+ * Step 1: Only for the first time run in lifetime of IC. Application shall fetch the zero-hour Data using the Abstract API rfe_getBistZeroHourReferenceData() and store the values of following parameters for future use –
+ *  - \ref zeroHourReferenceForTxPhaseDiff
+ *
+ * Note: For getting correct values of Zero-hour-data, please refer to section \ref swBist_getCorrectZeroHourData. Also, please make sure that the API rfe_updateParam() is only used to mask BIST related FuSa faults and never used for un-masking them.
+ *
+ * Step 2: The data received in step-1 must be stored by the Application and be used as zero-hour reference data in the \ref blob for next \ref Radar_Cycle.
+ *
+ * Step 3 : ENABLE / DISABLE TX BIST
+ * There are seven types of faults which can be triggered by TX BIST. Below mentioned list shows all the seven faults and their corresponding enumeration names. Masking of below Faults can be done in the \ref blob. TX BIST will be enabled if any of below faults are un-masked and corresponding TX channel(s) is/are also enabled.
+ *
+ * S. No. |  Fault detail               | Fault name
+ * :----: |  :------------------------: | :-----------------------------------------------:
+ * 1      |TX1-TX2 phase diff error     | \ref rfe_fuSaFault_R1_sm11_bist_tx1_tx2_phaseDiff_sw_e
+ * 2      |TX2-TX3 phase diff error     | \ref rfe_fuSaFault_R1_sm12_bist_tx2_tx3_phaseDiff_sw_e
+ * 3      |TX3-TX4 phase diff error     | \ref rfe_fuSaFault_R1_sm13_bist_tx3_tx4_phaseDiff_sw_e
+ * 4      |TX1 phase step error         | \ref rfe_fuSaFault_R1_sm11_bist_tx1_phaseStep_sw_e
+ * 5      |TX2 phase step error         | \ref rfe_fuSaFault_R1_sm12_bist_tx2_phaseStep_sw_e
+ * 6      |TX3 phase step error         | \ref rfe_fuSaFault_R1_sm13_bist_tx3_phaseStep_sw_e
+ * 7      |TX4 phase step error         | \ref rfe_fuSaFault_R1_sm13_bist_tx4_phaseStep_sw_e
+ *
+ *
+ * \subsubsection swBist_lldoBist How to use LLDO BIST feature from application
+ * This test is done to check various LLDOs ‘over voltage’ and ‘under voltage’ conditions for Chirp PLL and McGen. Input voltages can undergo excursions that can have catastrophic consequences if they are outside acceptable ranges. Detecting the occurrence of these abnormal conditions is useful for designing failsafe limits in the overall system. Under any such condition of Under/Over-voltage the LLDO BIST shall report fault.
+ *
+ * All the LLDO output measurement are performed by ATB ADC. If measured voltage is above over voltage threshold limit or below under voltage threshold limit, a corresponding fault is reported as mentioned in below list.
+ *
+ * Below table shows a list of faults that are associated with LLDO BIST. Errors can be selectively un-masked using \ref blob and the corresponding LLDO BIST will be automatically enabled.
+ *
+ *
+ * S. no.  | LLDO BIST fault name                                           | LLDO under test
+ * :-----: | :------------------------------------------------------------: | :----------------------:
+ * 1       | \ref rfe_fuSaFault_R1_sm64_sup_ldo1_ov_vco_1v8_chirp_sw_e      | VCO_1v8_Chirp
+ * 2       | \ref rfe_fuSaFault_R1_sm64_sup_ldo1_uv_vco_1v8_chirp_sw_e      | ^
+ * 3       | \ref rfe_fuSaFault_R1_sm64_sup_ldo2_ov_vco_0v9_chirp_sw_e      | VCO_0v9_Chirp
+ * 4       | \ref rfe_fuSaFault_R1_sm64_sup_ldo2_uv_vco_0v9_chirp_sw_e      | ^
+ * 5       | \ref rfe_fuSaFault_R1_sm64_sup_ldo3_ov_pfdcp_1v8_chirp_sw_e    | pfdcp_1v8_chirp
+ * 6       | \ref rfe_fuSaFault_R1_sm64_sup_ldo3_uv_pfdcp_1v8_chirp_sw_e    | ^
+ * 7       | \ref rfe_fuSaFault_R1_sm64_sup_ldo4_ov_pfdcp_0v9_chirp_sw_e    | pfdcp_0v9_chirp
+ * 8       | \ref rfe_fuSaFault_R1_sm64_sup_ldo4_uv_pfdcp_0v9_chirp_sw_e    | ^
+ * 9       | \ref rfe_fuSaFault_R1_sm64_sup_ldo5_ov_pdiv_0v9_chirp_sw_e     | pdiv_0v9_chirp
+ * 10      | \ref rfe_fuSaFault_R1_sm64_sup_ldo5_uv_pdiv_0v9_chirp_sw_e     | ^
+ * 11      | \ref rfe_fuSaFault_R1_sm64_sup_ldo1_ov_xo_core_mcgen_sw_e      | xo_core_mcgen
+ * 12      | \ref rfe_fuSaFault_R1_sm64_sup_ldo1_uv_xo_core_mcgen_sw_e      | ^
+ * 13      | \ref rfe_fuSaFault_R1_sm64_sup_ldo2_ov_xo_out_mcgen_sw_e       | xo_out_mcgen
+ * 14      | \ref rfe_fuSaFault_R1_sm64_sup_ldo2_uv_xo_out_mcgen_sw_e       | ^
+ * 15      | \ref rfe_fuSaFault_R1_sm64_sup_ldo3_ov_mcgen_sw_e              | mcgen
+ * 16      | \ref rfe_fuSaFault_R1_sm64_sup_ldo3_uv_mcgen_sw_e              | ^
+ * 17      | \ref rfe_fuSaFault_R1_sm64_sup_ldo4_ov_dco_capbank_mcgen_sw_e  | dco_capbank_mcgen
+ * 18      | \ref rfe_fuSaFault_R1_sm64_sup_ldo4_uv_dco_capbank_mcgen_sw_e  | ^
+ * 19      | \ref rfe_fuSaFault_R1_sm64_sup_ldo5_ov_dco_buffer_mcgen_sw_e   | dco_buffer_mcgen
+ * 20      | \ref rfe_fuSaFault_R1_sm64_sup_ldo5_uv_dco_buffer_mcgen_sw_e   | ^
+ * 21      | \ref rfe_fuSaFault_R1_sm64_sup_ldo6_ov_div3_mcgen_sw_e         | div3_mcgen
+ * 22      | \ref rfe_fuSaFault_R1_sm64_sup_ldo6_uv_div3_mcgen_sw_e         | ^
+ * 23      | \ref rfe_fuSaFault_R1_sm64_sup_ldo7_ov_sampler_mcgen_sw_e      | sampler_mcgen
+ * 24      | \ref rfe_fuSaFault_R1_sm64_sup_ldo7_uv_sampler_mcgen_sw_e      | ^
+ * 25      | \ref rfe_fuSaFault_R1_sm64_sup_ldo8_ov_digital_mcgen_sw_e      | digital_mcgen
+ * 26      | \ref rfe_fuSaFault_R1_sm64_sup_ldo8_uv_digital_mcgen_sw_e      | ^
+ *
+ *
+ * <br>
+ *
+ * \subsection func_safety Functional Safety - Fault Recovery
+ *
+ * The FuSa faults are detected during the BIST slot of the radar cycle. The response for any fault detected is given below:
+ *  - For R1 faults, the system performs recovery and switches the state to configured. The application can decide to continue by sending a new \ref rfe_radarCycleStart command if it wants to use the previous configuration.
+ *  - For R2 faults, the system will switch to FuSa fault state.
+ * \ref main_fsm "Figure 13" describes the FSM along with fault recovery.
+ *
+ * If there are consecutive R1 faults, the application can choose to promote the response similar to R2. The number of occurrences can be configured using the \ref thresholdValueToPromoteR1Faults parameter in \ref monitorAndSafety section
+ *
+ * <br>
+ *
+ * \subsubsection heart_beat_signal Heartbeat signal
+ * Following are the instances when Heart beat signal would be sent from RFE M7.
+ *
+ *  1. After RFE init ( Heart beat pulse sent post Rfe synchornization with application core as application core may not have installed interrupt settings to handle heart beat interrupts )
+ *  2. At the start of radar cycle.
+ *  3. If error recovery is successful after R1 faults.
+ *
+ * <br>
+ *
+ * \subsection Chirp PLL loop filter bandwidth calibration
+ * \ref chirpPllLoopFilterBandwidth is dependent on chirp \ref centerFrequency. For chirp sequences with multiple profiles, the average of \ref centerFrequency for all profiles is used for the calibration.
+ * \ref chirpPllLoopFilterBandwidth and \ref chirpPllVcoSelect need to be set the same for all profiles in the same chirp sequence.
+ * \ref centerFrequency (CF) per profile should be set as average
+ *  - of the frequencies used at run time (update param)
+ *  - of the frequencies in frequency (static or dynamic) drift
+ *  - Profile[x].CF = AVG(drift, run-time updates)
+ *
+ * Three different use cases are explained below in terms of chirp PLL loop filter bandwidth calibration.
+ * - Single-profile chirp sequences
+ *  - The following figure shows chirp PLL loop filter bandwidth calibration for radar cycle with single-profile chirp sequences.
+ * \image html chirp_pll_lf_bw_single_profile.svg "Figure 30: Chirp PLL loop filter bandwidth calibration for radar cycle with single-profile chirp sequences"
+ * \image latex chirp_pll_lf_bw_single_profile.svg "Figure 30: Chirp PLL loop filter bandwidth calibration for radar cycle with single-profile chirp sequences"
+ * <BR>
+ * - Multi-profile chirp sequences
+ *  - The following figure shows chirp PLL loop filter bandwidth calibration for radar cycle with multi-profile chirp sequences.
+ * \image html chirp_pll_lf_bw_multi_profile.svg "Figure 31: Chirp PLL loop filter bandwidth calibration for radar cycle with multi-profile chirp sequences"
+ * \image latex chirp_pll_lf_bw_multi_profile.svg "Figure 31: Chirp PLL loop filter bandwidth calibration for radar cycle with multi-profile chirp sequences"
+ * <BR>
+ * - Frequency drift
+ *  - The following figure shows chirp PLL loop filter bandwidth calibration for radar cycle with frequency drift.
+ * \image html chirp_pll_lf_bw_frequency_drift.svg "Figure 32: Chirp PLL loop filter bandwidth calibration for radar cycle with frequency drift"
+ * \image latex chirp_pll_lf_bw_frequency_drift.svg "Figure 32: Chirp PLL loop filter bandwidth calibration for radar cycle with frequency drift"
+* <BR>
+ *
+ * \section References References
+ *
+ * \subsection Reference-Use RFE Control Application: Reference Usage
+ * The SmartTrx RFE Abstract API supports two cases
+ * - Radar Cycle without parameter updates
+ *  - The following figure shows the reference usage of the SmartTrx RFE Abstract API in case radar cycle requires no updates
+ * \image html ControlApp_NoUpdates.png "Figure 33: Radar Cycle without Updates" width=25%
+ * \image latex ControlApp_NoUpdates.png "Figure 33: Radar Cycle without Updates" width=25%
+ * <BR>
+ * - The following figure shows the reference usage of the SmartTrx RFE Abstract API in case radar cycle requires no updates
+ * but involves time synchronization
+ * \image html ControlApp_NoUpdates_TimeSynch.png "Figure 34: Radar Cycle without Updates, with Time Synchronization" width=25%
+ * \image latex ControlApp_NoUpdates_TimeSynch.png "Figure 34: Radar Cycle without Updates, with Time Synchronization" width=25%
+ * <BR>
+ * <BR>
+ * - Radar Cycle including parameter updates
+ *  - The following figure shows the reference usage of the SmartTrx RFE Abstract API in case radar cycle requires updates.
+ * Update functions are optional and can be executed between individual chirp sequences or between radar cycles.
+ * \image html ControlApp_WithUpdates.png "Figure 35: Radar Cycle with Updates" width=25%
+ * \image latex ControlApp_WithUpdates.png "Figure 35: Radar Cycle with Updates" width=25%
+ * <BR>
+ * <BR>
+ * - Radar Cycle start via IO
+ *  - The following figure shows the reference usage of the SmartTrx RFE Abstract API in case of radar cycle start via IO.
+ * \image html ControlApp_RadarCycleStartIo.png "Figure 36: Radar Cycle with Updates" width=25%
+ * \image latex ControlApp_RadarCycleStartIo.png "Figure 36: Radar Cycle with Updates" width=25%
+ * <BR>
+ * <BR>
+ * - Cascaded Radar Cycle
+ *  - The following figure shows the reference usage of the SmartTrx RFE Abstract API in case of radar cycle start in a cascaded system.
+ * \image html ControlApp_cascading.png "Figure 37: Cascaded Radar Cycle" width=60%
+ * \image latex ControlApp_cascading.png "Figure 37: Cascaded Radar Cycle" width=60%
+ *
+ *
+ *
+ * \subsection rfeAppBasicExample32 RFE App Basic Example
+ *
+ * The rfeAppBasicExample32 is an example application that runs on the A53 core as well as the 'ARM M7' core in 'Real Time Cluster' in the SmartTrx. The ARM M7 core in Real Time Cluster is also known as 'appM7' core. rfeAppBasicExample32 communicates with the SmartTrx RFE SW via the RFE Abstract driver API. The application is built on top of RFE Driver units. The rfeAppBasicExample32 supports compilation with GCC, GHS (Green Hills Compiler) and DIAB (Wind River Diab compiler). This example will initialize the RFE SW, loads a minimal configuration, and proceeds to generate a few chirps. The example will also check and report errors indicated by the RFE SW.
+ *
+ * The following items are required for this example application:
+ * - The SmartTrx PCB.
+ * - 12 Volt power supply.
+ * - S32 Design studio for S32 Platform version 3.4.
+ * - Lauterbach debug probe.
+ * - Trace32 software.
+ * - Release of the RFE SW.
+ *
+ * \subsubsection A53 Running rfeAppBasicExample32 on A53 core
+ * 1. Start S32DS.
+ * \image html  rfeBasicExampleStep1.png width=30%
+ * <br>
+ * 2. Select "Open Project" from the "File" menu.
+ * \image html  rfeBasicExampleStep2.png width=60%
+ * <br>
+ * 3. Import the provided rfeAppBasicExample32.
+ * \image html  rfeBasicExampleStep3.png width=40%
+ * <br>
+ * 4. The rfeAppBasicExample32 is loaded into the S32DS environment.
+ * \image html  rfeBasicExampleStep4.png width=60%
+ * <br>
+ * 5. Click on the dropdown arrow next to the 'hammer' symbol in left part of the toolbar to select a build configuration for A53 (e.g. Release_RAM_GCC_A53). This will trigger the compilation by GCC and result in the successful generation of the "rfeAppBasicExample32_release_gcc_a53.elf" file. (NOTE: The build configurations have been named intuitively to denote the compiler and target processor. For example, for compilation of release configuration with GHS for appM7 processor, Release_RAM_GHS_CM7_0 must be selected. It will produce rfeAppBasicExample32_release_ghs_CM7_0.elf.)
+ * It is also possible to manually trigger the build by right-clicking on the project name on in the explorer and selecting 'Build Project' option after the correct build configuration has been selected.
+ * \image html  rfeBasicExampleStep5.png width=60%
+ * <br>
+ * 6. Start Trace32.
+ * \image html  rfeBasicExampleStep6.png width=30%
+ * <br>
+ * 7. Select "Run script" from the "File" menu and select the "rfe/rfeDriver/apps/Trace32Scripts/A53_CM7_0_app_load_scripts/rfeAppBasicExample32_a53.cmm" file.
+ * <br>
+ * 8. You can see the execution hitting breakpoint at main function of rfeAppBasicExample32. Debugging rfeAppBasicExample32 on A53 code is now possible.
+ * \image html  rfeBasicExampleStep8_release.png width=60%
+ * For Debugging against 'C' source code, the app must be compiled in Debug_RAM_GCC_A53 configuration, and the path to .elf file must be updated in rfeAppBasicExample32_a53.cmm to point to the generated elf.
+ * Then repeat the procedure from step 6 after power-cycling the hardware.
+ * \image html  rfeBasicExampleStep8.png width=60%
+ * <br>
+ * \subsubsection appM7 Running rfeAppBasicExample32 on appM7 core
+ * 1. Start S32DS.
+ * \image html  rfeBasicExampleStep1.png width=30%
+ * <br>
+ * 2. Select "Open Project" from the "File" menu.
+ * \image html  rfeBasicExampleStep2.png width=60%
+ * <br>
+ * 3. Import the provided rfeAppBasicExample32.
+ * \image html  rfeBasicExampleStep3.png width=40%
+ * <br>
+ * 4. The rfeAppBasicExample32 is loaded into the S32DS environment.
+ * \image html  rfeBasicExampleStep4.png width=60%
+ * <br>
+ * 5. Click on the dropdown arrow next to the 'hammer' symbol in left part of the toolbar to select a build configuration for appM7 (e.g. Release_RAM_GCC_CM7_0). This will trigger the compilation by GCC and result in the successful generation of the "rfeAppBasicExample32_release_gcc_CM7_0.elf" file.
+ * It is also possible to manually trigger the build by right-clicking on the project name on in the explorer and selecting 'Build Project' option option after the correct build configuration has been selected.
+ * \image html  rfeBasicExampleStep5_appM7.png width=40%
+ * <br>
+ * 6. Start Trace32.
+ * \image html  rfeBasicExampleStep6.png width=30%
+ * <br>
+ * 7. Select "Run script" from the "File" menu and select the "rfe/rfeDriver/apps/Trace32Scripts/A53_CM7_0_app_load_scripts/rfeAppBasicExample32_CM7_0.cmm" file.
+ * <br>
+ * 8. You can see the execution hitting breakpoint at main function of rfeAppBasicExample32. Debugging rfeAppBasicExample32 on appM7 code is now possible.
+ * \image html  rfeBasicExampleStep8_appM7_release.png width=60%
+ * <br>
+ * For For Debugging against 'C' source code, the app must be compiled in Debug_RAM_GCC_CM7_0 configuration, and the path to .elf file must be updated in rfeAppBasicExample32_CM7_0.cmm script to point to the generated elf.
+ * Then repeat the procedure from step 6 after power-cycling the hardware.
+ * \image html  rfeBasicExampleStep8_appM7.png width=60%
+ * <br>
+ *
+ *
+ *
+ * \subsection CDDDriverForAutosar CDD (Complex Device Drivers) for Autosar
+ * CDD APIs which are compliant to Autosar (version 4.4.0) is now integrated in the package.
+ * A detailed description of the CDD APIs are available for reference purpose at <a href="CDD_RFE_IM.pdf" target="_blank">CDD_RFE_IM</a> and <a href="CDD_RFE_UM.pdf" target="_blank">CDD_RFE_UM</a>.
+ *
+ * \subsection rfeAppAutosarBasicExample32 RFE App Autosar Basic Example
+ *
+ * The rfeAppAutosarBasicExample32 is an example application that runs on appM7 processor in the SmartTrx. rfeAppAutosarBasicExample32 too communicates with the SmartTrx RFE SW via the RFE Abstract driver API. The application is built on top of CDD units. rfeAppAutosarBasicExample32 can be compiled with GCC, GHS and DIAB.
+ *
+ * The following items are required for this example application:
+ * - The SmartTrx PCB.
+ * - 12 Volt power supply.
+ * - S32 Design studio for S32 Platform version 3.4.
+ * - Lauterbach debug probe.
+ * - Trace32 software.
+ * - Release of the RFE SW.
+
+ * \subsubsection appM7Autosar Running rfeAppAutosarBasicExample32 on appM7 core
+ * 1. Start S32DS.
+ * \image html  rfeBasicExampleStep1.png width=30%
+ * <br>
+ * 2. Select "Open Project" from the "File" menu.
+ * \image html  rfeBasicExampleStep2.png width=60%
+ * <br>
+ * 3. Import the provided rfeAppAutosarBasicExample32.
+ * \image html  rfeAutosarBasicExampleStep3_appM7.png width=40%
+ * <br>
+ * 4. The rfeAppAutosarBasicExample32 is loaded into the S32DS environment.
+ * \image html  rfeAutosarBasicExampleStep4_appM7.png width=60%
+ * <br>
+ * 5. Click on the dropdown arrow next to the 'hammer' symbol in left part of the toolbar to select a build configuration for appM7 (e.g. Release_RAM_GCC_CM7_0). This will trigger the compilation by GCC and result in the successful generation of the "rfeAppAutosarBasicExample32_release_gcc_CM7_0.elf" file. (For compilation of release configuration with GHS, Release_RAM_GHS_CM7_0 must be selected. It will produce rfeAppAutosarBasicExample32_release_ghs_CM7_0.elf.)
+ * It is also possible to manually trigger the build by right-clicking on the project name on in the explorer and selecting 'Build Project' option option after the correct build configuration has been selected.
+ * \image html  rfeAutosarBasicExampleStep5_appM7.png width=60%
+ * <br>
+ * 6. Start Trace32.
+ * \image html  rfeBasicExampleStep6.png width=30%
+ * <br>
+ * 7. Select "Run script" from the "File" menu and select the "rfeDriver/apps/Trace32Scripts/A53_CM7_0_app_load_scripts/rfeAppAutosarBasicExample32_CM7_0.cmm" file.
+ * <br>
+ * 8. You can see the execution hitting breakpoint at main function of rfeAppAutosarBasicExample32. Debugging rfeAppAutosarBasicExample32 on appM7 code is now possible.
+ * \image html  rfeAutosarBasicExampleStep8_appM7_release.png width=60%
+ * <br>
+ * For For Debugging against 'C' source code, the app must be compiled in Debug_RAM_GCC_CM7_0 configuration, and the path to .elf file must be updated in rfeAppAutosarBasicExample32_CM7_0.cmm script to point to the generated elf.
+ * Then repeat the procedure from step 6 after power-cycling the hardware.
+ * \image html  rfeAutosarBasicExampleStep8_appM7.png width=60%
+ * <br>
+ *
+ *
+ *
+ * \subsection rfeAppCache RFE Applications Cache configuration
+ *
+ * The provided example applications are running with instruction and data caches enabled on both Application SRAM range and Realtime SRAM range.
+ *
+ * For applications where the hardware is writing or reading directly from the application memory, having data cache enable will interfere with these ‘reads/writes’ causing either:
+ *   * Data written by A53/CM7-0 core is not be visible on other hardware devices.
+ *   * Data written by other hardware devices is not be visible by A53/CM7-0 core.
+ *
+ * The following configuration macros are provided to configure the cacheability each memory range:
+ *   * <tt>APPLICATION_SRAM_NON_CACHEABLE</tt> : Disables cache on range <tt>[0x33E80000, 0x33FFF000]</tt>.
+ *   * <tt>REALTIME_SRAM_NON_CACHEABLE</tt> : Disables cache on range <tt>[0x34000000, 0x34080000]</tt>.
+ *
+ * If the communication memory map <tt>BASEADDRESS</tt> is being modified, one must be sure that this location is also set as non-cacheable (see \ref Memory_Map).
+ *
+ * To have extra control over which ranges are being configured as cacheable/non-cacheable, the following files provide the A53 MMU or CM7-0 MPU configurations:
+ *   * <tt>soc/SAF85xx/arch/cortex-a53/startup/src/mmu_init.S</tt>
+ *   * <tt>soc/SAF85xx/arch/cortex-m7/startup/src/mpu_init.c</tt>
+ *   * <tt>soc/SAF86xx/arch/cortex-m7/startup/src/mpu_init.c</tt>
+ *
+ * To apply these macros on S32 project:
+ *    * Open Project properties->C/C++ Build->Settings:
+ *       * Select ‘[All configurations]’
+ *    * Add the macros on ‘Standard S32DS C Compiler’ and ‘Standard S32DS Assembler’:
+ *       * Select Preprocessor
+ *       * Click 'Add...' to add the desired configuration macros
+ *    * Clean and re-build the entire project for the changes to take effect
+ *
+ *  \image html  rfe_app_cache.png width=40%
+ *
+ *
+ *
+ * \subsection rfeConfigGenerator RFE Config Generator
+ * The RFE Config Generator is a software tool for the creation of RFE Configuration and RFE Dynamic Tables. Refer to the <a href="SmartTrx RFE Config Generator User Manual.pdf" target="_blank">SmartTrx RFE Config Generator User Manual</a> for more information.
+ *
+ *
+ *
+ *
+ * \subsection configBlobStructures RFE Config BLOB structures
+ * Detailed descriptions of the structure of the <a href="static_table.html" target="_blank">RFE Config BLOB</a> and <a href="dynamic_table.html" target="_blank">RFE Dynamic Table BLOB</a> are available for reference purposes.
+ *
+ *
+ *
+ *
+ * \subsection Command_Response_Format Command And Response Format
+ * A detailed description of the <a href="CMD_RSP_Format.pdf" target="_blank">Command Response Format</a> is available for reference purposes.
+ *
+ *
+ *
+ *
+ * \subsection RFE_Sequence_Diagrams  RFE SW Driver Interactions with RFE FW
+ *
+ * \subsubsection RFE_TYPICAL_ACTIONS Typical Actions during Command and Response
+ * This sequence lists the typical actions that take place during the command and response, between RFE SW Driver and RFE FW.
+ * This sequence can be referred for sequence diagram of the APIs which are not covered in the subsequent sections.
+ * \image html Typical_Actions.jpg width=75%
+ * \image latex Typical_Actions.jpg width=75%
+ *
+ * \subsubsection RFE_DRIVER_SYNCH Synchronization: rfe_sync()
+ * \image html Synchronization.jpg width=75%
+ * \image latex Synchronization.jpg width=75%
+ *
+ * \subsubsection RFE_Configure Configuration: rfe_configure()
+ * \image html rfe_Configure.jpg width=75%
+ * \image latex rfe_Configure.jpg width=75%
+ *
+ * \subsubsection RFE_GET_FAULTS Get FuSa Faults: rfe_getFuSaFaults
+ * \image html rfe_getError.jpg width=75%
+ * \image latex rfe_getError.jpg width=75%
+ *
+ * \subsubsection MAIN_FCCU_FAULT_HANDLING RFE Fault Handling by Main FCCU
+ * \image html MainFccu_RFE_Fault_Handling.jpg width=75%
+ * \image latex MainFccu_RFE_Fault_Handling.jpg width=75%
+ *
+ * \subsubsection RFE_RADAR_CYCLE_START Radar Cycle start, stop, get radar cycle time and set radar cycle time
+ * \image html radarCycle_StartStop_SetGet.jpg width=75%
+ * \image latex radarCycle_StartStop_SetGet.jpg width=75%
+ *
+ * \subsubsection RFE_CONFIG_UPDATE_WITH_RADAR_CYCLE Configuration update with Active Radar Cycle
+ * \image html ConfigUpdateApi.jpg width=75%
+ * \image latex ConfigUpdateApi.jpg width=75%
+ *
+ * \subsubsection RFE_CONFIG_UPDATE_WITHOUT_RADAR_CYCLE Configuration update without Active Radar Cycle
+ * \image html ConfigUpdateApi_withoutRadarCycle.jpg width=75%
+ * \image latex ConfigUpdateApi_withoutRadarCycle.jpg width=75%
+ *
+ * \subsubsection RFE_CONT_WAVE_TRAN Continuous Wave Transmission
+ * \image html ContWaveTrans.jpg width=75%
+ * \image latex ContWaveTrans.jpg width=75%
+ *
+ * \subsubsection RFE_GET_STATE_CNT Get state and get radar cycle count
+ * \image html GetState_GetRadar.jpg width=75%
+ * \image latex GetState_GetRadar.jpg width=75%
+ *
+ *
+ * \subsection  CSI2_PPoE RFE FW interfaces Radar Application software
+ * Figure 1a shows the hardware IP controlled by the RFE FW. Hardware enclosed by green lines is controlled by RFE FW.
+ * In other words, hardware registers outside this area are not addressed by RFE FW.
+ * One hardware IP, CSI-2 interface, shared between RFE FW and a Radar Application software. The RFE FW uses the CSI-2
+ * registers when ADC data must be transmitted over CSI-2. In this case, the Radar Application software cannot use CSI-2,
+ * as, the CSI-2 can either be used to transmit data or to receive data, but not concurrently.
+ *
+ * RFE FW accesses the following CSI-2 registers in the states Configuration and Calibration (See Figure 13) :-
+ *
+ * RFE_HW_CSI2PHY_CFG_MIXEL_PD_PLL_REG <br>
+ * RFE_HW_CSI2PHY_CFG_MODE_REG <br>
+ * RFE_HW_CSI2PHY_LANE_n_REG (n = 0 to 3) <br>
+ * RFE_HW_CSI2PHY_CLOCK_LANE_REG <br>
+ * RFE_HW_CSI2PHY_CFG_MIXEL_CM_REG <br>
+ * RFE_HW_CSI2PHY_CFG_MIXEL_CO_REG <br>
+ * RFE_HW_CSI2PHY_CFG_MIXEL_U_PRG_HS_TRAIL_REG <br>
+ *
+ * <br>
+ *
+ * \subsection Timing RFE Abstract API Profiling
+ * \image html Api_Profiling.jpg width=75%
+ * \image latex Api_Profiling.jpg width=75%
+ * <h3>Click ☞ <a href="API_profiling.html" target="_blank">RFE Abstract API Profiling</a> to check timing values (T1 to T6 as shown above) for all Abstract API</h3>
+ *
+ * \subsection RFE_API_IRQ RFE Abstract API using RFE FW interrupts
+ *
+ * The following API is provided to allow the RFE-Driver to be used with RFE firmware interrupt support:
+ *  * \ref rfe_configureInterrupt()
+ *
+ * This API allows the application to setup the RFE firmware interrupt and in which conditions will trigger this interrupt:
+ *  * Firmware API responses (allows the application to do other work while waiting for a firmware response).
+ *  * RFE state changes, Radar Cycle changes and Chirp Sequence changes (allows events notifications without having to poll the shared memory).
+ *
+ * <table style="border:0px solid #fff">
+ * <tr><td>
+ * \image html RFE_Abstract_woIRQ.png "Communication without interrupt support" width=75%
+ * </td><td>
+ * \image html RFE_Abstract_wIRQ.png "Communication with interrupt support" width=75%
+ * </td></tr>
+ * </table>
+ *
+ *
+ * \subsubsection RFE_API_IRQ_SETUP Configuring an application to support RFE API interrupts
+ *
+ * -# Register an interrupt handler for IPC_IRQ_1 (number 34 on MSCM):
+ *    * On CA53 is GIC interrupt 34.
+ *    * On CM7-0 is NVIC interrupt 2.
+ *
+ * -# Call \ref rfe_configureInterrupt() to configure RFE firmware interrupt:
+ *    * Provide the Core Id which will receive the interrupt.
+ *    * Provide RFE APIs which will trigger an interrupt when a firmware response is available.
+ *    * Provide Events which will trigger an interrupt (state changes, radar/chirp sequence changes).
+ *    * Optionally: Provide an API wait for interrupt callback.
+ *
+ * -# On the interrupt handler for IPC_IRQ_1:
+ *    * Clear pending interrupt on MSCM.
+ *    * Application specific code (...).
+ *
+ *  If an API wait for interrupt callback was provided (not NULL), it will be called for all RFE APIs set on \ref rfe_configureInterrupt() and it shall return to RFE-Driver when a RFE interrupt is received.
+ *
+ * \subsubsection RFE_API_IRQ_THREADS Multi-Thread support example
+ *
+ * An RFE-Driver API can be made thread aware (swap to different thread while waiting for a firmware response) with the use of a semaphore like primitive:
+ * -# In the API wait for interrupt callback:
+ *    * We wait for the semaphore (ex.: sem_wait(…)), waiting for a semaphore will cause this current thread to block until the semaphore is posted.
+ * -# In the IRQ interrupt handler:
+ *    * We post on the semaphore (ex.: sem_post(…)), posting on a semaphore will preempt the executing thread back to any thread blocked on the semaphore (according to the thread priority configuration).
+ *
+ * \image html RFE_Abstract_threaded.png "Communication in multi-thread scenario" width=40%
+ *
+ *
+ * \subsection Abbreviation Abbreviations and Acronyms
+ *  Abbreviation / Acronyms| Description
+ * --------------------------|------------------------------------------------
+ * RFE                       | Radar Front End
+ * MIMO                      | Multiple-input multiple-output
+ * BIST                      | Built In Self-Test
+ * FuSa                      | Functional Safety
+ * FW                        | Firmware
+ * API                       | Application Programming Interface
+ * RFE-M7                    | ARM Cortex-M7, the Embedded Core in RFE of SmartTrx
+ * FSM                       | Finite State Machine
+ *
+ */

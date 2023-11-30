@@ -1,0 +1,16 @@
+2
+keyed
+<Name><State><Vault><Branch><Version><DateFetched><Log><Conflict><StickyTag><MergedFrom>
+#%@ DEFINE PATH "\power sequence\idaStrxAnalog\ex_api_setup\CHIRPPLL\.SYNC" %#
+#%@ DEFINE ROOTUID "dd3e1c2e4ad08439fab9fcaf1851d7ba" %#
+<idaSTRX_chirppll_stdby2on_76G_mode4G_CW.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_stdby2on_76G_mode4G_CW.bf;><1><1.3><1637737548><><F><><><Checksum=557abc0c20c0d984d8e1dca17f0811be><Size=246><mode=33060><vctime=1637733883>
+<idaSTRX_chirppll_stdby2on_76G_mode1G_CW.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_stdby2on_76G_mode1G_CW.bf;><1><1.2><1637573427><><F><><><Checksum=58ccd71282cd0e68424e2adca17e583e><Size=247><mode=33060><vctime=1637508834>
+<idaSTRX_chirppll_OTPchange.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_OTPchange.bf;><1><1.2><1637573427><><F><><><Checksum=d6da0a4a63c85ca7a7384200eb913402><Size=73><mode=33060><vctime=1637508834>
+<idaSTRX_chirppll_off2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_off2stdby.bf;><1><1.4><1637737547><><F><><><Checksum=93d3e84f91e5409f313dabb568f600da><Size=232><mode=33060><vctime=1637733883>
+<idaSTRX_chirppll_stdby2off.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_stdby2off.bf;><1><1.1><1637737548><><F><><><Checksum=f18e2438063616b756c456942da10728><Size=241><mode=33060><vctime=1637732731>
+<config><G><><><><1638549804><><F><><>
+<idaSTRX_chirppll_runchirp.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_runchirp.bf;><1><1.3><1638286474><><F><><><Checksum=6cf990dc126a9b47f569df0fb2dd398e><Size=499><mode=33060><vctime=1638282208>
+<idaSTRX_chirppll_on2stdby.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_on2stdby.bf;><1><1.1><1637737548><><F><><><Checksum=b345f3dd0fd38233da140a3126c56b0b><Size=147><mode=33060><vctime=1637732731>
+<idaSTRX_chirppll_initRegisters.bf><F><sync://strx-c28.ddm.nxp.com:9911/Projects/strx_es0/data/ida_mmw_rfe_lib/ida_mmw_rfe_4tx_4rx/SOFTWARE/bitfields_lib/idaStrxAnalog/ex_api_setup/CHIRPPLL/idaSTRX_chirppll_initRegisters.bf;><1><1.5><1638286474><><F><><><Checksum=d5c9003ac8ebe2c167f3c7c15f2e6f26><Size=724><mode=33060><vctime=1638281960>
+
+
